@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #f4f7fc;
+            --bg-primary: #f8fafc;
             --bg-secondary: #ffffff;
             --bg-card: #ffffff;
             --text-primary: #0f172a;
@@ -23,24 +23,25 @@
             --border-color: #e2e8f0;
             --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
             --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
-            --nav-bg: rgba(255, 255, 255, 0.85);
+            --nav-bg: rgba(255, 255, 255, 0.75);
             --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
         }
 
+        /* DARK MODE COLORS */
         [data-theme="dark"] {
-            --bg-primary: #0b1120;
+            --bg-primary: #0a0f1d;
             --bg-secondary: #111827;
-            --bg-card: #1e293b;
-            --text-primary: #f8fafc;
+            --bg-card: #141e33;
+            --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
-            --accent-blue: #3b82f6;
+            --accent-blue: #38bdf8;
             --accent-hover: #60a5fa;
-            --accent-light: #1e3a8a;
-            --border-color: #334155;
-            --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
-            --nav-bg: rgba(15, 23, 42, 0.85);
-            --gradient-blue: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            --accent-light: rgba(56, 189, 248, 0.15);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+            --nav-bg: rgba(10, 15, 29, 0.75);
+            --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
         }
 
         * {
@@ -95,7 +96,7 @@
             object-fit: cover;
             border: 4px solid var(--accent-blue);
             animation: pulseLogo 2s infinite ease-in-out;
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
         }
 
         .loader-spinner {
@@ -109,8 +110,8 @@
         }
 
         @keyframes pulseLogo {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
-            50% { transform: scale(1.08); box-shadow: 0 0 40px rgba(37, 99, 235, 0.8); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 0 40px rgba(56, 189, 248, 0.8); }
         }
 
         @keyframes spin {
@@ -118,56 +119,65 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* --- MODERN FLOATING NAVBAR STYLES --- */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1250px;
             z-index: 1000;
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
         }
 
         .navbar {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 12px 24px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px 20px 8px 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
             color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 14px 4px 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
         }
 
         .logo-img {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             border: 2px solid var(--accent-blue);
         }
 
         .logo-text h1 {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--accent-blue);
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .logo-text span {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 6px;
             align-items: center;
         }
 
@@ -175,57 +185,54 @@
             text-decoration: none;
             color: var(--text-primary);
             font-weight: 500;
-            font-size: 0.95rem;
-            position: relative;
-            padding: 6px 0;
+            font-size: 0.88rem;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--accent-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            background: var(--accent-light);
         }
 
         .theme-toggle {
-            background: transparent;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.2rem;
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 1.1rem;
             cursor: pointer;
-            padding: 8px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
-            color: var(--accent-blue);
-            transform: rotate(15deg);
+            transform: rotate(20deg) scale(1.05);
+            background: var(--accent-blue);
+            color: #fff;
         }
 
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
         }
 
         section {
             position: relative;
             z-index: 1;
-            padding: 90px 20px 60px;
+            padding: 100px 20px 60px;
             max-width: 1300px;
             margin: 0 auto;
         }
@@ -238,9 +245,19 @@
         .section-title h2 {
             font-size: 2.2rem;
             color: var(--accent-blue);
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
+        }
+
+        .section-title h2 .sub-title-si {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-family: 'Abhaya Libre', serif;
         }
 
         .section-title h2::after {
@@ -257,7 +274,7 @@
 
         .section-title p {
             color: var(--text-secondary);
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 1rem;
         }
 
@@ -267,12 +284,10 @@
             align-items: center;
             justify-content: space-between;
             gap: 40px;
-            padding-top: 120px;
+            padding-top: 130px;
         }
 
-        .hero-content {
-            flex: 1;
-        }
+        .hero-content { flex: 1; }
 
         .hero-tag {
             background: var(--accent-light);
@@ -306,28 +321,29 @@
         }
 
         .btn {
-            padding: 12px 28px;
+            padding: 10px 22px;
             border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
             background: var(--gradient-blue);
             color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
         }
 
         .btn-outline {
@@ -339,7 +355,76 @@
         .btn-outline:hover {
             border-color: var(--accent-blue);
             color: var(--accent-blue);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+        }
+
+        /* --- ROTATING 3D GALLERY CAROUSEL --- */
+        .gallery-container {
+            perspective: 1000px;
+            width: 100%;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 260px;
+            height: 320px;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: filter 0.5s ease, opacity 0.5s ease;
+        }
+
+        .carousel-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .control-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.1);
         }
 
         .hero-image {
@@ -389,9 +474,7 @@
             box-shadow: var(--shadow-sm);
         }
 
-        .teacher-img-box {
-            text-align: center;
-        }
+        .teacher-img-box { text-align: center; }
 
         .teacher-img-box img {
             width: 220px;
@@ -442,7 +525,7 @@
 
         .instrument-cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
@@ -463,29 +546,42 @@
 
         .inst-card h3 {
             color: var(--accent-blue);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .inst-list {
-            list-style: none;
-        }
+        .inst-list { list-style: none; }
 
         .inst-list li {
-            padding: 4px 0;
+            padding: 8px 0;
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border-color);
+            gap: 10px;
         }
 
-        .inst-list li::before {
-            content: "•";
+        .inst-list li:last-child { border-bottom: none; }
+
+        .inst-btn {
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 5px;
+            background: var(--accent-light);
             color: var(--accent-blue);
-            font-weight: bold;
+            text-decoration: none;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .inst-btn:hover {
+            background: var(--accent-blue);
+            color: #ffffff;
         }
 
         .cards-grid-2 {
@@ -510,7 +606,6 @@
             margin-bottom: 12px;
         }
 
-        /* --- UPDATED POSTER STYLES WITH DIRECT IMAGE DISPLAY --- */
         .poster-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -550,9 +645,7 @@
             transition: transform 0.5s ease;
         }
 
-        .poster-card:hover .poster-img-wrapper img {
-            transform: scale(1.06);
-        }
+        .poster-card:hover .poster-img-wrapper img { transform: scale(1.06); }
 
         .poster-overlay {
             position: absolute;
@@ -568,9 +661,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .poster-img-wrapper:hover .poster-overlay {
-            opacity: 1;
-        }
+        .poster-img-wrapper:hover .poster-overlay { opacity: 1; }
 
         .poster-overlay i {
             color: white;
@@ -592,7 +683,6 @@
             color: var(--text-primary);
         }
 
-        /* LIGHTBOX POPUP MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -633,10 +723,9 @@
             transition: 0.3s;
         }
 
-        .modal-close:hover {
-            color: var(--accent-blue);
-        }
+        .modal-close:hover { color: var(--accent-blue); }
 
+        /* UPDATED STUDENT DOWNLOADS SECTION STYLES */
         .download-box {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -645,81 +734,44 @@
             box-shadow: var(--shadow-sm);
         }
 
-        .grade-selector {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        .grade-btn {
-            padding: 8px 18px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            border-radius: 8px;
-            cursor: pointer;
-            white-space: nowrap;
-            font-weight: 600;
-        }
-
-        .grade-btn.active {
-            background: var(--accent-blue);
-            color: white;
-            border-color: var(--accent-blue);
-        }
-
-        .download-content-grid {
+        .grade-links-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
         }
 
-        .dl-category {
+        .grade-link-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .dl-category h4 {
-            color: var(--accent-blue);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dl-list {
-            list-style: none;
-        }
-
-        .dl-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .dl-item:last-child {
-            border-bottom: none;
-        }
-
-        .dl-btn {
-            padding: 5px 12px;
-            background: var(--accent-light);
-            color: var(--accent-blue);
-            border-radius: 6px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 0.85rem;
             font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
-        .dl-btn:hover {
+        .grade-link-card i {
+            color: var(--accent-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .grade-link-card:hover {
             background: var(--accent-blue);
-            color: white;
+            color: #ffffff;
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+        }
+
+        .grade-link-card:hover i {
+            color: #ffffff;
+            transform: translateX(4px);
         }
 
         .tools-grid {
@@ -774,9 +826,7 @@
             font-size: 1.05rem;
         }
 
-        .phone-list i {
-            color: var(--accent-blue);
-        }
+        .phone-list i { color: var(--accent-blue); }
 
         .social-buttons {
             display: flex;
@@ -817,37 +867,43 @@
             z-index: 1;
         }
 
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 100px;
-            }
-
-            .about-grid, .contact-grid, .download-content-grid {
-                grid-template-columns: 1fr;
+        @media (max-width: 992px) {
+            header {
+                width: 95%;
+                top: 10px;
             }
 
             .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 75px;
                 right: -100%;
                 background: var(--bg-card);
-                width: 250px;
-                height: 100vh;
+                width: 260px;
+                height: calc(100vh - 90px);
                 flex-direction: column;
-                padding: 30px;
+                padding: 30px 20px;
+                border-radius: 20px;
+                border: 1px solid var(--border-color);
                 box-shadow: var(--shadow-lg);
-                transition: right 0.3s ease;
+                transition: right 0.4s ease;
+                align-items: flex-start;
             }
 
-            .nav-links.active {
-                right: 0;
+            .nav-links a {
+                width: 100%;
+                font-size: 1rem;
             }
 
-            .mobile-menu-btn {
-                display: block;
+            .nav-links.active { right: 0; }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 110px;
             }
+
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -872,10 +928,11 @@
 
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#courses">Instruments & Courses</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#courses">Courses</a></li>
                 <li><a href="#posters">Posters</a></li>
-                <li><a href="#news">News & Wins</a></li>
+                <li><a href="#news">News</a></li>
                 <li><a href="#downloads">Downloads</a></li>
                 <li><a href="#tools">Tools</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -911,9 +968,41 @@
         </div>
     </section>
 
+    <!-- ROTATING 3D GALLERY SECTION -->
+    <section id="gallery">
+        <div class="section-title">
+            <h2>
+                Gallery
+                <span class="sub-title-si">ඡායාරූප ගැලරිය</span>
+            </h2>
+            <p>අපගේ සංගීත ආයතනයේ විශේෂ අවස්ථා</p>
+        </div>
+        
+        <div class="gallery-container">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-card"><img src="img1.png" alt="Gallery 1" loading="lazy"></div>
+                <div class="carousel-card"><img src="img2.png" alt="Gallery 2" loading="lazy"></div>
+                <div class="carousel-card"><img src="img3.png" alt="Gallery 3" loading="lazy"></div>
+                <div class="carousel-card"><img src="img4.png" alt="Gallery 4" loading="lazy"></div>
+                <div class="carousel-card"><img src="img5.png" alt="Gallery 5" loading="lazy"></div>
+                <div class="carousel-card"><img src="img6.png" alt="Gallery 6" loading="lazy"></div>
+                <div class="carousel-card"><img src="img7.png" alt="Gallery 7" loading="lazy"></div>
+                <div class="carousel-card"><img src="img8.png" alt="Gallery 8" loading="lazy"></div>
+            </div>
+        </div>
+
+        <div class="gallery-controls">
+            <button class="control-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="control-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </section>
+
     <section id="about">
         <div class="section-title">
-            <h2>About Us | අප ගැන</h2>
+            <h2>
+                About Us
+                <span class="sub-title-si">අප ගැන</span>
+            </h2>
             <p>ගුරුතුමා පිළිබඳව සහ අපගේ සංගීත පාසලේ දැක්ම</p>
         </div>
 
@@ -941,7 +1030,10 @@
 
     <section id="courses">
         <div class="section-title">
-            <h2>Instruments & Courses | උගන්වන වාද්‍ය භාණ්ඩ</h2>
+            <h2>
+                Instruments & Courses
+                <span class="sub-title-si">උගන්වන වාද්‍ය භාණ්ඩ</span>
+            </h2>
             <p>දේශීය, පෙරදිග සහ අපරදිග සංගීත භාණ්ඩ රැසක් පුහුණු කෙරේ</p>
         </div>
 
@@ -957,95 +1049,93 @@
             <div class="inst-card" data-cat="string">
                 <h3><i class="fa-solid fa-guitar"></i> String - Local & Eastern</h3>
                 <ul class="inst-list">
-                    <li>Sitar (සිතාරය)</li>
-                    <li>Esraj (එස්රාජ්)</li>
-                    <li>Veena (වීණාව)</li>
-                    <li>Dilruba (දිල්රුබා)</li>
-                    <li>Sarod (සරෝද්)</li>
-                    <li>Santour (සන්තූර්)</li>
-                    <li>Tanpura / Tambura (තම්පුරාව)</li>
+                    <li><span>Sitar (සිතාරය)</span> <a href="sitar.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Esraj (එස්රාජ්)</span> <a href="esraj.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Veena (වීණාව)</span> <a href="veena.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Dilruba (දිල්රුබා)</span> <a href="dilruba.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Sarod (සරෝද්)</span> <a href="sarod.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Santour (සන්තූර්)</span> <a href="santour.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Tanpura (තම්පුරාව)</span> <a href="tanpura.html" class="inst-btn">විස්තර බලන්න</a></li>
                 </ul>
             </div>
 
             <div class="inst-card" data-cat="string">
                 <h3><i class="fa-solid fa-guitar"></i> String - Western</h3>
                 <ul class="inst-list">
-                    <li>Violin (වයලීනය)</li>
-                    <li>Cello (සෙලෝ)</li>
-                    <li>Double Bass</li>
-                    <li>Acoustic / Classical / Electric Guitar</li>
-                    <li>Bass Guitar</li>
-                    <li>Ukulele</li>
-                    <li>Mandolin & Banjo</li>
+                    <li><span>Violin (වයලීනය)</span> <a href="violin.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Cello (සෙලෝ)</span> <a href="cello.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Double Bass</span> <a href="double-bass.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Acoustic / Electric Guitar</span> <a href="guitar.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Bass Guitar</span> <a href="bass-guitar.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Ukulele</span> <a href="ukulele.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Mandolin & Banjo</span> <a href="mandolin.html" class="inst-btn">විස්තර බලන්න</a></li>
                 </ul>
             </div>
 
             <div class="inst-card" data-cat="keyboard">
                 <h3><i class="fa-solid fa-keyboard"></i> Keyboards & Pianos</h3>
                 <ul class="inst-list">
-                    <li>Harmonium / Seraphina (හාමෝනියම්)</li>
-                    <li>Piano (පියානෝ)</li>
-                    <li>Digital Keyboard / Synthesizer</li>
-                    <li>Melodica (මෙලෝඩිකා)</li>
-                    <li>Accordion (ඇකෝඩියන්)</li>
+                    <li><span>Harmonium (හාමෝනියම්)</span> <a href="harmonium.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Piano (පියානෝ)</span> <a href="piano.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Digital Keyboard</span> <a href="keyboard.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Melodica (මෙලෝඩිකා)</span> <a href="melodica.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Accordion (ඇකෝඩියන්)</span> <a href="accordion.html" class="inst-btn">විස්තර බලන්න</a></li>
                 </ul>
             </div>
 
             <div class="inst-card" data-cat="percussion">
                 <h3><i class="fa-solid fa-drum"></i> Sri Lankan Traditional Drums</h3>
                 <ul class="inst-list">
-                    <li>Geta Beraya (ගැට බෙරය)</li>
-                    <li>Yak Beraya / Low Country Drum</li>
-                    <li>Daula (දවුල) & Thammattama</li>
-                    <li>Udekkiya & Bummadiya</li>
-                    <li>Hand Rabana / Virudu Rabana</li>
-                    <li>Banku Rabana / Demala Beraya</li>
+                    <li><span>Geta Beraya (ගැට බෙරය)</span> <a href="geta-beraya.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Yak Beraya</span> <a href="yak-beraya.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Daula & Thammattama</span> <a href="daula.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Udekkiya & Bummadiya</span> <a href="udekkiya.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Hand Rabana</span> <a href="rabana.html" class="inst-btn">විස්තර බලන්න</a></li>
                 </ul>
             </div>
 
             <div class="inst-card" data-cat="percussion">
                 <h3><i class="fa-solid fa-drum-steelpan"></i> Eastern & Western Percussion</h3>
                 <ul class="inst-list">
-                    <li>Tabla (තබ්ලාව) & Dholak / Dhol</li>
-                    <li>Mridangam, Kanjira, Ghatam</li>
-                    <li>Drum Kit & Octapad</li>
-                    <li>Conga & Bongo Drums, Cajon</li>
-                    <li>Thalampota, Kiri Kodi, Tambourine, Shakers, Triangle</li>
+                    <li><span>Tabla (තබ්ලාව) & Dholak</span> <a href="tabla.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Mridangam</span> <a href="mridangam.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Drum Kit & Octapad</span> <a href="drums.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Conga, Bongo & Cajon</span> <a href="conga.html" class="inst-btn">විස්තර බලන්න</a></li>
                 </ul>
             </div>
 
             <div class="inst-card" data-cat="wind">
                 <h3><i class="fa-solid fa-wind"></i> Wind - Local & Eastern</h3>
                 <ul class="inst-list">
-                    <li>Horanawa (හොරණෑව)</li>
-                    <li>Bamboo Flute (බුංගලාව / බංසුරි)</li>
-                    <li>Pullahangilawa (පුල්ලාන්ගිලාව)</li>
-                    <li>Shehnai & Hakgediya</li>
-                    <li>Vas Dandu (වස් දඬුව)</li>
+                    <li><span>Horanawa (හොරණෑව)</span> <a href="horanawa.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Bamboo Flute (බංසුරි)</span> <a href="flute.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Pullahangilawa</span> <a href="pullahangilawa.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Shehnai & Hakgediya</span> <a href="shehnai.html" class="inst-btn">විස්තර බලන්න</a></li>
                 </ul>
             </div>
 
             <div class="inst-card" data-cat="wind">
                 <h3><i class="fa-solid fa-wind"></i> Wind - Western</h3>
                 <ul class="inst-list">
-                    <li>Harmonica / Mouth Organ</li>
-                    <li>Saxophone (සැක්සෆෝන්)</li>
-                    <li>Trumpet & Trombone</li>
-                    <li>Clarinet, Flute, Recorder</li>
+                    <li><span>Harmonica / Mouth Organ</span> <a href="harmonica.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Saxophone (සැක්සෆෝන්)</span> <a href="saxophone.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Trumpet & Trombone</span> <a href="trumpet.html" class="inst-btn">විස්තර බලන්න</a></li>
+                    <li><span>Clarinet & Recorder</span> <a href="clarinet.html" class="inst-btn">විස්තර බලන්න</a></li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- UPDATED CLASS POSTERS SECTION (DIRECT IMAGE PREVIEW + LIGHTBOX) -->
     <section id="posters">
         <div class="section-title">
-            <h2>Class Posters | පන්ති පෝස්ටර්</h2>
+            <h2>
+                Class Posters
+                <span class="sub-title-si">පන්ති පෝස්ටර්</span>
+            </h2>
             <p>අපගේ පන්ති පිළිබඳ පෝස්ටර් රූප සටහන් (පින්තූරය මත Click කර විශාල කර බලන්න)</p>
         </div>
 
         <div class="poster-grid">
-            <!-- Poster 1 -->
             <div class="poster-card">
                 <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1lEyjYQ0sEPb0xeiasL-8jRY1yNajx5H9&sz=w1000')">
                     <img src="https://drive.google.com/thumbnail?id=1lEyjYQ0sEPb0xeiasL-8jRY1yNajx5H9&sz=w800" alt="Class Poster 01" loading="lazy">
@@ -1057,7 +1147,6 @@
                 </div>
             </div>
 
-            <!-- Poster 2 -->
             <div class="poster-card">
                 <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1d7SEShGIXHURhbjvbalZZt_Kq9rItI-X&sz=w1000')">
                     <img src="https://drive.google.com/thumbnail?id=1d7SEShGIXHURhbjvbalZZt_Kq9rItI-X&sz=w800" alt="Class Poster 02" loading="lazy">
@@ -1069,7 +1158,6 @@
                 </div>
             </div>
 
-            <!-- Poster 3 -->
             <div class="poster-card">
                 <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1A4WP1CwDk5p6VzKNbEI19TgAe9Yy2b9k&sz=w1000')">
                     <img src="https://drive.google.com/thumbnail?id=1A4WP1CwDk5p6VzKNbEI19TgAe9Yy2b9k&sz=w800" alt="Class Poster 03" loading="lazy">
@@ -1081,7 +1169,6 @@
                 </div>
             </div>
 
-            <!-- Poster 4 -->
             <div class="poster-card">
                 <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1_iAx2bMWfI1orPK1x_UAZHChi6h9FAQv&sz=w1000')">
                     <img src="https://drive.google.com/thumbnail?id=1_iAx2bMWfI1orPK1x_UAZHChi6h9FAQv&sz=w800" alt="Class Poster 04" loading="lazy">
@@ -1093,7 +1180,6 @@
                 </div>
             </div>
 
-            <!-- Poster 5 -->
             <div class="poster-card">
                 <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1zQds2L7aNxehbRHPN-NWnkMoBjGQ7B68&sz=w1000')">
                     <img src="https://drive.google.com/thumbnail?id=1zQds2L7aNxehbRHPN-NWnkMoBjGQ7B68&sz=w800" alt="Class Poster 05" loading="lazy">
@@ -1105,7 +1191,6 @@
                 </div>
             </div>
 
-            <!-- Poster 6 -->
             <div class="poster-card">
                 <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1xMLz68iQsnYAcnP04AkzbiH96WB9Ffgf&sz=w1000')">
                     <img src="https://drive.google.com/thumbnail?id=1xMLz68iQsnYAcnP04AkzbiH96WB9Ffgf&sz=w800" alt="Class Poster 06" loading="lazy">
@@ -1119,7 +1204,6 @@
         </div>
     </section>
 
-    <!-- LIGHTBOX MODAL FOR ENLARGING POSTERS -->
     <div id="imageModal" class="modal">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="modalImg">
@@ -1127,7 +1211,11 @@
 
     <section id="news">
         <div class="section-title">
-            <h2>News & Achievements | ජයග්‍රහණ සහ පුවත්</h2>
+            Hey
+            <h2>
+                News & Achievements
+                <span class="sub-title-si">ජයග්‍රහණ සහ පුවත්</span>
+            </h2>
             <p>ආයතනයේ විශේෂ අවස්ථා සහ ජයග්‍රහණ</p>
         </div>
 
@@ -1156,59 +1244,64 @@
         </div>
     </section>
 
+    <!-- UPDATED STUDENT DOWNLOADS SECTION -->
     <section id="downloads">
         <div class="section-title">
-            <h2>Student Downloads | සටහන් සහ ප්‍රශ්න පත්‍ර</h2>
-            <p>ශ්‍රේණිය තෝරා අවශ්‍ය Notes සහ Past Papers ඩවුන්ලෝඩ් කරගන්න</p>
+            <h2>
+                Student Downloads
+                <span class="sub-title-si">සටහන් සහ ප්‍රශ්න පත්‍ර</span>
+            </h2>
+            <p>අදාළ ශ්‍රේණිය මත Click කර එම පිටුවට පිවිසෙන්න</p>
         </div>
 
         <div class="download-box">
-            <div class="grade-selector">
-                <button class="grade-btn active" onclick="selectGrade(6)">6 Grade</button>
-                <button class="grade-btn" onclick="selectGrade(7)">7 Grade</button>
-                <button class="grade-btn" onclick="selectGrade(8)">8 Grade</button>
-                <button class="grade-btn" onclick="selectGrade(9)">9 Grade</button>
-                <button class="grade-btn" onclick="selectGrade(10)">10 Grade (O/L)</button>
-                <button class="grade-btn" onclick="selectGrade(11)">11 Grade (O/L)</button>
-                <button class="grade-btn" onclick="selectGrade(12)">12 Grade (A/L)</button>
-                <button class="grade-btn" onclick="selectGrade(13)">13 Grade (A/L)</button>
-            </div>
-
-            <div class="download-content-grid">
-                <div class="dl-category">
-                    <h4><i class="fa-solid fa-book-open"></i> Notes (පාඩම් සටහන්) - <span id="currentGradeTitle1">Grade 6</span></h4>
-                    <ul class="dl-list" id="notesList">
-                        <li class="dl-item">
-                            <span>Music Unit 01 Notes</span>
-                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
-                        </li>
-                        <li class="dl-item">
-                            <span>Instrument Theory Note</span>
-                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="dl-category">
-                    <h4><i class="fa-solid fa-file-lines"></i> Past Papers (ප්‍රශ්න පත්‍ර) - <span id="currentGradeTitle2">Grade 6</span></h4>
-                    <ul class="dl-list" id="papersList">
-                        <li class="dl-item">
-                            <span>Term Test Paper 2023</span>
-                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
-                        </li>
-                        <li class="dl-item">
-                            <span>Model Paper 01</span>
-                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="grade-links-grid">
+                <a href="Grade6.html" class="grade-link-card">
+                    <span>Grade 6</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="Grade7.html" class="grade-link-card">
+                    <span>Grade 7</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="Grade8.html" class="grade-link-card">
+                    <span>Grade 8</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="Grade9.html" class="grade-link-card">
+                    <span>Grade 9</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="Grade10.html" class="grade-link-card">
+                    <span>Grade 10</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="Grade11.html" class="grade-link-card">
+                    <span>Grade 11</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="Grade12.html" class="grade-link-card">
+                    <span>Grade 12</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="Grade13.html" class="grade-link-card">
+                    <span>Grade 13</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="OtherExam.html" class="grade-link-card">
+                    <span>Other Exam</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
 
     <section id="tools">
         <div class="section-title">
-            <h2>Music Tools | සංගීත මෙවලම්</h2>
+            <h2>
+                Music Tools
+                <span class="sub-title-si">සංගීත මෙවලම්</span>
+            </h2>
             <p>ඔබගේ පුහුණුවීම් සඳහා ප්‍රයෝජනවත් වන Online Tools</p>
         </div>
 
@@ -1245,7 +1338,10 @@
 
     <section id="contact">
         <div class="section-title">
-            <h2>Contact Us | සම්බන්ධ කරගන්න</h2>
+            <h2>
+                Contact Us
+                <span class="sub-title-si">සම්බන්ධ කරගන්න</span>
+            </h2>
             <p>පන්ති සඳහා ලියාපදිංචි වීමට හෝ වැඩිදුර විස්තර සඳහා විමසන්න</p>
         </div>
 
@@ -1288,6 +1384,21 @@
         const themeToggleBtn = document.getElementById('themeToggle');
         const htmlElement = document.documentElement;
 
+        function applyAutoTheme() {
+            const now = new Date();
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const slDate = new Date(utc + (3600000 * 5.5));
+            const hours = slDate.getHours();
+
+            const isDayTime = hours >= 6 && hours < 18;
+            const theme = isDayTime ? 'light' : 'dark';
+
+            htmlElement.setAttribute('data-theme', theme);
+            themeToggleBtn.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        applyAutoTheme();
+
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = htmlElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -1301,6 +1412,59 @@
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
+
+        // 3D GALLERY CAROUSEL LOGIC
+        const cards = document.querySelectorAll('.carousel-card');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        const totalCards = cards.length;
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                let offset = (index - currentIndex + totalCards) % totalCards;
+                if (offset > totalCards / 2) {
+                    offset -= totalCards;
+                }
+
+                const angle = offset * 45;
+                const tz = 280;
+                const tx = offset * 110;
+                const scale = Math.max(0.6, 1 - Math.abs(offset) * 0.15);
+                const opacity = Math.abs(offset) > 2 ? 0 : 1;
+
+                card.style.transform = `translateX(${tx}px) translateZ(${tz - Math.abs(offset) * 80}px) rotateY(${angle * -0.5}deg) scale(${scale})`;
+                card.style.opacity = opacity;
+                card.style.zIndex = 100 - Math.abs(offset);
+                card.style.filter = offset === 0 ? 'brightness(1.1)' : 'brightness(0.7)';
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalCards;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+            updateCarousel();
+        });
+
+        let autoRotate = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalCards;
+            updateCarousel();
+        }, 3000);
+
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', () => clearInterval(autoRotate));
+        galleryContainer.addEventListener('mouseleave', () => {
+            autoRotate = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalCards;
+                updateCarousel();
+            }, 3000);
+        });
+
+        updateCarousel();
 
         function filterCategory(category) {
             const buttons = document.querySelectorAll('.category-tabs .tab-btn');
@@ -1317,29 +1481,6 @@
             });
         }
 
-        function selectGrade(grade) {
-            const btns = document.querySelectorAll('.grade-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            const title1 = document.getElementById('currentGradeTitle1');
-            const title2 = document.getElementById('currentGradeTitle2');
-            const gradeName = (grade === 10 || grade === 11) ? `Grade ${grade} (O/L)` : (grade === 12 || grade === 13) ? `Grade ${grade} (A/L)` : `Grade ${grade}`;
-
-            title1.textContent = gradeName;
-            title2.textContent = gradeName;
-
-            document.getElementById('notesList').innerHTML = `
-                <li class="dl-item"><span>${gradeName} Music Theory Note 01</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
-                <li class="dl-item"><span>${gradeName} Practical Guide Note</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
-            `;
-            document.getElementById('papersList').innerHTML = `
-                <li class="dl-item"><span>${gradeName} 1st Term Paper</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
-                <li class="dl-item"><span>${gradeName} Model Exam Paper</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
-            `;
-        }
-
-        // LIGHTBOX MODAL FUNCTIONS
         function openModal(imgSrc) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
@@ -1351,7 +1492,6 @@
             document.getElementById('imageModal').style.display = "none";
         }
 
-        // Close modal when clicking outside image
         window.onclick = function(event) {
             const modal = document.getElementById('imageModal');
             if (event.target == modal) {
@@ -1392,7 +1532,7 @@
                 }
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(37, 99, 235, ${p.opacity})`;
+                ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
                 ctx.fill();
             });
             requestAnimationFrame(animateCanvas);
