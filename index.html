@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="si" data-theme="dark">
+<html lang="si" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-primary: #f8fafc;
@@ -23,25 +24,32 @@
             --border-color: #e2e8f0;
             --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
             --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
-            --nav-bg: rgba(255, 255, 255, 0.75);
+            --nav-bg: rgba(255, 255, 255, 0.85);
             --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            
+            --btn-outline-text: #0f172a;
+            --btn-outline-border: #e2e8f0;
         }
 
-        /* DARK MODE COLORS */
         [data-theme="dark"] {
-            --bg-primary: #0a0f1d;
-            --bg-secondary: #111827;
-            --bg-card: #141e33;
-            --text-primary: #f1f5f9;
+            --bg-primary: #080d1a;
+            --bg-secondary: #0f172a;
+            --bg-card: #131d31;
+            --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
+            
             --accent-blue: #38bdf8;
-            --accent-hover: #60a5fa;
-            --accent-light: rgba(56, 189, 248, 0.15);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
-            --nav-bg: rgba(10, 15, 29, 0.75);
+            --accent-hover: #0ea5e9;
+            --accent-light: rgba(56, 189, 248, 0.12);
+            --border-color: rgba(56, 189, 248, 0.2);
+            
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+            --nav-bg: rgba(8, 13, 26, 0.85);
             --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+
+            --btn-outline-text: #38bdf8;
+            --btn-outline-border: rgba(56, 189, 248, 0.4);
         }
 
         * {
@@ -63,6 +71,7 @@
             line-height: 1.6;
         }
 
+        /* DYNAMIC ENHANCED BACKGROUND CANVAS */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -71,9 +80,10 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.4;
+            opacity: 0.6;
         }
 
+        /* PRELOADER STYLES */
         #preloader {
             position: fixed;
             top: 0;
@@ -119,7 +129,38 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* --- MODERN FLOATING NAVBAR STYLES --- */
+        /* BRAND TITLE GLOW & TEXT ANIMATION */
+        .animated-title {
+            background: linear-gradient(90deg, var(--accent-blue), #60a5fa, var(--accent-blue));
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shineText 4s linear infinite, fadeInUp 1s ease forwards;
+        }
+
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SCROLL REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* NAVBAR STYLES */
         header {
             position: fixed;
             top: 15px;
@@ -140,7 +181,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
         .logo-container {
@@ -278,6 +319,7 @@
             font-size: 1rem;
         }
 
+        /* HERO SECTION */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -298,6 +340,8 @@
             font-weight: 600;
             display: inline-block;
             margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .hero-content h1 {
@@ -312,12 +356,14 @@
             margin-bottom: 30px;
             font-family: 'Abhaya Libre', serif;
             font-size: 1.3rem;
+            animation: fadeInUp 1.2s ease forwards;
         }
 
         .cta-buttons {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            animation: fadeInUp 1.4s ease forwards;
         }
 
         .btn {
@@ -337,28 +383,65 @@
 
         .btn-primary {
             background: var(--gradient-blue);
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.45);
+            filter: brightness(1.1);
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-color);
+            color: var(--btn-outline-text);
+            border: 2px solid var(--btn-outline-border);
         }
 
         .btn-outline:hover {
+            background: var(--accent-light);
             border-color: var(--accent-blue);
             color: var(--accent-blue);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
-        /* --- ROTATING 3D GALLERY CAROUSEL --- */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-card {
+            width: 320px;
+            height: 380px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            text-align: center;
+            padding: 25px;
+            position: relative;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .hero-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        /* 3D GALLERY CAROUSEL */
         .gallery-container {
             perspective: 1000px;
             width: 100%;
@@ -406,7 +489,7 @@
         }
 
         .control-btn {
-            background: var(--bg-card);
+            background: var(--accent-light);
             border: 1px solid var(--border-color);
             color: var(--accent-blue);
             width: 45px;
@@ -423,49 +506,15 @@
 
         .control-btn:hover {
             background: var(--accent-blue);
-            color: white;
+            color: #ffffff;
             transform: scale(1.1);
         }
 
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .hero-card {
-            width: 320px;
-            height: 380px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            text-align: center;
-            padding: 25px;
-            position: relative;
-            animation: float 4s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        .hero-card img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-blue);
-            margin-bottom: 15px;
-        }
-
+        /* ABOUT SECTION (FIXED BUG) */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             align-items: center;
             background: var(--bg-card);
             padding: 40px;
@@ -474,11 +523,18 @@
             box-shadow: var(--shadow-sm);
         }
 
+        .teachers-wrapper {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .teacher-img-box { text-align: center; }
 
         .teacher-img-box img {
-            width: 220px;
-            height: 220px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--accent-blue);
@@ -497,6 +553,7 @@
             border-left: 4px solid var(--accent-blue);
         }
 
+        /* COURSES SECTION */
         .category-tabs {
             display: flex;
             justify-content: center;
@@ -518,9 +575,9 @@
 
         .tab-btn.active, .tab-btn:hover {
             background: var(--accent-blue);
-            color: white;
+            color: #ffffff;
             border-color: var(--accent-blue);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
         }
 
         .instrument-cards-grid {
@@ -568,11 +625,12 @@
         .inst-list li:last-child { border-bottom: none; }
 
         .inst-btn {
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            border-radius: 5px;
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            border-radius: 6px;
             background: var(--accent-light);
             color: var(--accent-blue);
+            border: 1px solid var(--border-color);
             text-decoration: none;
             font-weight: 600;
             white-space: nowrap;
@@ -582,30 +640,10 @@
         .inst-btn:hover {
             background: var(--accent-blue);
             color: #ffffff;
+            border-color: var(--accent-blue);
         }
 
-        .cards-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .news-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .news-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-        }
-
+        /* POSTERS SECTION */
         .poster-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -653,7 +691,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.5);
+            background: rgba(8, 13, 26, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -664,7 +702,7 @@
         .poster-img-wrapper:hover .poster-overlay { opacity: 1; }
 
         .poster-overlay i {
-            color: white;
+            color: #ffffff;
             font-size: 2.2rem;
             background: var(--accent-blue);
             padding: 15px;
@@ -683,6 +721,7 @@
             color: var(--text-primary);
         }
 
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -703,7 +742,7 @@
             max-width: 90%;
             max-height: 85vh;
             border-radius: 12px;
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
             animation: zoom 0.3s ease-in-out;
         }
 
@@ -725,7 +764,33 @@
 
         .modal-close:hover { color: var(--accent-blue); }
 
-        /* UPDATED STUDENT DOWNLOADS SECTION STYLES */
+        /* NEWS SECTION */
+        .cards-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover { transform: translateY(-5px); }
+
+        .news-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        /* STUDENT DOWNLOADS SECTION */
         .download-box {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -745,7 +810,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: var(--bg-primary);
+            background: var(--accent-light);
             border: 1px solid var(--border-color);
             padding: 16px 20px;
             border-radius: 12px;
@@ -766,7 +831,7 @@
             color: #ffffff;
             border-color: var(--accent-blue);
             transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.3);
         }
 
         .grade-link-card:hover i {
@@ -774,6 +839,7 @@
             transform: translateX(4px);
         }
 
+        /* TOOLS SECTION */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -800,6 +866,7 @@
             margin-bottom: 10px;
         }
 
+        /* CONTACT SECTION */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -839,8 +906,8 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background: var(--accent-light);
+            color: var(--accent-blue);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -852,8 +919,9 @@
 
         .social-btn:hover {
             background: var(--accent-blue);
-            color: white;
+            color: #ffffff;
             transform: translateY(-3px);
+            border-color: var(--accent-blue);
         }
 
         footer {
@@ -867,6 +935,7 @@
             z-index: 1;
         }
 
+        /* RESPONSIVE DESIGN ENHANCEMENTS */
         @media (max-width: 992px) {
             header {
                 width: 95%;
@@ -903,19 +972,33 @@
                 padding-top: 110px;
             }
 
+            .hero-content h1 { font-size: 2.2rem; }
+
+            .cta-buttons { justify-content: center; }
+
             .about-grid, .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            section { padding: 80px 15px 40px; }
+            .gallery-container { height: 300px; }
+            .carousel-track { width: 200px; height: 260px; }
+            .hero-card { width: 280px; height: 340px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ANIMATED BACKGROUND CANVAS -->
     <canvas id="bg-canvas"></canvas>
 
+    <!-- PRELOADER -->
     <div id="preloader">
         <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Dahanake Music Academy Logo" class="loader-logo">
         <div class="loader-spinner"></div>
     </div>
 
+    <!-- NAVBAR -->
     <header>
         <nav class="navbar">
             <a href="#" class="logo-container">
@@ -940,7 +1023,7 @@
 
             <div style="display: flex; align-items: center; gap: 10px;">
                 <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
-                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
                 </button>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fa-solid fa-bars"></i>
@@ -949,10 +1032,11 @@
         </nav>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-content">
             <span class="hero-tag"><i class="fa-solid fa-music"></i> Saptaswara Mihira</span>
-            <h1>Dahanake Music Academy</h1>
+            <h1 class="animated-title">Dahanake Music Academy</h1>
             <p>පොතේ දැණුමට පමණක් සිමා නොකර සංගීත විශාරදයන් බිහිකරන සංගීත පාසල</p>
             <div class="cta-buttons">
                 <a href="#courses" class="btn btn-primary"><i class="fa-solid fa-compact-disc"></i> Explore Courses</a>
@@ -969,7 +1053,7 @@
     </section>
 
     <!-- ROTATING 3D GALLERY SECTION -->
-    <section id="gallery">
+    <section id="gallery" class="reveal">
         <div class="section-title">
             <h2>
                 Gallery
@@ -996,7 +1080,8 @@
         </div>
     </section>
 
-    <section id="about">
+    <!-- ABOUT SECTION -->
+    <section id="about" class="reveal">
         <div class="section-title">
             <h2>
                 About Us
@@ -1006,20 +1091,31 @@
         </div>
 
         <div class="about-grid">
-            <div class="teacher-img-box">
-                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Nandana Dahanaka">
-                <h3 style="margin-top: 15px; color: var(--accent-blue);">Nandana Dahanaka</h3>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Founder & Principal Instructor</p>
+            <div class="teachers-wrapper">
+                <div class="teacher-img-box">
+                    <img src="https://drive.google.com/thumbnail?id=1XmwtQnP5_Xl3xmLfO-g73O1jb6eRdVVd" alt="Nandana Dahanaka">
+                    <h3 style="margin-top: 15px; color: var(--accent-blue);">Nandana Dahanaka</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Founder & Principal Instructor</p>
+                </div>
+
+                <div class="teacher-img-box">
+                    <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Sandaruwan Dahanaka">
+                    <h3 style="margin-top: 15px; color: var(--accent-blue);">Sandaruwan Dahanaka</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Second Instructor</p>
+                </div>
             </div>
+
             <div>
                 <div class="slogan-badge">
                     ✨ සප්ත ස්වර මිහිර ✨<br>
                     "පොතේ දැණුමට පමණක් සිමා නොකර සංගීත විශාරදයන් බිහිකරන සංගීත පාසල"
                 </div>
+
                 <p style="margin-bottom: 15px; color: var(--text-secondary);">
                     දහනක සංගීත ආයතනය යනු දේශීය, පෙරදිග මෙන්ම අපරදිග සංගීත ක්ෂේත්‍රයේ නවමු මගක් ඔස්සේ ශිෂ්‍ය ශිෂ්‍යාවන් උසස් මට්ටමේ විශාරදයන් බවට පත්කරන ප්‍රමුඛතම ආයතනයකි.
                 </p>
-                <div style="display: flex; gap: 10px; margin-top: 20px;">
+
+                <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
                     <a href="https://www.facebook.com/nandana.dahanaka" target="_blank" class="btn btn-outline"><i class="fa-brands fa-facebook"></i> Teacher FB Profile</a>
                     <a href="https://www.facebook.com/profile.php?id=61555329585086" target="_blank" class="btn btn-primary"><i class="fa-brands fa-facebook"></i> Academy Page</a>
                 </div>
@@ -1027,7 +1123,8 @@
         </div>
     </section>
 
-    <section id="courses">
+    <!-- COURSES SECTION -->
+    <section id="courses" class="reveal">
         <div class="section-title">
             <h2>
                 Instruments & Courses
@@ -1037,11 +1134,11 @@
         </div>
 
         <div class="category-tabs">
-            <button class="tab-btn active" onclick="filterCategory('all')">All</button>
-            <button class="tab-btn" onclick="filterCategory('string')">String Instruments</button>
-            <button class="tab-btn" onclick="filterCategory('keyboard')">Keyboards & Pianos</button>
-            <button class="tab-btn" onclick="filterCategory('percussion')">Drums & Percussion</button>
-            <button class="tab-btn" onclick="filterCategory('wind')">Wind Instruments</button>
+            <button class="tab-btn active" onclick="filterCategory('all', event)">All</button>
+            <button class="tab-btn" onclick="filterCategory('string', event)">String Instruments</button>
+            <button class="tab-btn" onclick="filterCategory('keyboard', event)">Keyboards & Pianos</button>
+            <button class="tab-btn" onclick="filterCategory('percussion', event)">Drums & Percussion</button>
+            <button class="tab-btn" onclick="filterCategory('wind', event)">Wind Instruments</button>
         </div>
 
         <div class="instrument-cards-grid">
@@ -1125,7 +1222,8 @@
         </div>
     </section>
 
-    <section id="posters">
+    <!-- POSTERS SECTION -->
+    <section id="posters" class="reveal">
         <div class="section-title">
             <h2>
                 Class Posters
@@ -1203,14 +1301,15 @@
         </div>
     </section>
 
+    <!-- MODAL -->
     <div id="imageModal" class="modal">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="modalImg">
     </div>
 
-    <section id="news">
+    <!-- NEWS SECTION -->
+    <section id="news" class="reveal">
         <div class="section-title">
-            Hey
             <h2>
                 News & Achievements
                 <span class="sub-title-si">ජයග්‍රහණ සහ පුවත්</span>
@@ -1243,8 +1342,8 @@
         </div>
     </section>
 
-    <!-- UPDATED STUDENT DOWNLOADS SECTION -->
-    <section id="downloads">
+    <!-- STUDENT DOWNLOADS SECTION -->
+    <section id="downloads" class="reveal">
         <div class="section-title">
             <h2>
                 Student Downloads
@@ -1255,47 +1354,21 @@
 
         <div class="download-box">
             <div class="grade-links-grid">
-                <a href="page/StudentDownloads/Grade6.html" class="grade-link-card">
-                    <span>Grade 6</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/Grade7.html" class="grade-link-card">
-                    <span>Grade 7</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/Grade8.html" class="grade-link-card">
-                    <span>Grade 8</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/Grade9.html" class="grade-link-card">
-                    <span>Grade 9</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/Grade10.html" class="grade-link-card">
-                    <span>Grade 10</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/Grade11.html" class="grade-link-card">
-                    <span>Grade 11</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/Grade12.html" class="grade-link-card">
-                    <span>Grade 12</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/Grade13.html" class="grade-link-card">
-                    <span>Grade 13</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="page/StudentDownloads/OtherExam.html" class="grade-link-card">
-                    <span>Other Exam</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <a href="page/StudentDownloads/Grade6.html" class="grade-link-card"><span>Grade 6</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/Grade7.html" class="grade-link-card"><span>Grade 7</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/Grade8.html" class="grade-link-card"><span>Grade 8</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/Grade9.html" class="grade-link-card"><span>Grade 9</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/Grade10.html" class="grade-link-card"><span>Grade 10</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/Grade11.html" class="grade-link-card"><span>Grade 11</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/Grade12.html" class="grade-link-card"><span>Grade 12</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/Grade13.html" class="grade-link-card"><span>Grade 13</span><i class="fa-solid fa-arrow-right"></i></a>
+                <a href="page/StudentDownloads/OtherExam.html" class="grade-link-card"><span>Other Exam</span><i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <section id="tools">
+    <!-- TOOLS SECTION -->
+    <section id="tools" class="reveal">
         <div class="section-title">
             <h2>
                 Music Tools
@@ -1335,7 +1408,8 @@
         </div>
     </section>
 
-    <section id="contact">
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="reveal">
         <div class="section-title">
             <h2>
                 Contact Us
@@ -1369,34 +1443,23 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved. | Designed for GitHub Pages</p>
     </footer>
 
+    <!-- JAVASCRIPT LOGIC -->
     <script>
+        // PRELOADER
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => { preloader.style.display = 'none'; }, 600);
         });
 
+        // THEME TOGGLER
         const themeToggleBtn = document.getElementById('themeToggle');
         const htmlElement = document.documentElement;
-
-        function applyAutoTheme() {
-            const now = new Date();
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const slDate = new Date(utc + (3600000 * 5.5));
-            const hours = slDate.getHours();
-
-            const isDayTime = hours >= 6 && hours < 18;
-            const theme = isDayTime ? 'light' : 'dark';
-
-            htmlElement.setAttribute('data-theme', theme);
-            themeToggleBtn.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
-        }
-
-        applyAutoTheme();
 
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = htmlElement.getAttribute('data-theme');
@@ -1405,11 +1468,32 @@
             themeToggleBtn.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
         });
 
+        // MOBILE MENU TOGGLE
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
 
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Close Mobile Menu on Click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // SCROLL REVEAL OBSERVER
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(section => {
+            observer.observe(section);
         });
 
         // 3D GALLERY CAROUSEL LOGIC
@@ -1465,10 +1549,11 @@
 
         updateCarousel();
 
-        function filterCategory(category) {
+        // INSTRUMENTS FILTERING
+        function filterCategory(category, event) {
             const buttons = document.querySelectorAll('.category-tabs .tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if(event) event.target.classList.add('active');
 
             const cards = document.querySelectorAll('.inst-card');
             cards.forEach(card => {
@@ -1480,6 +1565,7 @@
             });
         }
 
+        // MODAL FUNCTIONS
         function openModal(imgSrc) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
@@ -1498,6 +1584,7 @@
             }
         }
 
+        // ENHANCED MUSIC NOTES BACKGROUND CANVAS
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -1508,32 +1595,45 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+        const notesSymbols = ['♪', '♫', '♬', '♩'];
         const particles = [];
-        for(let i = 0; i < 35; i++) {
+
+        for(let i = 0; i < 45; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 3 + 1,
-                speedY: Math.random() * 0.8 + 0.2,
-                speedX: (Math.random() - 0.5) * 0.5,
-                opacity: Math.random() * 0.5 + 0.2
+                size: Math.random() * 18 + 10,
+                symbol: notesSymbols[Math.floor(Math.random() * notesSymbols.length)],
+                speedY: Math.random() * 0.7 + 0.3,
+                speedX: (Math.random() - 0.5) * 0.4,
+                opacity: Math.random() * 0.5 + 0.2,
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.02
             });
         }
 
         function animateCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
             particles.forEach(p => {
                 p.y -= p.speedY;
                 p.x += p.speedX;
-                if(p.y < 0) {
-                    p.y = canvas.height;
+                p.rotation += p.rotSpeed;
+
+                if(p.y < -20) {
+                    p.y = canvas.height + 20;
                     p.x = Math.random() * canvas.width;
                 }
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation);
+                ctx.font = `${p.size}px Poppins, sans-serif`;
                 ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
-                ctx.fill();
+                ctx.fillText(p.symbol, 0, 0);
+                ctx.restore();
             });
+            
             requestAnimationFrame(animateCanvas);
         }
         animateCanvas();
