@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="si" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dahanake Music Academy | දහනක සංගීත ආයතනය</title>
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f4f7fc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0b1120;
+            --bg-secondary: #111827;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-hover: #60a5fa;
+            --accent-light: #1e3a8a;
+            --border-color: #334155;
+            --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --nav-bg: rgba(15, 23, 42, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            animation: pulseLogo 2s infinite ease-in-out;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .loader-spinner {
+            margin-top: 20px;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes pulseLogo {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 0 40px rgba(37, 99, 235, 0.8); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-blue);
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-blue);
+            transform: rotate(15deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 90px 20px 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--gradient-blue);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding-top: 120px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-tag {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-family: 'Abhaya Libre', serif;
+            font-size: 1.3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-card {
+            width: 320px;
+            height: 380px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            text-align: center;
+            padding: 25px;
+            position: relative;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .hero-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .teacher-img-box {
+            text-align: center;
+        }
+
+        .teacher-img-box img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .slogan-badge {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Abhaya Libre', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .instrument-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .inst-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .inst-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .inst-card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .inst-list {
+            list-style: none;
+        }
+
+        .inst-list li {
+            padding: 4px 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .inst-list li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .cards-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .news-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        /* --- UPDATED POSTER STYLES WITH DIRECT IMAGE DISPLAY --- */
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .poster-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .poster-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            overflow: hidden;
+            background: var(--bg-primary);
+            cursor: pointer;
+        }
+
+        .poster-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .poster-card:hover .poster-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .poster-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .poster-img-wrapper:hover .poster-overlay {
+            opacity: 1;
+        }
+
+        .poster-overlay i {
+            color: white;
+            font-size: 2.2rem;
+            background: var(--accent-blue);
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .poster-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .poster-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        /* LIGHTBOX POPUP MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+            animation: zoom 0.3s ease-in-out;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.7); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-blue);
+        }
+
+        .download-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .grade-selector {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .grade-btn {
+            padding: 8px 18px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .grade-btn.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        .download-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .dl-category {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .dl-category h4 {
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dl-list {
+            list-style: none;
+        }
+
+        .dl-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .dl-item:last-child {
+            border-bottom: none;
+        }
+
+        .dl-btn {
+            padding: 5px 12px;
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .dl-btn:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .tool-icon {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-info, .social-links-box {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .phone-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .phone-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+        }
+
+        .phone-list i {
+            color: var(--accent-blue);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 25px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .about-grid, .contact-grid, .download-content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--bg-card);
+                width: 250px;
+                height: 100vh;
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: var(--shadow-lg);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div id="preloader">
+        <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Dahanake Music Academy Logo" class="loader-logo">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo-container">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Dahanake</h1>
+                    <span>Music Academy</span>
+                </div>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Instruments & Courses</a></li>
+                <li><a href="#posters">Posters</a></li>
+                <li><a href="#news">News & Wins</a></li>
+                <li><a href="#downloads">Downloads</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-tag"><i class="fa-solid fa-music"></i> Saptaswara Mihira</span>
+            <h1>Dahanake Music Academy</h1>
+            <p>පොතේ දැණුමට පමණක් සිමා නොකර සංගීත විශාරදයන් බිහිකරන සංගීත පාසල</p>
+            <div class="cta-buttons">
+                <a href="#courses" class="btn btn-primary"><i class="fa-solid fa-compact-disc"></i> Explore Courses</a>
+                <a href="#downloads" class="btn btn-outline"><i class="fa-solid fa-file-arrow-down"></i> Student Downloads</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-card">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Academy Logo">
+                <h3>Dahanake Music Academy</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;">Classical & Modern Music Education in Sri Lanka</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-title">
+            <h2>About Us | අප ගැන</h2>
+            <p>ගුරුතුමා පිළිබඳව සහ අපගේ සංගීත පාසලේ දැක්ම</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="teacher-img-box">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Nandana Dahanaka">
+                <h3 style="margin-top: 15px; color: var(--accent-blue);">Nandana Dahanaka</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Founder & Principal Instructor</p>
+            </div>
+            <div>
+                <div class="slogan-badge">
+                    ✨ සප්ත ස්වර මිහිර ✨<br>
+                    "පොතේ දැණුමට පමණක් සිමා නොකර සංගීත විශාරදයන් බිහිකරන සංගීත පාසල"
+                </div>
+                <p style="margin-bottom: 15px; color: var(--text-secondary);">
+                    දහනක සංගීත ආයතනය යනු දේශීය, පෙරදිග මෙන්ම අපරදිග සංගීත ක්ෂේත්‍රයේ නවමු මගක් ඔස්සේ ශිෂ්‍ය ශිෂ්‍යාවන් උසස් මට්ටමේ විශාරදයන් බවට පත්කරන ප්‍රමුඛතම ආයතනයකි.
+                </p>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <a href="https://www.facebook.com/nandana.dahanaka" target="_blank" class="btn btn-outline"><i class="fa-brands fa-facebook"></i> Teacher FB Profile</a>
+                    <a href="https://www.facebook.com/profile.php?id=61555329585086" target="_blank" class="btn btn-primary"><i class="fa-brands fa-facebook"></i> Academy Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="section-title">
+            <h2>Instruments & Courses | උගන්වන වාද්‍ය භාණ්ඩ</h2>
+            <p>දේශීය, පෙරදිග සහ අපරදිග සංගීත භාණ්ඩ රැසක් පුහුණු කෙරේ</p>
+        </div>
+
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all')">All</button>
+            <button class="tab-btn" onclick="filterCategory('string')">String Instruments</button>
+            <button class="tab-btn" onclick="filterCategory('keyboard')">Keyboards & Pianos</button>
+            <button class="tab-btn" onclick="filterCategory('percussion')">Drums & Percussion</button>
+            <button class="tab-btn" onclick="filterCategory('wind')">Wind Instruments</button>
+        </div>
+
+        <div class="instrument-cards-grid">
+            <div class="inst-card" data-cat="string">
+                <h3><i class="fa-solid fa-guitar"></i> String - Local & Eastern</h3>
+                <ul class="inst-list">
+                    <li>Sitar (සිතාරය)</li>
+                    <li>Esraj (එස්රාජ්)</li>
+                    <li>Veena (වීණාව)</li>
+                    <li>Dilruba (දිල්රුබා)</li>
+                    <li>Sarod (සරෝද්)</li>
+                    <li>Santour (සන්තූර්)</li>
+                    <li>Tanpura / Tambura (තම්පුරාව)</li>
+                </ul>
+            </div>
+
+            <div class="inst-card" data-cat="string">
+                <h3><i class="fa-solid fa-guitar"></i> String - Western</h3>
+                <ul class="inst-list">
+                    <li>Violin (වයලීනය)</li>
+                    <li>Cello (සෙලෝ)</li>
+                    <li>Double Bass</li>
+                    <li>Acoustic / Classical / Electric Guitar</li>
+                    <li>Bass Guitar</li>
+                    <li>Ukulele</li>
+                    <li>Mandolin & Banjo</li>
+                </ul>
+            </div>
+
+            <div class="inst-card" data-cat="keyboard">
+                <h3><i class="fa-solid fa-keyboard"></i> Keyboards & Pianos</h3>
+                <ul class="inst-list">
+                    <li>Harmonium / Seraphina (හාමෝනියම්)</li>
+                    <li>Piano (පියානෝ)</li>
+                    <li>Digital Keyboard / Synthesizer</li>
+                    <li>Melodica (මෙලෝඩිකා)</li>
+                    <li>Accordion (ඇකෝඩියන්)</li>
+                </ul>
+            </div>
+
+            <div class="inst-card" data-cat="percussion">
+                <h3><i class="fa-solid fa-drum"></i> Sri Lankan Traditional Drums</h3>
+                <ul class="inst-list">
+                    <li>Geta Beraya (ගැට බෙරය)</li>
+                    <li>Yak Beraya / Low Country Drum</li>
+                    <li>Daula (දවුල) & Thammattama</li>
+                    <li>Udekkiya & Bummadiya</li>
+                    <li>Hand Rabana / Virudu Rabana</li>
+                    <li>Banku Rabana / Demala Beraya</li>
+                </ul>
+            </div>
+
+            <div class="inst-card" data-cat="percussion">
+                <h3><i class="fa-solid fa-drum-steelpan"></i> Eastern & Western Percussion</h3>
+                <ul class="inst-list">
+                    <li>Tabla (තබ්ලාව) & Dholak / Dhol</li>
+                    <li>Mridangam, Kanjira, Ghatam</li>
+                    <li>Drum Kit & Octapad</li>
+                    <li>Conga & Bongo Drums, Cajon</li>
+                    <li>Thalampota, Kiri Kodi, Tambourine, Shakers, Triangle</li>
+                </ul>
+            </div>
+
+            <div class="inst-card" data-cat="wind">
+                <h3><i class="fa-solid fa-wind"></i> Wind - Local & Eastern</h3>
+                <ul class="inst-list">
+                    <li>Horanawa (හොරණෑව)</li>
+                    <li>Bamboo Flute (බුංගලාව / බංසුරි)</li>
+                    <li>Pullahangilawa (පුල්ලාන්ගිලාව)</li>
+                    <li>Shehnai & Hakgediya</li>
+                    <li>Vas Dandu (වස් දඬුව)</li>
+                </ul>
+            </div>
+
+            <div class="inst-card" data-cat="wind">
+                <h3><i class="fa-solid fa-wind"></i> Wind - Western</h3>
+                <ul class="inst-list">
+                    <li>Harmonica / Mouth Organ</li>
+                    <li>Saxophone (සැක්සෆෝන්)</li>
+                    <li>Trumpet & Trombone</li>
+                    <li>Clarinet, Flute, Recorder</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPDATED CLASS POSTERS SECTION (DIRECT IMAGE PREVIEW + LIGHTBOX) -->
+    <section id="posters">
+        <div class="section-title">
+            <h2>Class Posters | පන්ති පෝස්ටර්</h2>
+            <p>අපගේ පන්ති පිළිබඳ පෝස්ටර් රූප සටහන් (පින්තූරය මත Click කර විශාල කර බලන්න)</p>
+        </div>
+
+        <div class="poster-grid">
+            <!-- Poster 1 -->
+            <div class="poster-card">
+                <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1lEyjYQ0sEPb0xeiasL-8jRY1yNajx5H9&sz=w1000')">
+                    <img src="https://drive.google.com/thumbnail?id=1lEyjYQ0sEPb0xeiasL-8jRY1yNajx5H9&sz=w800" alt="Class Poster 01" loading="lazy">
+                    <div class="poster-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="poster-info">
+                    <h4>Class Poster 01</h4>
+                    <button class="btn btn-outline" style="width:100%" onclick="openModal('https://drive.google.com/thumbnail?id=1lEyjYQ0sEPb0xeiasL-8jRY1yNajx5H9&sz=w1000')"><i class="fa-solid fa-eye"></i> View Full Poster</button>
+                </div>
+            </div>
+
+            <!-- Poster 2 -->
+            <div class="poster-card">
+                <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1d7SEShGIXHURhbjvbalZZt_Kq9rItI-X&sz=w1000')">
+                    <img src="https://drive.google.com/thumbnail?id=1d7SEShGIXHURhbjvbalZZt_Kq9rItI-X&sz=w800" alt="Class Poster 02" loading="lazy">
+                    <div class="poster-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="poster-info">
+                    <h4>Class Poster 02</h4>
+                    <button class="btn btn-outline" style="width:100%" onclick="openModal('https://drive.google.com/thumbnail?id=1d7SEShGIXHURhbjvbalZZt_Kq9rItI-X&sz=w1000')"><i class="fa-solid fa-eye"></i> View Full Poster</button>
+                </div>
+            </div>
+
+            <!-- Poster 3 -->
+            <div class="poster-card">
+                <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1A4WP1CwDk5p6VzKNbEI19TgAe9Yy2b9k&sz=w1000')">
+                    <img src="https://drive.google.com/thumbnail?id=1A4WP1CwDk5p6VzKNbEI19TgAe9Yy2b9k&sz=w800" alt="Class Poster 03" loading="lazy">
+                    <div class="poster-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="poster-info">
+                    <h4>Class Poster 03</h4>
+                    <button class="btn btn-outline" style="width:100%" onclick="openModal('https://drive.google.com/thumbnail?id=1A4WP1CwDk5p6VzKNbEI19TgAe9Yy2b9k&sz=w1000')"><i class="fa-solid fa-eye"></i> View Full Poster</button>
+                </div>
+            </div>
+
+            <!-- Poster 4 -->
+            <div class="poster-card">
+                <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1_iAx2bMWfI1orPK1x_UAZHChi6h9FAQv&sz=w1000')">
+                    <img src="https://drive.google.com/thumbnail?id=1_iAx2bMWfI1orPK1x_UAZHChi6h9FAQv&sz=w800" alt="Class Poster 04" loading="lazy">
+                    <div class="poster-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="poster-info">
+                    <h4>Class Poster 04</h4>
+                    <button class="btn btn-outline" style="width:100%" onclick="openModal('https://drive.google.com/thumbnail?id=1_iAx2bMWfI1orPK1x_UAZHChi6h9FAQv&sz=w1000')"><i class="fa-solid fa-eye"></i> View Full Poster</button>
+                </div>
+            </div>
+
+            <!-- Poster 5 -->
+            <div class="poster-card">
+                <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1zQds2L7aNxehbRHPN-NWnkMoBjGQ7B68&sz=w1000')">
+                    <img src="https://drive.google.com/thumbnail?id=1zQds2L7aNxehbRHPN-NWnkMoBjGQ7B68&sz=w800" alt="Class Poster 05" loading="lazy">
+                    <div class="poster-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="poster-info">
+                    <h4>Class Poster 05</h4>
+                    <button class="btn btn-outline" style="width:100%" onclick="openModal('https://drive.google.com/thumbnail?id=1zQds2L7aNxehbRHPN-NWnkMoBjGQ7B68&sz=w1000')"><i class="fa-solid fa-eye"></i> View Full Poster</button>
+                </div>
+            </div>
+
+            <!-- Poster 6 -->
+            <div class="poster-card">
+                <div class="poster-img-wrapper" onclick="openModal('https://drive.google.com/thumbnail?id=1xMLz68iQsnYAcnP04AkzbiH96WB9Ffgf&sz=w1000')">
+                    <img src="https://drive.google.com/thumbnail?id=1xMLz68iQsnYAcnP04AkzbiH96WB9Ffgf&sz=w800" alt="Class Poster 06" loading="lazy">
+                    <div class="poster-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="poster-info">
+                    <h4>Class Poster 06</h4>
+                    <button class="btn btn-outline" style="width:100%" onclick="openModal('https://drive.google.com/thumbnail?id=1xMLz68iQsnYAcnP04AkzbiH96WB9Ffgf&sz=w1000')"><i class="fa-solid fa-eye"></i> View Full Poster</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL FOR ENLARGING POSTERS -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <section id="news">
+        <div class="section-title">
+            <h2>News & Achievements | ජයග්‍රහණ සහ පුවත්</h2>
+            <p>ආයතනයේ විශේෂ අවස්ථා සහ ජයග්‍රහණ</p>
+        </div>
+
+        <div class="cards-grid-2">
+            <div class="news-card">
+                <div>
+                    <span class="hero-tag"><i class="fa-solid fa-trophy"></i> Achievement</span>
+                    <h3>Academy Achievement & Student Highlights</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                        අපගේ ආයතනයේ සිසු සිසුවියන් ලබාගත් සුවිශේෂී ජයග්‍රහණ සහ සංගීත ප්‍රසංග පිළිබඳ තොරතුරු බලන්න.
+                    </p>
+                </div>
+                <a href="https://www.facebook.com/share/p/1T7gU5JofF/" target="_blank" class="btn btn-primary"><i class="fa-brands fa-facebook"></i> Read News Post</a>
+            </div>
+
+            <div class="news-card">
+                <div>
+                    <span class="hero-tag"><i class="fa-solid fa-newspaper"></i> Latest News</span>
+                    <h3>Academy Special Events & Announcements</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                        නවතම පන්ති කාලසටහන්, වැඩමුළු සහ සංගීත වැඩසටහන් පිළිබඳ තොරතුරු.
+                    </p>
+                </div>
+                <a href="https://www.facebook.com/share/p/17wCkoWQad/" target="_blank" class="btn btn-primary"><i class="fa-brands fa-facebook"></i> Read News Post</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="downloads">
+        <div class="section-title">
+            <h2>Student Downloads | සටහන් සහ ප්‍රශ්න පත්‍ර</h2>
+            <p>ශ්‍රේණිය තෝරා අවශ්‍ය Notes සහ Past Papers ඩවුන්ලෝඩ් කරගන්න</p>
+        </div>
+
+        <div class="download-box">
+            <div class="grade-selector">
+                <button class="grade-btn active" onclick="selectGrade(6)">6 Grade</button>
+                <button class="grade-btn" onclick="selectGrade(7)">7 Grade</button>
+                <button class="grade-btn" onclick="selectGrade(8)">8 Grade</button>
+                <button class="grade-btn" onclick="selectGrade(9)">9 Grade</button>
+                <button class="grade-btn" onclick="selectGrade(10)">10 Grade (O/L)</button>
+                <button class="grade-btn" onclick="selectGrade(11)">11 Grade (O/L)</button>
+                <button class="grade-btn" onclick="selectGrade(12)">12 Grade (A/L)</button>
+                <button class="grade-btn" onclick="selectGrade(13)">13 Grade (A/L)</button>
+            </div>
+
+            <div class="download-content-grid">
+                <div class="dl-category">
+                    <h4><i class="fa-solid fa-book-open"></i> Notes (පාඩම් සටහන්) - <span id="currentGradeTitle1">Grade 6</span></h4>
+                    <ul class="dl-list" id="notesList">
+                        <li class="dl-item">
+                            <span>Music Unit 01 Notes</span>
+                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
+                        </li>
+                        <li class="dl-item">
+                            <span>Instrument Theory Note</span>
+                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dl-category">
+                    <h4><i class="fa-solid fa-file-lines"></i> Past Papers (ප්‍රශ්න පත්‍ර) - <span id="currentGradeTitle2">Grade 6</span></h4>
+                    <ul class="dl-list" id="papersList">
+                        <li class="dl-item">
+                            <span>Term Test Paper 2023</span>
+                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
+                        </li>
+                        <li class="dl-item">
+                            <span>Model Paper 01</span>
+                            <a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools">
+        <div class="section-title">
+            <h2>Music Tools | සංගීත මෙවලම්</h2>
+            <p>ඔබගේ පුහුණුවීම් සඳහා ප්‍රයෝජනවත් වන Online Tools</p>
+        </div>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <i class="fa-solid fa-stopwatch tool-icon"></i>
+                <h3>Online Metronome</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 10px 0;">ලතාව සහ තාලය නිවැරදිව පුහුණු වීමට.</p>
+                <a href="https://www.metronomeonline.com/" target="_blank" class="btn btn-outline" style="width:100%;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</a>
+            </div>
+
+            <div class="tool-card">
+                <i class="fa-solid fa-sliders tool-icon"></i>
+                <h3>Instrument Tuner</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 10px 0;">වාද්‍ය භාණ්ඩ Pitch එක Tune කරගැනීමට.</p>
+                <a href="https://tuner-online.com/" target="_blank" class="btn btn-outline" style="width:100%;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</a>
+            </div>
+
+            <div class="tool-card">
+                <i class="fa-solid fa-music tool-icon"></i>
+                <h3>Virtual Piano Keyboard</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 10px 0;">Online Piano ස්වර පුහුණුව සඳහා.</p>
+                <a href="https://www.onlinepianist.com/virtual-piano" target="_blank" class="btn btn-outline" style="width:100%;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</a>
+            </div>
+
+            <div class="tool-card">
+                <i class="fa-solid fa-wave-square tool-icon"></i>
+                <h3>Tanpura Drone Tool</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 10px 0;">පෙරදිග සංගීත ශ්‍රුති පුහුණුවට (Sa-Pa Drone).</p>
+                <a href="https://www.tanpura.com/" target="_blank" class="btn btn-outline" style="width:100%;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tool</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>Contact Us | සම්බන්ධ කරගන්න</h2>
+            <p>පන්ති සඳහා ලියාපදිංචි වීමට හෝ වැඩිදුර විස්තර සඳහා විමසන්න</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-phone"></i> Phone Numbers</h3>
+                <ul class="phone-list">
+                    <li><i class="fa-solid fa-phone-flip"></i> <a href="tel:0740820623" style="color: inherit; text-decoration: none;">074 082 0623</a></li>
+                    <li><i class="fa-solid fa-phone-flip"></i> <a href="tel:0769254005" style="color: inherit; text-decoration: none;">076 925 4005</a></li>
+                    <li><i class="fa-solid fa-phone-flip"></i> <a href="tel:0772660756" style="color: inherit; text-decoration: none;">077 266 0756</a></li>
+                    <li><i class="fa-solid fa-phone-flip"></i> <a href="tel:0769484062" style="color: inherit; text-decoration: none;">076 948 4062</a></li>
+                </ul>
+            </div>
+
+            <div class="social-links-box">
+                <h3 style="color: var(--accent-blue); margin-bottom: 15px;"><i class="fa-solid fa-share-nodes"></i> Social Media</h3>
+                <p style="color: var(--text-secondary);">අපගේ සමාජ මාධ්‍ය පිටු සමඟ එකතු වන්න:</p>
+                <div class="social-buttons">
+                    <a href="https://www.facebook.com/nandana.dahanaka" target="_blank" class="social-btn" title="Facebook Profile"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61555329585086" target="_blank" class="social-btn" title="Facebook Page"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-btn" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved. | Designed for GitHub Pages</p>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 600);
+        });
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            themeToggleBtn.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        function filterCategory(category) {
+            const buttons = document.querySelectorAll('.category-tabs .tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.inst-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-cat') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function selectGrade(grade) {
+            const btns = document.querySelectorAll('.grade-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const title1 = document.getElementById('currentGradeTitle1');
+            const title2 = document.getElementById('currentGradeTitle2');
+            const gradeName = (grade === 10 || grade === 11) ? `Grade ${grade} (O/L)` : (grade === 12 || grade === 13) ? `Grade ${grade} (A/L)` : `Grade ${grade}`;
+
+            title1.textContent = gradeName;
+            title2.textContent = gradeName;
+
+            document.getElementById('notesList').innerHTML = `
+                <li class="dl-item"><span>${gradeName} Music Theory Note 01</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
+                <li class="dl-item"><span>${gradeName} Practical Guide Note</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
+            `;
+            document.getElementById('papersList').innerHTML = `
+                <li class="dl-item"><span>${gradeName} 1st Term Paper</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
+                <li class="dl-item"><span>${gradeName} Model Exam Paper</span><a href="#" class="dl-btn"><i class="fa-solid fa-download"></i> Download</a></li>
+            `;
+        }
+
+        // LIGHTBOX MODAL FUNCTIONS
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        // Close modal when clicking outside image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        for(let i = 0; i < 35; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speedY: Math.random() * 0.8 + 0.2,
+                speedX: (Math.random() - 0.5) * 0.5,
+                opacity: Math.random() * 0.5 + 0.2
+            });
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.y -= p.speedY;
+                p.x += p.speedX;
+                if(p.y < 0) {
+                    p.y = canvas.height;
+                    p.x = Math.random() * canvas.width;
+                }
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(37, 99, 235, ${p.opacity})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>
