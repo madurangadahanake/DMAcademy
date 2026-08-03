@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="si" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classical Vocal Classes | Dahanake Music Academy</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            --shadow-xl: 0 20px 40px -8px rgba(37, 99, 235, 0.25);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --gradient-rose: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+            --gradient-purple: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
+            --gradient-amber: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            --btn-outline-text: #0f172a;
+            --btn-outline-border: #e2e8f0;
+            --card-radius: 20px;
+            --transition-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #080d1a;
+            --bg-secondary: #0f172a;
+            --bg-card: #131d31;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --accent-light: rgba(56, 189, 248, 0.12);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.8);
+            --nav-bg: rgba(8, 13, 26, 0.85);
+            --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            --btn-outline-text: #38bdf8;
+            --btn-outline-border: rgba(56, 189, 248, 0.4);
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s var(--transition-smooth), box-shadow 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.55;
+        }
+
+        /* ===== PRELOADER ===== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            animation: pulseLogo 1.8s infinite ease-in-out;
+        }
+
+        .loader-spinner {
+            margin-top: 20px;
+            width: 45px;
+            height: 45px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes pulseLogo {
+            0%,100% { transform: scale(1); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 0 50px rgba(56, 189, 248, 0.8); }
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== NAVBAR ===== */
+        header {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1250px;
+            z-index: 1000;
+        }
+
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            border-radius: 60px;
+            padding: 8px 20px 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 4px 14px 4px 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent-blue); }
+        .logo-text h1 { font-size: 1.05rem; font-weight: 700; color: var(--accent-blue); line-height: 1.1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-secondary); }
+
+        .nav-links { display: flex; list-style: none; gap: 6px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.35s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-blue); background: var(--accent-light); }
+
+        .theme-toggle, .mobile-menu-btn {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-btn { display: none; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            transition: all 0.35s var(--transition-smooth);
+        }
+
+        .btn-primary { background: var(--gradient-blue); color: #ffffff; box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5); }
+        .btn-outline { background: transparent; color: var(--btn-outline-text); border: 2px solid var(--btn-outline-border); }
+        .btn-outline:hover { background: var(--gradient-blue); color: #fff; border-color: transparent; transform: translateY(-3px); }
+        .btn-whatsapp { background: #25d366; color: #fff; }
+        .btn-whatsapp:hover { background: #1eb954; transform: translateY(-3px); }
+
+        /* ===== LAYOUT & SECTIONS ===== */
+        section { position: relative; z-index: 1; padding: 110px 20px 60px; max-width: 1250px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 45px; }
+        .section-title h2 { font-size: 2.2rem; color: var(--accent-blue); font-weight: 800; position: relative; padding-bottom: 12px; }
+        .section-title h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 70px; height: 4px; background: var(--gradient-blue); border-radius: 4px;
+        }
+        .section-title p { color: var(--text-secondary); margin-top: 10px; font-size: 1rem; }
+
+        /* ===== HERO BANNER ===== */
+        .page-hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 45px;
+            margin-top: 30px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text-side { flex: 1.2; }
+        .hero-badge {
+            background: var(--accent-light); color: var(--accent-blue);
+            padding: 6px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+            display: inline-block; margin-bottom: 15px; border: 1px solid var(--border-color);
+        }
+
+        .hero-text-side h1 { font-size: 2.4rem; line-height: 1.2; margin-bottom: 15px; font-weight: 800; }
+        .hero-text-side p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 25px; font-family: 'Abhaya Libre', serif; }
+
+        .hero-icon-side {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-status-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .hero-status-card i { font-size: 3.8rem; color: var(--accent-blue); margin-bottom: 15px; }
+
+        /* ===== OVERVIEW GRID ===== */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .overview-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .overview-card i {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            padding: 14px;
+            border-radius: 14px;
+        }
+
+        .overview-card div h4 { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+        .overview-card div span { font-size: 1.05rem; color: var(--text-primary); font-weight: 700; }
+
+        /* ===== VOCAL DISCIPLINES GRID ===== */
+        .instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .instrument-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .instrument-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+            background: var(--gradient-rose);
+        }
+
+        .instrument-card.semi-classical::before { background: var(--gradient-purple); }
+        .instrument-card.western-voice::before { background: var(--gradient-amber); }
+
+        .inst-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .inst-icon {
+            width: 55px; height: 55px; border-radius: 16px; background: rgba(225, 29, 72, 0.12);
+            color: #e11d48; display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; flex-shrink: 0;
+        }
+
+        .instrument-card.semi-classical .inst-icon { color: #a855f7; background: rgba(168, 85, 247, 0.12); }
+        .instrument-card.western-voice .inst-icon { color: #f59e0b; background: rgba(245, 158, 11, 0.12); }
+
+        .inst-header h3 { font-size: 1.35rem; color: var(--text-primary); font-weight: 700; }
+        .inst-header span { font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; display: block; }
+
+        .inst-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .inst-list li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .inst-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #e11d48;
+            font-size: 0.85rem;
+        }
+
+        .instrument-card.semi-classical .inst-list li::before { color: #a855f7; }
+        .instrument-card.western-voice .inst-list li::before { color: #f59e0b; }
+
+        /* ===== CURRICULUM HIGHLIGHTS ===== */
+        .curriculum-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .curriculum-box h3 { font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 25px; text-align: center; }
+
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .curr-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .curr-card i {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .curr-card h4 { font-size: 1.05rem; margin-bottom: 6px; color: var(--text-primary); }
+        .curr-card p { font-size: 0.83rem; color: var(--text-secondary); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); text-align: center; padding: 28px; color: var(--text-secondary); font-size: 0.9rem; margin-top: 60px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .page-hero { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .nav-links {
+                position: fixed; top: 75px; right: -100%; background: var(--bg-card);
+                width: 260px; height: calc(100vh - 90px); flex-direction: column;
+                padding: 30px 20px; border-radius: 20px; border: 1px solid var(--border-color);
+                transition: right 0.4s ease; align-items: flex-start;
+            }
+            .nav-links.active { right: 10px; }
+            .mobile-menu-btn { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE CANVAS BACKGROUND -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Dahanake Music Academy Logo" class="loader-logo">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <a href="../../index.html" class="logo-container">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Dahanake</h1>
+                    <span>Music Academy</span>
+                </div>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../../index.html#home">Home</a></li>
+                <li><a href="../../index.html#about">About Us</a></li>
+                <li><a href="../../index.html#courses" class="active">Courses</a></li>
+                <li><a href="../../index.html#downloads">Downloads</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section>
+        <!-- HERO BANNER -->
+        <div class="page-hero">
+            <div class="hero-text-side">
+                <span class="hero-badge"><i class="fa-solid fa-microphone-lines"></i> Voice Culture & Vocal Artistry</span>
+                <h1>Classical Vocal Training</h1>
+                <p>උත්තර භාරතීය ශාස්ත්‍රීය ගායන සම්ප්‍රදාය (North Indian Classical Vocal), රාගධාරී සංගීතය, ස්වර සාධන, Vocal Dynamics සහ නිවැරදි Voice Training ක්‍රමවේදයන් මුල සිටම ක්‍රමානුකූලව ප්‍රගුණ කරන්න.</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="https://wa.me/94772660756?text=I%20want%20to%20enroll%20for%20Classical%20Vocal%20Classes" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Enroll Now</a>
+                    <a href="../../index.html#courses" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> All Courses</a>
+                </div>
+            </div>
+            <div class="hero-icon-side">
+                <div class="hero-status-card">
+                    <i class="fa-solid fa-microphone"></i>
+                    <h3>Vocal Resonance</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">Voice Cultivation, Swara Sadhana & Alankar</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK OVERVIEW -->
+        <div style="margin-top: 40px;" class="overview-grid">
+            <div class="overview-card">
+                <i class="fa-solid fa-layer-group"></i>
+                <div>
+                    <h4>Course Levels</h4>
+                    <span>Prarambhik to Visharad</span>
+                </div>
+            </div>
+            <div class="overview-card">
+                <i class="fa-solid fa-music"></i>
+                <div>
+                    <h4>Syllabus Focus</h4>
+                    <span>Bhatkhande Sangit Vidyapith</span>
+                </div>
+            </div>
+            <div class="overview-card">
+                <i class="fa-solid fa-wave-square"></i>
+                <div>
+                    <h4>Technique</h4>
+                    <span>Pitch Precision & Pitch Pitching</span>
+                </div>
+            </div>
+            <div class="overview-card">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div>
+                    <h4>Academic Exams</h4>
+                    <span>GCE O/L & A/L Vocal Exams</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- VOCAL DISCIPLINES GRID -->
+        <div style="margin-top: 20px;">
+            <div class="section-title">
+                <h2>VOCAL DISCIPLINES</h2>
+                <p>ඔබගේ ගායනා අභිලාෂයන්ට අනුව සුදුසුම පාඨමාලා අංශය තෝරාගන්න</p>
+            </div>
+
+            <div class="instruments-grid">
+                <!-- North Indian Classical Vocal -->
+                <div class="instrument-card">
+                    <div>
+                        <div class="inst-header">
+                            <div class="inst-icon"><i class="fa-solid fa-building-columns"></i></div>
+                            <div>
+                                <h3>North Indian Classical (ශාස්ත්‍රීය ගායනය)</h3>
+                                <span>Pure Raga Standard & Swara Sadhana</span>
+                            </div>
+                        </div>
+                        <ul class="inst-list">
+                            <li>Kharaj Sadhana (පහළ ස්වර සාධනය) සහ Pitch Stabilization.</li>
+                            <li>Saptak, Thaat, Alankar සහ Swara Pattern Practice.</li>
+                            <li>Raga Development (Alap, Bandish, Taan, Bol-taan).</li>
+                            <li>Thal Control (Teental, Dadra, Keharwa, Roopak etc.).</li>
+                            <li>Bhatkhande Examination Board Syllabus (Prarambhik to Visharad).</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94772660756?text=Inquiry%20about%20Classical%20Vocal%20Classes" target="_blank" class="btn btn-outline" style="width: 100%;">Enroll Classical Vocal <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Semi-Classical & Light Vocal -->
+                <div class="instrument-card semi-classical">
+                    <div>
+                        <div class="inst-header">
+                            <div class="inst-icon"><i class="fa-solid fa-compact-disc"></i></div>
+                            <div>
+                                <h3>Semi-Classical & Light (සුගම ගී)</h3>
+                                <span>Ghazal, Bhajan, Thumri & Melody</span>
+                            </div>
+                        </div>
+                        <ul class="inst-list">
+                            <li>Ghazal, Bhajan, Bhavgeet සහ Light Classical Articulation.</li>
+                            <li>Emotion Expression සහ Lyric Diction (ශබ්ද උච්චාරණය).</li>
+                            <li>Murki, Khatka, Gamak සහ Meend Ornamentation.</li>
+                            <li>Microphone Technique සහ Studio Recording Singing Skills.</li>
+                            <li>Sinhala Classical Song Performance Training.</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94772660756?text=Inquiry%20about%20Semi%20Classical%20Vocal%20Classes" target="_blank" class="btn btn-outline" style="width: 100%;">Enroll Semi-Classical <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Voice Culture & Breath Control -->
+                <div class="instrument-card western-voice">
+                    <div>
+                        <div class="inst-header">
+                            <div class="inst-icon"><i class="fa-solid fa-lungs"></i></div>
+                            <div>
+                                <h3>Voice Culture & Breath Work</h3>
+                                <span>Vocal Health, Range & Power</span>
+                            </div>
+                        </div>
+                        <ul class="inst-list">
+                            <li>Diaphragmatic Breathing සහ Breath Support Techniques.</li>
+                            <li>Vocal Range Expansion (Chest Voice, Head Voice, Mixed Voice).</li>
+                            <li>Vocal Stamina, Pitch Correction සහ Tone Modulation.</li>
+                            <li>Straining නැතිව උස් ස්වර (High Notes) නිවැරදිව ගායනා කිරීම.</li>
+                            <li>Vocal Health Care සහ Stage Performance Confidence.</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94772660756?text=Inquiry%20about%20Voice%20Culture%20Classes" target="_blank" class="btn btn-outline" style="width: 100%;">Enroll Voice Culture <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESSENTIAL SKILLS COVERED -->
+        <div class="curriculum-box">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Core Vocal Capacities Developed</h3>
+            <div class="curriculum-grid">
+                <div class="curr-card">
+                    <i class="fa-solid fa-sliders"></i>
+                    <h4>Sur Control</h4>
+                    <p>ශ්‍රැතියට (Pitch) අතිශය නිවැරදිව ස්වර පිහිටුවීමේ හැකියාව</p>
+                </div>
+                <div class="curr-card">
+                    <i class="fa-solid fa-drum"></i>
+                    <h4>Laya & Rhythm</h4>
+                    <p>තාලය (Tempo & Rhythm) සමඟ මනා එකඟතාවය</p>
+                </div>
+                <div class="curr-card">
+                    <i class="fa-solid fa-lungs"></i>
+                    <h4>Breath Control</h4>
+                    <p>දීර්ඝ තාන් සහ ස්වර දීර්ඝව පවත්වා ගැනීමේ හුස්ම පාලනය</p>
+                </div>
+                <div class="curr-card">
+                    <i class="fa-solid fa-icons"></i>
+                    <h4>Expression</h4>
+                    <p>ගීතයේ හැඟීම් සහ රස භාවයන් නිවැරදිව ප්‍රකාශ කිරීම</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACK TO COURSES BTN -->
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="../../index.html#courses" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Return to Main Courses Page</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // PRELOADER
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.style.display = 'none', 600);
+        });
+
+        // THEME TOGGLE
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateToggleIcon(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon(newTheme);
+        });
+
+        function updateToggleIcon(theme) {
+            themeToggleBtn.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        // MOBILE MENU
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // BACKGROUND CANVAS PARTICLES
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-blue').trim();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) particles.push(new Particle());
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="si" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Exam Programs | Dahanake Music Academy</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            --shadow-xl: 0 20px 40px -8px rgba(37, 99, 235, 0.25);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --gradient-glow: linear-gradient(135deg, #2563eb, #60a5fa, #2563eb);
+            --gradient-warm: linear-gradient(135deg, #d97706, #f59e0b);
+            --gradient-purple: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            --gradient-emerald: linear-gradient(135deg, #047857, #34d399);
+            --btn-outline-text: #0f172a;
+            --btn-outline-border: #e2e8f0;
+            --card-radius: 20px;
+            --transition-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #080d1a;
+            --bg-secondary: #0f172a;
+            --bg-card: #131d31;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --accent-light: rgba(56, 189, 248, 0.12);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.8);
+            --nav-bg: rgba(8, 13, 26, 0.85);
+            --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            --gradient-glow: linear-gradient(135deg, #0284c7, #38bdf8, #0284c7);
+            --btn-outline-text: #38bdf8;
+            --btn-outline-border: rgba(56, 189, 248, 0.4);
+        }
+
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s var(--transition-smooth), box-shadow 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.55;
+        }
+
+        /* ===== PRELOADER ===== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            animation: pulseLogo 1.8s infinite ease-in-out;
+        }
+
+        .loader-spinner {
+            margin-top: 20px;
+            width: 45px;
+            height: 45px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes pulseLogo {
+            0%,100% { transform: scale(1); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 0 50px rgba(56, 189, 248, 0.8); }
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== NAVBAR ===== */
+        header {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1250px;
+            z-index: 1000;
+        }
+
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            border-radius: 60px;
+            padding: 8px 20px 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 4px 14px 4px 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent-blue); }
+        .logo-text h1 { font-size: 1.05rem; font-weight: 700; color: var(--accent-blue); line-height: 1.1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-secondary); }
+
+        .nav-links { display: flex; list-style: none; gap: 6px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.35s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-blue); background: var(--accent-light); }
+
+        .theme-toggle, .mobile-menu-btn {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-btn { display: none; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            transition: all 0.35s var(--transition-smooth);
+        }
+
+        .btn-primary { background: var(--gradient-blue); color: #ffffff; box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5); }
+        .btn-outline { background: transparent; color: var(--btn-outline-text); border: 2px solid var(--btn-outline-border); }
+        .btn-outline:hover { background: var(--gradient-blue); color: #fff; border-color: transparent; transform: translateY(-3px); }
+        .btn-whatsapp { background: #25d366; color: #fff; }
+        .btn-whatsapp:hover { background: #1eb954; transform: translateY(-3px); }
+
+        /* ===== LAYOUT & SECTIONS ===== */
+        section { position: relative; z-index: 1; padding: 110px 20px 60px; max-width: 1250px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 45px; }
+        .section-title h2 { font-size: 2.2rem; color: var(--accent-blue); font-weight: 800; position: relative; padding-bottom: 12px; }
+        .section-title h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 70px; height: 4px; background: var(--gradient-blue); border-radius: 4px;
+        }
+        .section-title p { color: var(--text-secondary); margin-top: 10px; font-size: 1rem; }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 45px;
+            margin-top: 30px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text-side { flex: 1.2; }
+        .hero-badge {
+            background: var(--accent-light); color: var(--accent-blue);
+            padding: 6px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+            display: inline-block; margin-bottom: 15px; border: 1px solid var(--border-color);
+        }
+
+        .hero-text-side h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 15px; font-weight: 800; }
+        .hero-text-side p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 25px; font-family: 'Abhaya Libre', serif; }
+
+        .hero-icon-side {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .exam-badge-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .exam-badge-card i { font-size: 3.5rem; color: var(--accent-blue); margin-bottom: 15px; }
+
+        /* ===== BOARDS GRID ===== */
+        .boards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .board-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .board-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: var(--gradient-blue);
+        }
+
+        .board-card.bhatkhande::before { background: var(--gradient-warm); }
+        .board-card.gandharva::before { background: var(--gradient-purple); }
+
+        .board-icon {
+            width: 55px; height: 55px; border-radius: 14px; background: var(--accent-light);
+            color: var(--accent-blue); display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; margin-bottom: 18px;
+        }
+
+        .board-card h3 { font-size: 1.3rem; margin-bottom: 8px; color: var(--text-primary); }
+        .board-card .board-sub { color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 15px; display: block; }
+        .board-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5; }
+
+        /* ===== PROGRAM STAGES / GRADES ===== */
+        .stage-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stage-box h3 { font-size: 1.4rem; color: var(--accent-blue); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+        .stages-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .stage-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 16px;
+            transition: all 0.35s ease;
+        }
+
+        .stage-item:hover { border-color: var(--accent-blue); transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+        .stage-item h4 { font-size: 1.05rem; color: var(--text-primary); margin-bottom: 6px; }
+        .stage-item .duration { font-size: 0.8rem; color: var(--accent-blue); font-weight: 600; display: inline-block; margin-bottom: 10px; }
+        .stage-item p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* ===== SYLLABUS DETAIL SECTION ===== */
+        .syllabus-section {
+            margin-top: 60px;
+        }
+        .syllabus-category-title {
+            color: var(--accent-blue);
+            margin: 40px 0 20px;
+            border-bottom: 3px solid var(--border-color);
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .syllabus-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .syllabus-toggle:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .syllabus-toggle-header {
+            padding: 20px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid transparent;
+            transition: background 0.3s ease;
+        }
+
+        .syllabus-toggle-header:hover {
+            background: var(--accent-light);
+        }
+
+        .syllabus-toggle-header i {
+            color: var(--accent-blue);
+            transition: transform 0.4s ease;
+        }
+
+        .syllabus-toggle-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .syllabus-toggle-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.3s ease;
+            padding: 0 28px;
+            background: var(--bg-primary);
+        }
+
+        .syllabus-toggle-body.open {
+            max-height: 6000px;
+            padding: 28px 28px;
+        }
+
+        .syllabus-toggle-body h4 {
+            color: var(--accent-blue);
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .syllabus-toggle-body h4:first-of-type {
+            margin-top: 0;
+        }
+
+        .syllabus-toggle-body ul {
+            list-style: none;
+            padding-left: 6px;
+            margin-bottom: 16px;
+        }
+
+        .syllabus-toggle-body ul li {
+            padding: 4px 0 4px 24px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .syllabus-toggle-body ul li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: 700;
+            position: absolute;
+            left: 4px;
+        }
+
+        .syllabus-toggle-body .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .syllabus-toggle-body .category-badge {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .raga-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            margin: 8px 0 16px;
+        }
+
+        .raga-list span {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .divider {
+            border: 0;
+            border-top: 2px dashed var(--border-color);
+            margin: 24px 0;
+        }
+
+        /* ===== FEATURES LIST ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .feature-card i { font-size: 1.5rem; color: var(--accent-blue); background: var(--accent-light); padding: 12px; border-radius: 12px; }
+        .feature-card h4 { font-size: 1rem; margin-bottom: 4px; }
+        .feature-card p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); text-align: center; padding: 28px; color: var(--text-secondary); font-size: 0.9rem; margin-top: 60px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .page-hero { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .nav-links {
+                position: fixed; top: 75px; right: -100%; background: var(--bg-card);
+                width: 260px; height: calc(100vh - 90px); flex-direction: column;
+                padding: 30px 20px; border-radius: 20px; border: 1px solid var(--border-color);
+                transition: right 0.4s ease; align-items: flex-start;
+            }
+            .nav-links.active { right: 10px; }
+            .mobile-menu-btn { display: flex; }
+            .syllabus-toggle-body .grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .syllabus-toggle-header {
+                font-size: 0.95rem;
+                padding: 16px 18px;
+            }
+            .syllabus-toggle-body {
+                padding: 0 16px;
+            }
+            .syllabus-toggle-body.open {
+                padding: 18px 16px;
+            }
+            .syllabus-category-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE CANVAS BACKGROUND -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Dahanake Music Academy Logo" class="loader-logo">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <a href="../../index.html" class="logo-container">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Dahanake</h1>
+                    <span>Music Academy</span>
+                </div>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../../index.html#home">Home</a></li>
+                <li><a href="../../index.html#about">About Us</a></li>
+                <li><a href="../../index.html#courses" class="active">Courses</a></li>
+                <li><a href="../../index.html#downloads">Downloads</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section>
+        <!-- HERO BANNER -->
+        <div class="page-hero">
+            <div class="hero-text-side">
+                <span class="hero-badge"><i class="fa-solid fa-graduation-cap"></i> International Music Exams</span>
+                <h1>India Exam Programs</h1>
+                <p>ඉන්දියානු සංගීත විභාග සඳහා පූර්ණ න්‍යායාත්මක සහ ප්‍රායෝගික පුහුණුව — Prayag, Bhatkhande & Gandharva Mahavidyalaya.</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="https://wa.me/94772660756?text=I%20want%20to%20register%20for%20India%20Exam%20Programs" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Enroll via WhatsApp</a>
+                    <a href="../../index.html#courses" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> All Courses</a>
+                </div>
+            </div>
+            <div class="hero-icon-side">
+                <div class="exam-badge-card">
+                    <i class="fa-solid fa-award"></i>
+                    <h3>Sangeet Visharad</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">Recognized Worldwide Classical Music Qualifications</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXAM BOARDS SECTION -->
+        <div style="margin-top: 60px;">
+            <div class="section-title">
+                <h2>AFFILIATED EXAM BOARDS</h2>
+                <p>අප ආයතනය මගින් පාඨමාලා මෙහෙයවනු ලබන ප්‍රධාන ඉන්දියානු සංගීත මණ්ඩල</p>
+            </div>
+
+            <div class="boards-grid">
+                <!-- Prayag Sangeet Samiti -->
+                <div class="board-card">
+                    <div class="board-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <h3>Prayag Sangeet Samiti</h3>
+                    <span class="board-sub">Allahabad (Prayagraj), India</span>
+                    <p>Hindustani vocal, Instrumental (Violin, Sitar, Harmonium) සහ Percussion (Tabla) සඳහා වන ප්‍රමුඛතම විභාග මණ්ඩලයකි.</p>
+                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Bhatkhande Music Institute -->
+                <div class="board-card bhatkhande">
+                    <div class="board-icon"><i class="fa-solid fa-music"></i></div>
+                    <h3>Bhatkhande Sangeet Vidyapith</h3>
+                    <span class="board-sub">Lucknow, India</span>
+                    <p>දේශීය සහ ජාත්‍යන්තර මට්ටමෙන් පිළිගත් හින්දුස්ථානී රාග සංගීතය පිළිබඳ සම්පූර්ණ විෂය නිර්දේශයන් ආවරණය කෙරේ.</p>
+                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Akhil Bharatiya Gandharva Mahavidyalaya -->
+                <div class="board-card gandharva">
+                    <div class="board-icon"><i class="fa-solid fa-scroll"></i></div>
+                    <h3>Gandharva Mahavidyalaya</h3>
+                    <span class="board-sub">Mumbai / Miraj, India</span>
+                    <p>වාචික, වාද්‍ය සහ නෘත්‍ය අංශයන් සඳහා වන විභාග අදියරයන් ඉතා ක්‍රමවත්ව ප්‍රායෝගික හා න්‍යායාත්මකව උගන්වනු ලබයි.</p>
+                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXAM STAGES / LEVELS -->
+        <div class="stage-box">
+            <h3><i class="fa-solid fa-layer-group"></i> Exam Qualification Stages (විභාග අදියරයන්)</h3>
+            <div class="stages-list">
+                <div class="stage-item">
+                    <h4>1. Prathama (ප්‍රථමා)</h4>
+                    <span class="duration">Basic Level — Year 1</span>
+                    <p>මූලික ස්වර, අලංකාර, ප්‍රාරම්භක රාග, තාල සහ මූලික සංගීත න්‍යාය (Theory) හැදෑරීම.</p>
+                </div>
+                <div class="stage-item">
+                    <h4>2. Madhyama (මධ්‍යමා)</h4>
+                    <span class="duration">Intermediate Level — Year 2 & 3</span>
+                    <p>මධ්‍යම මට්ටමේ රාග සංවර්ධනය, විලාම්බිත් ඛයාල්, තාන්, තබ්ලා බෝල් සහ විස්තරාත්මක න්‍යාය.</p>
+                </div>
+                <div class="stage-item">
+                    <h4>3. Visharad (විශාරද)</h4>
+                    <span class="duration">Diploma Degree Level — Final Years</span>
+                    <p>සම්පූර්ණ විශාරද උපාධි මට්ටම. සංකීර්ණ රාග, ආලාප්, තාන්, ශ්‍රුති සහ ගැඹුරු සංගීත ශාස්ත්‍රය.</p>
+                </div>
+                <div class="stage-item">
+                    <h4>4. Nipat / Alankar (නිපුණ/අලංකාර්)</h4>
+                    <span class="duration">Post Graduate Level</span>
+                    <p>විශාරදයෙන් පසු සිදුකරන උසස් ප්‍රගුණ කිරීම් සහ පර්යේෂණාත්මක සංගීත අධ්‍යයනය.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== COMPLETE SYLLABUS ===== -->
+        <div class="syllabus-section">
+            <div class="section-title">
+                <h2>COMPLETE SYLLABUS</h2>
+                <p>වාද්‍ය (Instrumental) සහ ගායන (Vocal) විභාග විෂය නිර්දේශ වෙන වෙනම</p>
+            </div>
+
+            <!-- ==================== INSTRUMENTAL SECTION ==================== -->
+            <h3 class="syllabus-category-title"><i class="fa-solid fa-guitar"></i> INSTRUMENTAL (වාද්‍ය) SYLLABUS</h3>
+
+            <!-- Instrumental Prathama -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Prathama (First Year)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <h4>Practical (M.M. 200)</h4>
+                    <span class="category-badge">Category A</span>
+                    <div class="raga-list">
+                        <span>Yaman</span><span>Bilawal</span><span>Khamaj</span><span>Bhairva</span>
+                        <span>Kafi</span><span>Asawari</span><span>Bhairavi</span>
+                    </div>
+                    <p style="font-size:0.9rem; color:var(--text-secondary);">Aroh, Avroh, Pakad, one Chota Khayal / Rajakhani Gat / Drut Gat with Todas.</p>
+
+                    <span class="category-badge">Category B</span>
+                    <div class="raga-list">
+                        <span>Poorvi</span><span>Marwa</span><span>Todi</span>
+                    </div>
+                    <p style="font-size:0.9rem; color:var(--text-secondary);">Brief introduction, Aroh, Avroh, Pakad.</p>
+
+                    <h4>Talas</h4>
+                    <div class="raga-list">
+                        <span>Teentaal</span><span>Jhaptaal</span><span>Dadra</span><span>Kaharva</span>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:10px;"><i class="fa-regular fa-circle-check"></i> Note: No theory paper in Prathama instrumental.</p>
+                </div>
+            </div>
+
+            <!-- Instrumental Madhyama -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Madhyama (Part I & II)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part I — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Hamir</span><span>Kedar</span><span>Bihag</span><span>Bageshri</span>
+                                <span>Bhimpalasi</span><span>Jaunpuri</span><span>Malkauns</span>
+                            </div>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Tilak Kamod</span><span>Sohini</span></div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Masitkhani & Razakhani Gat with Alap, Toda, Tihai. Vilambit & Drut Gat/Khayal.</p>
+                            <h4>Talas (Part I)</h4>
+                            <div class="raga-list"><span>Sooltaal</span><span>Adachautaal</span><span>Jhoomra</span><span>Deepchandi</span><span>Tilwada</span></div>
+                        </div>
+                        <div>
+                            <h4>Part I — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Pt. Vyankatmakhi & his 72 Thaat</li>
+                                <li>Origin of Ragas, Raag Ragini Paddhati</li>
+                                <li>Distinction between Thaat & Raag, Importance of Vadi Swar</li>
+                                <li>Gat & Current Forms, Time Theory of Ragas</li>
+                                <li>Definitions: Gat, Khayal, Gamak, Varna, Raag, Sthayi, Antara, Sanchari, Abhog</li>
+                                <li>Description & comparison, Notation (compulsory)</li>
+                                <li>Taal knowledge with Dugun, Tigun, Chaugun</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part II — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Desh</span><span>Shankara</span><span>Brindavani Sarang</span><span>Vibhas</span>
+                                <span>Marwa</span><span>Kamod</span><span>Gaud Sarang</span>
+                            </div>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Durga (Bilawal That)</span><span>Poorvi</span><span>Jogiya</span></div>
+                            <h4>Talas (Part II)</h4>
+                            <div class="raga-list"><span>Dhamaar</span><span>Gajajhampa</span><span>Pancham Sawari</span><span>Matta</span></div>
+                        </div>
+                        <div>
+                            <h4>Part II — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Medieval history of Indian Music</li>
+                                <li>Brief introduction of Karnatak Music System</li>
+                                <li>Classification of Ragas, Gamak & its types</li>
+                                <li>10 Characteristics of Jaati</li>
+                                <li>Definitions: Shuddha, Chhayalag, Sankeerna, Poorvang Vadi, Uttarang Vadi, Parmelpraveshak, Sandhiprakash</li>
+                                <li>Description of instrument with sketch, Western Notation</li>
+                                <li>Description & comparison, Notation (compulsory)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instrumental Visharad -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad (Part I & II)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part I — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Hindol</span><span>Jaijaiwanti</span><span>Pooriya Dhanashri</span><span>Paraj</span>
+                                <span>Adana</span><span>Bahar</span><span>Gaud Malhar</span><span>Miyan Malhar</span><span>Shri</span>
+                            </div>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Kalingada</span></div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Full Alapchari, difficult layakaris, Tihalas, Tan todas, Jhala. At least two Gats in other Taal.</p>
+                            <h4>Talas (Part I)</h4>
+                            <div class="raga-list"><span>Sawari</span><span>Shikher</span><span>Yati Shikher</span></div>
+                        </div>
+                        <div>
+                            <h4>Part I — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Notation of prescribed Ragas (compulsory)</li>
+                                <li>Shruti & Swara comparative study</li>
+                                <li>Views of Bharata, Sharangdev, Ahobala, Shrinivas, Bhatkhande</li>
+                                <li>Study of Note by length of string, Sadja & Madhyam Grama</li>
+                                <li>Frequency relations, Technical terms (Geet, Gandharva, Margi, Desi, Jod Alap, etc.)</li>
+                                <li>Methods of Alapchari, Nibaddha & Anibaddha Gan</li>
+                                <li>Famous instrumentalists: Allaudin Khan, Inayat Khan, Gajanan Rao Joshi, Pannalal Ghosh</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part II — Practical (M.M. 200)</h4>
+                            <div class="raga-list">
+                                <span>Shuddha Kalyan</span><span>Chayanat</span><span>Kamod</span><span>Deshkar</span>
+                                <span>Ramkali</span><span>Basant</span><span>Lalit</span><span>Poorvi</span>
+                                <span>Pooriya</span><span>Darbari Kanhada</span><span>Multani</span><span>Todi</span>
+                                <span>Peelu (Non detail)</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">20-min solo in a prescribed Raga. Full elaboration, ability to play any given combination on spot.</p>
+                        </div>
+                        <div>
+                            <h4>Part II — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Notation of prescribed Ragas (compulsory)</li>
+                                <li>Comparative study of Moorchanas, 10 types of Ragas</li>
+                                <li>Grama Raga, Up-Raga, Bhasa, Vibhasa, Anterbhasa, Raganga, Bhasanga, Krianga, Upanga</li>
+                                <li>Music settings: Dhrupad, Hori (Dhamar), Khayal, Tappa, Thumri, Tarana, Chaturang, etc.</li>
+                                <li>Swasthan, Akshiptika, ancient Raga Lakshans, Jati Ke Lakshans</li>
+                                <li>Tan & its kinds, Southern Taal system</li>
+                                <li>Talas: Gajajhampa, Matta, Lakshami, Brahma, Rudra</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instrumental Nipun -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Nipun (Part I, II & III)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part I — Practical (M.M. 200)</h4>
+                            <div class="raga-list">
+                                <span>Shyam Kalyan</span><span>Jait Kalyan</span><span>Yamni Bilawal</span><span>Jhinjhoti</span>
+                                <span>Suddha Sarang</span><span>Vibhas</span><span>Dhanashri</span><span>Jogia</span>
+                                <span>Nayaki Kanhada</span><span>Jog</span><span>Soor Malhar</span><span>Marg Behag</span>
+                                <span>Jait Shri</span><span>Durga (Bilawal Thata)</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Stage performance with Vilambit & Drut Gat/Khayal. Ability to perform on spot, accompany, analyze.</p>
+                            <h4>Part I — Theory (Papers I & II)</h4>
+                            <ul>
+                                <li><strong>Paper I:</strong> Sangeet Granthas (Ahobal, Shriniwas, Ramamatya, Lochan, Vyankatmakhi), Chhandshastra, Gharanas, History, Composition.</li>
+                                <li><strong>Paper II:</strong> Scientific study: Sound, Frequency, Pitch, Resonance, Shruti-Swar, production & propagation, drone, intonation, melody forms, Ancient/Medieval/Modern Swar-Gram systems.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Part II — Practical (M.M. 200)</h4>
+                            <div class="raga-list">
+                                <span>Rageshri</span><span>Khambavati</span><span>Deogiri Bilawal</span><span>Nand</span>
+                                <span>Ahir-Bhairava</span><span>Hamsadhwani</span><span>Gunakri</span><span>Gauri</span>
+                                <span>Bhatiyar</span><span>Madhyamadi Sarang</span><span>Maru Behag</span><span>Mian-ki-Sarang</span>
+                                <span>Megh Malhar</span><span>Charukeshi</span><span>Desi Todi</span>
+                            </div>
+                            <h4>Part II — Theory (Papers I & II)</h4>
+                            <ul>
+                                <li><strong>Paper I:</strong> Granthas (Somnath, Pundrik Vittal, Bhavbhatt, Shreekantha, Bhatkhande), Prabandha, History, Alap Gayan, Raga Ragini, Janya Janak.</li>
+                                <li><strong>Paper II:</strong> Harmony & Melody, Consonance & Dissonance, Voice culture, Acoustics, Scales (Tempered, Enharmonic, Chromatic, Major, Minor), Aesthetics.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div>
+                        <h4>Part III — Practical (M.M. 400) – No theory</h4>
+                        <div class="grid-2col">
+                            <div>
+                                <h5>A. Stage Performance (M.M. 200)</h5>
+                                <div class="raga-list">
+                                    <span>Gopi Basant</span><span>Basant Mukhari</span><span>Bihagad</span><span>Sahana</span>
+                                    <span>Kausi Kanhada</span><span>Ramdasi Malhar</span><span>Bilaskhani Todi</span><span>Narayani</span>
+                                    <span>Gorakh Kalyan</span><span>Abhogi</span><span>Sorath</span><span>Gujri Todi</span>
+                                    <span>Bhoopal Tudi</span><span>Bairagi Bhairava</span><span>Ananda Bhairava</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h5>B. Viva Voce (M.M. 200)</h5>
+                                <p style="font-size:0.9rem; color:var(--text-secondary);">Specialisation in any one Raga Prakar:</p>
+                                <div class="raga-list">
+                                    <span>Kanhada</span><span>Malhar</span><span>Bilawal</span><span>Sarang</span><span>Todi</span><span>Kalyan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== VOCAL SECTION ==================== -->
+            <h3 class="syllabus-category-title" style="margin-top:60px;"><i class="fa-solid fa-microphone"></i> VOCAL (ගායන) SYLLABUS</h3>
+
+            <!-- Vocal Prathama -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Prathama (First & Second Year)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Year 1 — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Yaman</span><span>Bilawal</span><span>Khamaj</span><span>Bhairva</span>
+                                <span>Kafi</span><span>Asawari</span><span>Bhairavi</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Swar Malika & one Chota Khayal in each.</p>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Poorvi</span><span>Marwa</span><span>Todi</span></div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Brief intro, Aroh, Avroh, Swar Malika.</p>
+                            <h4>Talas</h4>
+                            <div class="raga-list"><span>Trital</span><span>Jhaptaal</span><span>Dadra</span><span>Kaharva</span></div>
+                        </div>
+                        <div>
+                            <h4>Year 2 — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Yaman</span><span>Alhaiya Bilawal</span><span>Bhairva</span><span>Asawari</span>
+                                <span>Bhoopali</span><span>Desh</span><span>Khamaj</span><span>Kafi</span><span>Bhairavi</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Vilambit & Drut Khayal in ragas 1-6; one Dhrupad with Thah Dugun in any two.</p>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Poorvi</span><span>Marwa</span><span>Todi</span></div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">One Drut Khayal each.</p>
+                            <h4>Additional Talas</h4>
+                            <div class="raga-list"><span>Chautal</span><span>Dhamar</span><span>Tilwada</span><span>Ektal</span></div>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div>
+                        <h4>Theory (M.M. 100)</h4>
+                        <ul>
+                            <li>Brief history of Indian Music (Hindu & Mohammedan period)</li>
+                            <li>Definitions: Sangeet, Nad, Shruti, Saptak, Alankar, Thata, Raga, Vadi, Samvadi, Anuvadi, Vivadi, Pakad, Meend, Kana, Alap, Tana, Laya, Tal, Theka</li>
+                            <li>Brief intro: Dhrupad, Dhamar, Khayal, Thumri, Lakshan Geet, Sargam, Tarana</li>
+                            <li>Description & comparison of prescribed Ragas</li>
+                            <li>Life sketches: Pt. V.N. Bhatkhande, Pt. S.K.N. Ratanjankar, Prof. G.N. Natu</li>
+                            <li>Notation of Khayal in prescribed Ragas (compulsory)</li>
+                            <li>Taal knowledge with Dugun & Chaugun: Trital, Jhaptaal, Dadra, Kaharva, Chautal, Dhamar, Tilwada, Ektaal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocal Madhyama -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Madhyama (Part I & II)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part I — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Hamir</span><span>Kedar</span><span>Bihag</span><span>Bageshri</span>
+                                <span>Bhimpalasi</span><span>Jaunpuri</span><span>Malkauns</span>
+                            </div>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Tilak Kamod</span><span>Sohini</span></div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Vilambit & Drut Khayal with Alap and Tans. Two Dhrupads & Dhamars.</p>
+                            <h4>Talas</h4>
+                            <div class="raga-list"><span>Rupak</span><span>Deepchandi</span><span>Punjabi</span><span>Teevra</span></div>
+                        </div>
+                        <div>
+                            <h4>Part I — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Brief History of Indian Music</li>
+                                <li>Concept of Thata-Rag system (Vyankatmakhi & Ten-Thata of Bhatkhande)</li>
+                                <li>Time theory, Classification of Ragas</li>
+                                <li>Description & comparison of prescribed Ragas</li>
+                                <li>Life sketches: Pt. Vishnu Digambar Paluskar, Raja Bhaiya Poonchwale, Ustad Faiyaz Khan</li>
+                                <li>Notation of Ragas prescribed (compulsory)</li>
+                                <li>Taal knowledge with layakaris</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part II — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Desh</span><span>Shankara</span><span>Brindavani Sarang</span><span>Vibhas</span>
+                                <span>Marwa</span><span>Kamod</span><span>Gaud Sarang</span>
+                            </div>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Durga (Bilawal That)</span><span>Poorvi</span><span>Jogiya</span></div>
+                            <h4>Talas</h4>
+                            <div class="raga-list"><span>Dhamar</span><span>Gajajhampa</span><span>Pancham Sawari</span><span>Matta Taal</span></div>
+                        </div>
+                        <div>
+                            <h4>Part II — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Medieval history of Indian Music</li>
+                                <li>Brief Introduction of Karnatak Music System</li>
+                                <li>Gamak and its Types</li>
+                                <li>Definitions: Shuddha, Chhayalag, Sankeerna, Poorvang Vadi, Uttarang Vadi, Parmelpraveshak, Sandhiprakash</li>
+                                <li>Description of Tanpura with Sketch</li>
+                                <li>Brief Knowledge of Western Notation System</li>
+                                <li>Life Sketches: Swami Haridas, Tansen, Ustad Bade Gulam Ali Khan</li>
+                                <li>Notation & Taal knowledge with layakaris</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocal Visharad -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad (Part I & II)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part I — Practical (M.M. 200)</h4>
+                            <span class="category-badge">Category A</span>
+                            <div class="raga-list">
+                                <span>Hindol</span><span>Jaijaiwanti</span><span>Pooriyadhanashri</span><span>Paraj</span>
+                                <span>Adana</span><span>Bahar</span><span>Gaud Malhar</span><span>Miya Malhar</span><span>Shree</span>
+                            </div>
+                            <span class="category-badge">Category B</span>
+                            <div class="raga-list"><span>Kalingada</span></div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Vilambit & Drut Khayal with Alap & Tans. Two Dhrupads, Dhamars & Taranas.</p>
+                            <h4>Talas</h4>
+                            <div class="raga-list"><span>Jhoomra</span><span>Ada-Chautaal</span><span>Sool Taal</span></div>
+                        </div>
+                        <div>
+                            <h4>Part I — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Detailed study of Shruti and Swar (ancient, medieval, modern)</li>
+                                <li>Controversy regarding equality/inequality of shrutis</li>
+                                <li>Calculation of Suddha and Vikrita Swaras on Veena</li>
+                                <li>Fundamental scales in terms of frequency</li>
+                                <li>Definitions: Marg/Desi Sangit, Nayaki/Gayaki, Geet/Gandharva/Gaan</li>
+                                <li>Brief study of Western scales, Description of Ragas</li>
+                                <li>Notation of Bandish (compulsory)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part II — Practical (M.M. 200)</h4>
+                            <div class="raga-list">
+                                <span>Shuddha Kalyan</span><span>Chayanat</span><span>Kamod</span><span>Deshkar</span>
+                                <span>Ramkali</span><span>Basant</span><span>Lalit</span><span>Poorvi</span>
+                                <span>Pooriya</span><span>Darbari Kanhada</span><span>Multani</span><span>Todi</span>
+                                <span>Pelu (Non detail)</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Two Dhrupads, Dhamars & Taranas in different prescribed Ragas.</p>
+                            <h4>Talas</h4>
+                            <div class="raga-list"><span>Rudra</span><span>Laxmi</span><span>Brahma</span></div>
+                        </div>
+                        <div>
+                            <h4>Part II — Theory (M.M. 100)</h4>
+                            <ul>
+                                <li>Ancient & Modern Nibaddha/Anibaddha Gana</li>
+                                <li>Ancient Raga-Lakshan, Jati-ke-lakshan, Ragalap, Roopakalap, Alapti, Avirabhava, Tirobhava</li>
+                                <li>History of Indian Music (Sharangdeo to present)</li>
+                                <li>Varieties of Tanas, Study of Moorchanas</li>
+                                <li>Classification into 10 types (Grama Raga, Up Raga, etc.)</li>
+                                <li>History of compositions (North Indian), Comparative study of Taal systems</li>
+                                <li>Notation & Taal knowledge with layakaris</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocal Nipun -->
+            <div class="syllabus-toggle">
+                <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)">
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Nipun (Part I, II & III)</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="syllabus-toggle-body">
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Part I — Practical (M.M. 200)</h4>
+                            <div class="raga-list">
+                                <span>Shyam Kalyan</span><span>Jait Kalyan</span><span>Yamani Bilawal</span><span>Jhinjhoti</span>
+                                <span>Suddha Sarang</span><span>Nayaki Kanhada</span><span>Dhanashree</span><span>Jogia</span>
+                                <span>Vibhas</span><span>Jog</span><span>Marg Bihag</span><span>Soor Malhar</span>
+                                <span>Jait Shree</span><span>Durga (Bilawal Thata)</span>
+                            </div>
+                            <p style="font-size:0.85rem; color:var(--text-secondary);">Stage performance with Vilambit & Drut Khayal, Alap, Tans, Bol Alap, layakaris.</p>
+                            <h4>Part I — Theory (Papers I & II)</h4>
+                            <ul>
+                                <li><strong>Paper I:</strong> History (Sangit Ratnakar to present), Granthas (Ahobal, Shriniwas, Ramamatya, Lochan, Vyankatmakhi), Chhandshastra, Gharanas, Kaku Bhed, Bharat Natya Shastra.</li>
+                                <li><strong>Paper II:</strong> Scientific study (Sound, Frequency, Resonance), Shruti-Swar discourse, production & propagation, drone, intonation, melody patterns, Ancient/Medieval/Modern Swar-Gram systems.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Part II — Practical (M.M. 200)</h4>
+                            <div class="raga-list">
+                                <span>Rageshri</span><span>Khambhavati</span><span>Maru Bihag</span><span>Nand</span>
+                                <span>Deogiri Bilawal</span><span>Hansadhwani</span><span>Ahir Bhairava</span><span>Gunkali</span>
+                                <span>Bhatiyar</span><span>Gauri</span><span>Miyan-ki-Sarang</span><span>Megha Malhar</span>
+                                <span>Madhymadi Sarang</span><span>Charukeshi</span><span>Desi Todi</span>
+                            </div>
+                            <h4>Part II — Theory (Papers I & II)</h4>
+                            <ul>
+                                <li><strong>Paper I:</strong> History (Vaidic to present), Granthas (Somnath, Pundrik Vitthal, Bhavbhatt, Shreekantha, Bhatkhande), Prabandha, Alap Gayan, Raga Ragini, Janya Janak.</li>
+                                <li><strong>Paper II:</strong> Harmony & Melody, Consonance & Dissonance, Voice culture, Acoustics, Scales (Tempered, Enharmonic, Chromatic, Major, Minor), Aesthetics.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="divider">
+                    <div>
+                        <h4>Part III — Practical (M.M. 400) – No theory</h4>
+                        <div class="grid-2col">
+                            <div>
+                                <h5>A. Stage Performance (M.M. 200)</h5>
+                                <div class="raga-list">
+                                    <span>Gopi Basant</span><span>Basant Mukhari</span><span>Bihagada</span><span>Shahana</span>
+                                    <span>Kausi Kanhada</span><span>Ramdasi Malhar</span><span>Bilaskhani Todi</span><span>Gujri Todi</span>
+                                    <span>Bhoopal Todi</span><span>Narayani</span><span>Gorakh Kalyan</span><span>Abhogi</span>
+                                    <span>Bairagi Bhairava</span><span>Sorath</span><span>Ananda Bhairava</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h5>B. Viva Voce (M.M. 200)</h5>
+                                <p style="font-size:0.9rem; color:var(--text-secondary);">Specialisation in any one Raga Prakar:</p>
+                                <div class="raga-list">
+                                    <span>Kanhada</span><span>Malhar</span><span>Bilawal</span><span>Sarang</span><span>Todi</span><span>Kalyan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- end syllabus-section -->
+
+        <!-- WHY STUDY WITH US -->
+        <div style="margin-top: 60px;">
+            <div class="section-title">
+                <h2>WHY CHOOSE DAHANAKE MUSIC ACADEMY?</h2>
+                <p>ඉන්දියානු විභාග සඳහා අපගේ ආයතනයේ විශේෂත්වය</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-user-check"></i>
+                    <div>
+                        <h4>Experienced Teachers</h4>
+                        <p>ඉන්දියානු විශාරද උපාධිධාරී ප්‍රවීණ ගුරු මණ්ඩලය.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-book"></i>
+                    <div>
+                        <h4>Complete Notes</h4>
+                        <p>විභාගයට අදාළ Theory සහ Practical සටහන් ලබා දීම.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-sliders"></i>
+                    <div>
+                        <h4>Tanpura Practice</h4>
+                        <p>නිවැරදි ශ්‍රුති හා තාල පුහුණුව මෙන්ම Mock Practical Tests.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div>
+                        <h4>High Pass Rate</h4>
+                        <p>විභාගවලින් ඉහළම සාමාර්ථ ලබා ගැනීමේ විශිෂ්ට වාර්තා.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACK TO COURSES BTN -->
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="../../index.html#courses" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Return to Main Courses Page</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // PRELOADER
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.style.display = 'none', 600);
+        });
+
+        // THEME TOGGLE
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateToggleIcon(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon(newTheme);
+        });
+
+        function updateToggleIcon(theme) {
+            themeToggleBtn.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        // MOBILE MENU
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // SYLLABUS TOGGLE
+        function toggleSyllabus(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.fa-chevron-down');
+            const isOpen = body.classList.contains('open');
+
+            // Close all other open bodies
+            document.querySelectorAll('.syllabus-toggle-body.open').forEach(el => {
+                if (el !== body) {
+                    el.classList.remove('open');
+                    el.previousElementSibling.querySelector('.fa-chevron-down').classList.remove('active');
+                }
+            });
+
+            body.classList.toggle('open');
+            if (icon) icon.classList.toggle('active');
+        }
+
+        // BACKGROUND CANVAS PARTICLES
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-blue').trim();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) particles.push(new Particle());
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>

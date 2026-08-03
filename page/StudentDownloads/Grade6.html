@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="si" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 6 Music | Dahanake Music Academy</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --btn-outline-text: #0f172a;
+            --btn-outline-border: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #080d1a;
+            --bg-secondary: #0f172a;
+            --bg-card: #131d31;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --accent-light: rgba(56, 189, 248, 0.12);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+            --nav-bg: rgba(8, 13, 26, 0.85);
+            --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            --btn-outline-text: #38bdf8;
+            --btn-outline-border: rgba(56, 189, 248, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* BACKGROUND CANVAS */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* NAVBAR HEADER */
+        header {
+            position: sticky;
+            top: 15px;
+            width: 92%;
+            max-width: 1250px;
+            margin: 0 auto;
+            z-index: 1000;
+        }
+
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px 20px 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 14px 4px 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-blue);
+        }
+
+        .logo-text h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        /* TOP BACK TO HOME BUTTON */
+        .btn-top-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-top-home:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: translateX(-3px);
+        }
+
+        .theme-toggle {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.05);
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* MAIN CONTENT SECTION */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 40px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* ANIMATED GRADE 6 HEADER TITLE */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .grade-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563eb, #38bdf8, #818cf8);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 8px;
+            animation: textGlow 3s ease-in-out infinite alternate, floatTitle 4s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0% {
+                background-position: 0% center;
+                filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.3));
+            }
+            100% {
+                background-position: 100% center;
+                filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.6));
+            }
+        }
+
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-family: 'Abhaya Libre', serif;
+            font-size: 1.25rem;
+        }
+
+        .section-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 35px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-title-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-title-box i {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+        }
+
+        .section-title-box h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+        }
+
+        /* DOWNLOAD GRID & CARDS */
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .item-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .item-card-header i {
+            font-size: 1.6rem;
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .item-card-title h4 {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+
+        .item-card-title span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-view {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+            background: var(--gradient-blue);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-view:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.4);
+        }
+
+        /* MODAL / SECTION POPUP FOR LESSON VIEW */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 850px;
+            max-height: 85vh;
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-blue);
+        }
+
+        .modal-body {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 10px;
+            color: var(--text-primary);
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-download-modal {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--gradient-blue);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--btn-outline-text);
+            text-decoration: none;
+            background: var(--bg-card);
+            border: 2px solid var(--btn-outline-border);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-home:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 576px) {
+            .grade-title { font-size: 2rem; }
+            .section-block { padding: 20px 15px; }
+            .download-grid { grid-template-columns: 1fr; }
+            .modal-container { width: 95%; padding: 15px; }
+            .btn-top-home span { display: none; } /* Mobile වලදී icon එක පමණක් පෙන්වීමට */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BACKGROUND ANIMATED CANVAS -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="../../index.html" class="logo-container">
+                    <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Dahanake</h1>
+                        <span>Music Academy</span>
+                    </div>
+                </a>
+
+                <!-- TOP BACK TO HOME BUTTON -->
+                <a href="../../index.html" class="btn-top-home">
+                    <i class="fa-solid fa-house"></i> <span>Home</span>
+                </a>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+                <i class="fa-solid fa-sun"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- ANIMATED GRADE 6 HEADER -->
+        <div class="page-header">
+            <h2 class="grade-title">Grade 06 - Music Materials</h2>
+            <p>පාඩම් සටහන්, ගුරු අත්පොත් සහ පසුගිය විභාග ප්‍රශ්න පත්‍ර මෙතැනින් අධ්‍යයනය කරන්න</p>
+        </div>
+
+        <!-- TEACHER GUIDE SECTION (ගුරු අත්පොත) -->
+        <div class="section-block">
+            <div class="section-title-box">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <h3>Teacher Guide (ගුරු අත්පොත)</h3>
+            </div>
+
+            <div class="download-grid">
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        <div class="item-card-title">
+                            <h4>Grade 6 Teacher Guide</h4>
+                            <span>ගුරු අත්පොත - 6 ශ්‍රේණිය</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('Grade 6 Teacher Guide', 'මෙතැනින් 6 ශ්‍රේණිය සංගීත විෂයට අදාළ සමස්ත ගුරු අත්පොත කියවිය හැක. පාඩම් සැලසුම් සහ උපදෙස් ඇතුළත් වේ.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LESSON NOTES SECTION -->
+        <div class="section-block">
+            <div class="section-title-box">
+                <i class="fa-solid fa-book-open"></i>
+                <h3>Lesson Notes (පාඩම් සටහන්)</h3>
+            </div>
+
+            <div class="download-grid">
+                <!-- Lesson 01 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>ශ්වසන අභ්‍යාසයෙහි යෙදෙමු</h4>
+                            <span>පාඩම 01</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('ශ්වසන අභ්‍යාසයෙහි යෙදෙමු', 'මෙම පාඩම මඟින් නිවැරදිව ශ්වසන අභ්‍යාසයන්හි යෙදෙන ආකාරය සහ ගායනය සඳහා ශ්වසනය පාලනය කරගන්නා ආකාරය පැහැදිලි කෙරේ.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 02 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>පෙරදිග අපරදිග වශයෙන් සංගීතයේ ස්වභාවය හා ශ්‍රී ලංකාවේ සංගීතය සඳහා ඇති කළ බලපෑම</h4>
+                            <span>පාඩම 02</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('පෙරදිග අපරදිග වශයෙන් සංගීතයේ ස්වභාවය...', 'පෙරදිග සහ අපරදිග සංගීතයේ වෙනස්කම් හා ලාංකේය සංගීතයට ඉන් ලැබුණු බලපෑම විමසා බැලේ.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 03 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>සංගීතයේ ස්වර නාම සහ ඒවායේ සංකේත</h4>
+                            <span>පාඩම 03</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('සංගීතයේ ස්වර නාම සහ ඒවායේ සංකේත', 'සංගීතයේ මූලික ස්වර 7 සහ ඒවා සංකේතවත් කරන ආකාරය පිළිබඳ විස්තර.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 04 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>ස්වර ස්ථාපන ගීත</h4>
+                            <span>පාඩම 04</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('ස්වර ස්ථාපන ගීත', 'ස්වර නිවැරදිව පිහිටුවා ගායනා කිරීම සඳහා භාවිත වන ස්වර ස්ථාපන ගීත අභ්‍යාස.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 05 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>තාලානුකූල ස්වර අභ්‍යාස</h4>
+                            <span>පාඩම 05</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('තාලානුකූල ස්වර අභ්‍යාස', 'තාලයට අනුකූලව ස්වර භාවිත කරමින් කෙරෙන ප්‍රායෝගික අභ්‍යාස.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 06 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>භාණ්ඩ හඳුන්වාදීම සහ වාදන පුහුණුව: හාර්මොනිකා - (මවුඕගනය)</h4>
+                            <span>පාඩම 06</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('හාර්මොනිකා - (මවුඕගනය)', 'හාර්මොනිකා වාද්‍ය භාණ්ඩය හඳුන්වාදීම සහ එහි මුලික වාදන පුහුණුව.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 07 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>මෙලෝඩිකා</h4>
+                            <span>පාඩම 07</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('මෙලෝඩිකා', 'මෙලෝඩිකා වාද්‍ය භාණ්ඩය භාවිතයෙන් ස්වර වාදනය කරන ආකාරය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 08 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>Recorder - රෙකෝඩර්</h4>
+                            <span>පාඩම 08</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('Recorder - රෙකෝඩර්', 'රෙකෝඩරය භාවිතය පිළිබඳ මූලික පාඩම් සටහන්.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 09 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>ලොකක්ස්පීල් - Glockenspiel</h4>
+                            <span>පාඩම 09</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('ලොකක්ස්පීල් - Glockenspiel', 'ලොකක්ස්පීල් භාණ්ඩයේ ස්වර පිහිටීම සහ වාදනය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 10 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>හාර්මෝනියම් - සර්පිනාව - (Harmonium)</h4>
+                            <span>පාඩම 10</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('හාර්මෝනියම් - සර්පිනාව', 'හාර්මෝනියම් භාණ්ඩයේ කොටස් සහ වාදන තාක්ෂණය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 11 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>විද්‍යුත් ස්වර පුවරුව - Electronic Keyboard</h4>
+                            <span>පාඩම 11</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('විද්‍යුත් ස්වර පුවරුව - Electronic Keyboard', 'Electronic Keyboard භාවිතය සහ මූලික ස්වර සංකේත.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 12 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>වයලීනය</h4>
+                            <span>පාඩම 12</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('වයලීනය', 'වයලීනය හඳුන්වාදීම සහ එහි කොටස් පිළිබඳ විස්තරය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 13 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>බටනළාව</h4>
+                            <span>පාඩම 13</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('බටනළාව', 'බටනළාව වාදනය සහ එහි ස්වර නිපදවන ආකාරය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 14 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>එස්රාජය</h4>
+                            <span>පාඩම 14</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('එස්රාජය', 'එස්රාජය වාද්‍ය භාණ්ඩය පිළිබඳ හැඳින්වීම.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 15 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>දිල්රුබාව</h4>
+                            <span>පාඩම 15</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('දිල්රුබාව', 'දිල්රුබාව වාද්‍ය භාණ්ඩයේ ව්‍යුහය සහ භාවිතය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 16 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>ඉංග්‍රීසි මැන්ඩලීනය - English Mandolin</h4>
+                            <span>පාඩම 16</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('ඉංග්‍රීසි මැන්ඩලීනය', 'මැන්ඩලීනය පිළිබඳ මූලික සටහන්.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 17 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>සිතාරය</h4>
+                            <span>පාඩම 17</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('සිතාරය', 'සිතාරය වාද්‍ය භාණ්ඩය සහ එහි තන්ති හඳුන්වාදීම.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 18 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>ගිටාරය</h4>
+                            <span>පාඩම 18</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('ගිටාරය', 'ගිටාර් වාදනයේ මූලික සිද්ධාන්ත.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 19 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>තබ්ලාව</h4>
+                            <span>පාඩම 19</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('තබ්ලාව', 'තබ්ලා වාදනය, එහි කොටස් සහ මූලික තාල.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 20 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>විද්‍යුත් මාධ්‍යයන්හි ප්‍රචලිත ළමා ගීත ගායනය</h4>
+                            <span>පාඩම 20</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('විද්‍යුත් මාධ්‍යයන්හි ප්‍රචලිත ළමා ගීත ගායනය', 'ප්‍රචලිත ළමා ගීත සහ ඒවායේ ගායන ශෛලීන්.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 21 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>රබන් පද වාදනය</h4>
+                            <span>පාඩම 21</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('රබන් පද වාදනය', 'දේශීය රබන් පද වාදනය පිළිබඳ විස්තර.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 22 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>නුර්ති</h4>
+                            <span>පාඩම 22</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('නුර්ති', 'නූර්ති සංගීතය සහ එහි ඉතිහාසය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 23 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>පාසල් ගීය</h4>
+                            <span>පාඩම 23</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('පාසල් ගීය', 'පාසල් ගීයේ ගායනය සහ එහි ගෞරවය රැකගැනීම.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+
+                <!-- Lesson 24 -->
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div class="item-card-title">
+                            <h4>ජාතික ගීය</h4>
+                            <span>පාඩම 24</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('ජාතික ගීය', 'ශ්‍රී ලංකා ජාතික ගීයේ නිවැරදි ගායන විලාසය.', '#')">
+                        <i class="fa-solid fa-eye"></i> පාඩම බලන්න
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAST PAPERS SECTION -->
+        <div class="section-block">
+            <div class="section-title-box">
+                <i class="fa-solid fa-file-pen"></i>
+                <h3>Past Papers (පසුගිය විභාග ප්‍රශ්න පත්‍ර)</h3>
+            </div>
+
+            <div class="download-grid">
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-scroll"></i>
+                        <div class="item-card-title">
+                            <h4>Model / Term Test Paper</h4>
+                            <span>Term Test Assessment</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('Model / Term Test Paper', 'වාර විභාග සඳහා අනුමාන ප්‍රශ්න පත්‍රය.', '#')">
+                        <i class="fa-solid fa-eye"></i> ප්‍රශ්න පත්‍රය බලන්න
+                    </button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-card-header">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <div class="item-card-title">
+                            <h4>Past Paper Collection</h4>
+                            <span>Past Examination Papers</span>
+                        </div>
+                    </div>
+                    <button class="btn-view" onclick="openLesson('Past Paper Collection', 'පසුගිය විභාග ප්‍රශ්න පත්‍ර එකතුව.', '#')">
+                        <i class="fa-solid fa-eye"></i> ප්‍රශ්න පත්‍රය බලන්න
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM BACK TO HOME BUTTON -->
+        <div class="bottom-nav">
+            <a href="../../index.html" class="btn-home">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- MODAL SECTION FOR LESSON CONTENT -->
+    <div class="modal-overlay" id="lessonModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalTitle">පාඩමේ මාතෘකාව</h3>
+                <button class="modal-close" onclick="closeLesson()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalContent">මෙතැන අදාළ පාඩමේ විස්තර සහ සටහන් දැක්වේ...</p>
+            </div>
+            <div class="modal-footer">
+                <a id="modalDownloadLink" href="#" class="btn-download-modal" target="_blank">
+                    <i class="fa-solid fa-download"></i> Download PDF
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // THEME TOGGLE LOGIC
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            themeToggleBtn.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        });
+
+        // LESSON MODAL POPUP LOGIC
+        function openLesson(title, content, downloadUrl) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalContent').innerText = content;
+            document.getElementById('modalDownloadLink').href = downloadUrl;
+            document.getElementById('lessonModal').classList.add('active');
+        }
+
+        function closeLesson() {
+            document.getElementById('lessonModal').classList.remove('active');
+        }
+
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('lessonModal');
+            if (e.target === modal) {
+                closeLesson();
+            }
+        });
+
+        // ANIMATED CANVAS
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const notesSymbols = ['♪', '♫', '♬', '♩'];
+        const particles = [];
+
+        for(let i = 0; i < 35; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 18 + 10,
+                symbol: notesSymbols[Math.floor(Math.random() * notesSymbols.length)],
+                speedY: Math.random() * 0.7 + 0.3,
+                speedX: (Math.random() - 0.5) * 0.4,
+                opacity: Math.random() * 0.5 + 0.2,
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.02
+            });
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.y -= p.speedY;
+                p.x += p.speedX;
+                p.rotation += p.rotSpeed;
+
+                if(p.y < -20) {
+                    p.y = canvas.height + 20;
+                    p.x = Math.random() * canvas.width;
+                }
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation);
+                ctx.font = `${p.size}px Poppins, sans-serif`;
+                ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
+                ctx.fillText(p.symbol, 0, 0);
+                ctx.restore();
+            });
+            
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>

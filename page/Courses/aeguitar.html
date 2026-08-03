@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="si" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acoustic & Electric Guitar Classes | Dahanake Music Academy</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            --shadow-xl: 0 20px 40px -8px rgba(37, 99, 235, 0.25);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --gradient-glow: linear-gradient(135deg, #2563eb, #60a5fa, #2563eb);
+            --gradient-rose: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+            --gradient-amber: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+            --gradient-violet: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            --btn-outline-text: #0f172a;
+            --btn-outline-border: #e2e8f0;
+            --card-radius: 20px;
+            --transition-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #080d1a;
+            --bg-secondary: #0f172a;
+            --bg-card: #131d31;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --accent-light: rgba(56, 189, 248, 0.12);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.8);
+            --nav-bg: rgba(8, 13, 26, 0.85);
+            --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            --gradient-glow: linear-gradient(135deg, #0284c7, #38bdf8, #0284c7);
+            --btn-outline-text: #38bdf8;
+            --btn-outline-border: rgba(56, 189, 248, 0.4);
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s var(--transition-smooth), box-shadow 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.55;
+        }
+
+        /* ===== PRELOADER ===== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            animation: pulseLogo 1.8s infinite ease-in-out;
+        }
+
+        .loader-spinner {
+            margin-top: 20px;
+            width: 45px;
+            height: 45px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes pulseLogo {
+            0%,100% { transform: scale(1); box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
+            50% { transform: scale(1.08); box-shadow: 0 0 50px rgba(56, 189, 248, 0.8); }
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== NAVBAR ===== */
+        header {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1250px;
+            z-index: 1000;
+        }
+
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            border-radius: 60px;
+            padding: 8px 20px 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 4px 14px 4px 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent-blue); }
+        .logo-text h1 { font-size: 1.05rem; font-weight: 700; color: var(--accent-blue); line-height: 1.1; }
+        .logo-text span { font-size: 0.7rem; color: var(--text-secondary); }
+
+        .nav-links { display: flex; list-style: none; gap: 6px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.35s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-blue); background: var(--accent-light); }
+
+        .theme-toggle, .mobile-menu-btn {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-btn { display: none; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            transition: all 0.35s var(--transition-smooth);
+        }
+
+        .btn-primary { background: var(--gradient-blue); color: #ffffff; box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5); }
+        .btn-outline { background: transparent; color: var(--btn-outline-text); border: 2px solid var(--btn-outline-border); }
+        .btn-outline:hover { background: var(--gradient-blue); color: #fff; border-color: transparent; transform: translateY(-3px); }
+        .btn-whatsapp { background: #25d366; color: #fff; }
+        .btn-whatsapp:hover { background: #1eb954; transform: translateY(-3px); }
+
+        /* ===== LAYOUT & SECTIONS ===== */
+        section { position: relative; z-index: 1; padding: 110px 20px 60px; max-width: 1250px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 45px; }
+        .section-title h2 { font-size: 2.2rem; color: var(--accent-blue); font-weight: 800; position: relative; padding-bottom: 12px; }
+        .section-title h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 70px; height: 4px; background: var(--gradient-blue); border-radius: 4px;
+        }
+        .section-title p { color: var(--text-secondary); margin-top: 10px; font-size: 1rem; }
+
+        /* ===== HERO BANNER ===== */
+        .page-hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 45px;
+            margin-top: 30px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text-side { flex: 1.2; }
+        .hero-badge {
+            background: var(--accent-light); color: var(--accent-blue);
+            padding: 6px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+            display: inline-block; margin-bottom: 15px; border: 1px solid var(--border-color);
+        }
+
+        .hero-text-side h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 15px; font-weight: 800; }
+        .hero-text-side p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 25px; font-family: 'Abhaya Libre', serif; }
+
+        .hero-icon-side {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-status-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .hero-status-card i { font-size: 3.8rem; color: var(--accent-blue); margin-bottom: 15px; }
+
+        /* ===== QUICK OVERVIEW ===== */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .overview-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .overview-card i {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            padding: 14px;
+            border-radius: 14px;
+        }
+
+        .overview-card div h4 { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+        .overview-card div span { font-size: 1.1rem; color: var(--text-primary); font-weight: 700; }
+
+        /* ===== SYLLABUS / LEVEL CARDS ===== */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .module-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: var(--gradient-amber);
+        }
+
+        .module-card.intermediate::before { background: var(--gradient-violet); }
+        .module-card.advanced::before { background: var(--gradient-rose); }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .module-icon {
+            width: 50px; height: 50px; border-radius: 14px; background: rgba(234, 88, 12, 0.12);
+            color: #ea580c; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; flex-shrink: 0;
+        }
+
+        .module-card.intermediate .module-icon { color: #8b5cf6; background: rgba(139, 92, 246, 0.12); }
+        .module-card.advanced .module-icon { color: #f43f5e; background: rgba(244, 63, 94, 0.12); }
+
+        .module-header h3 { font-size: 1.25rem; color: var(--text-primary); font-weight: 700; }
+
+        .module-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .module-list li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .module-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #ea580c;
+            font-size: 0.85rem;
+        }
+
+        .module-card.intermediate .module-list li::before { color: #8b5cf6; }
+        .module-card.advanced .module-list li::before { color: #f43f5e; }
+
+        /* ===== STYLES & TECHNIQUES ===== */
+        .techniques-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .techniques-box h3 { font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 25px; text-align: center; }
+
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .technique-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .technique-card i {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .technique-card h4 { font-size: 1.05rem; margin-bottom: 6px; color: var(--text-primary); }
+        .technique-card p { font-size: 0.83rem; color: var(--text-secondary); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); text-align: center; padding: 28px; color: var(--text-secondary); font-size: 0.9rem; margin-top: 60px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .page-hero { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .nav-links {
+                position: fixed; top: 75px; right: -100%; background: var(--bg-card);
+                width: 260px; height: calc(100vh - 90px); flex-direction: column;
+                padding: 30px 20px; border-radius: 20px; border: 1px solid var(--border-color);
+                transition: right 0.4s ease; align-items: flex-start;
+            }
+            .nav-links.active { right: 10px; }
+            .mobile-menu-btn { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE CANVAS BACKGROUND -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Dahanake Music Academy Logo" class="loader-logo">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <a href="../../index.html" class="logo-container">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Dahanake</h1>
+                    <span>Music Academy</span>
+                </div>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../../index.html#home">Home</a></li>
+                <li><a href="../../index.html#about">About Us</a></li>
+                <li><a href="../../index.html#courses" class="active">Courses</a></li>
+                <li><a href="../../index.html#downloads">Downloads</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section>
+        <!-- HERO BANNER -->
+        <div class="page-hero">
+            <div class="hero-text-side">
+                <span class="hero-badge"><i class="fa-solid fa-guitar"></i> Acoustic & Electric Mastery</span>
+                <h1>Guitar Training Classes</h1>
+                <p>Acoustic Guitar, Rhythm Strumming, Fingerstyle, සහ Electric Guitar Soloing/Licks මුල සිට උසස් මට්ටම දක්වා නිවැරදි සිද්ධාන්තික සහ ප්‍රායෝගික පුහුණුව.</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="https://wa.me/94772660756?text=I%20want%20to%20enroll%20for%20Guitar%20Classes" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Join Guitar Class</a>
+                    <a href="../../index.html#courses" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> All Courses</a>
+                </div>
+            </div>
+            <div class="hero-icon-side">
+                <div class="hero-status-card">
+                    <i class="fa-solid fa-guitar"></i>
+                    <h3>Guitar Versatility</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">Chords, Tabs, Fingerstyle & Lead</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK OVERVIEW -->
+        <div style="margin-top: 40px;" class="overview-grid">
+            <div class="overview-card">
+                <i class="fa-solid fa-layer-group"></i>
+                <div>
+                    <h4>Class Levels</h4>
+                    <span>Beginner to Lead Master</span>
+                </div>
+            </div>
+            <div class="overview-card">
+                <i class="fa-solid fa-sliders"></i>
+                <div>
+                    <h4>Styles Taught</h4>
+                    <span>Acoustic, Pop, Rock & Lead</span>
+                </div>
+            </div>
+            <div class="overview-card">
+                <i class="fa-solid fa-user-group"></i>
+                <div>
+                    <h4>Method</h4>
+                    <span>Individual & Small Groups</span>
+                </div>
+            </div>
+            <div class="overview-card">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div>
+                    <h4>Skill Focus</h4>
+                    <span>Chords, Tabs & Improvisation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SYLLABUS LEVEL BREAKDOWN -->
+        <div style="margin-top: 20px;">
+            <div class="section-title">
+                <h2>GUITAR CURRICULUM LEVELS</h2>
+                <p>ඔබගේ කැමැත්ත සහ මට්ටම අනුව තෝරාගත හැකි පාඨමාලා අංශ</p>
+            </div>
+
+            <div class="modules-grid">
+                <!-- Beginner Level -->
+                <div class="module-card">
+                    <div>
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fa-solid fa-seedling"></i></div>
+                            <h3>Beginner (ආරම්භක මට්ටම)</h3>
+                        </div>
+                        <ul class="module-list">
+                            <li>ගිටාර් වර්ග, කොටස් සහ Tuning සිදුකරන නිවැරදි ක්‍රමවේදය.</li>
+                            <li>මූලික Open Chords (Major, Minor, Dominant 7th).</li>
+                            <li>මූලික Strumming Patterns සහ Rhythms.</li>
+                            <li>Simple Song Accompaniment (සරල ගීත සඳහා වාදනය).</li>
+                            <li>Tablature (Guitar Tabs) කියවීම සහ Finger Exercise.</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94772660756?text=Inquiry%20about%20Beginner%20Guitar%20Course" target="_blank" class="btn btn-outline" style="width: 100%;">Enroll Beginner Level <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Intermediate Level -->
+                <div class="module-card intermediate">
+                    <div>
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <h3>Intermediate (මධ්‍ය මට්ටම)</h3>
+                        </div>
+                        <ul class="module-list">
+                            <li>Barre Chords, Major/Minor Scales සහ Pentatonic Scales.</li>
+                            <li>Fingerstyle Guitar Techniques සහ Arpeggios.</li>
+                            <li>Electric Guitar Tone Setup සහ Effects Pedals භාවිතය.</li>
+                            <li>ගීතවල Interludes සහ Lead Solos වාදනය කිරීම.</li>
+                            <li>Rhythm Harmony සහ Music Theory Foundation.</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94772660756?text=Inquiry%20about%20Intermediate%20Guitar%20Course" target="_blank" class="btn btn-outline" style="width: 100%;">Enroll Intermediate Level <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Advanced Level -->
+                <div class="module-card advanced">
+                    <div>
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fa-solid fa-crown"></i></div>
+                            <h3>Advanced (උසස් මට්ටම)</h3>
+                        </div>
+                        <ul class="module-list">
+                            <li>Advanced Lead Techniques (Bending, Hammer-ons, Pull-offs, Slides, Tapping).</li>
+                            <li>Modes, Chord Progressions සහ Improvisation (ස්වයං නිර්මාණශීලී Soloing).</li>
+                            <li>Electric Guitar Distortion/Drive Pedals & Amplifier Modeling.</li>
+                            <li>Studio Recording & Stage Performance Skills.</li>
+                            <li>Complex Songs, Fast Licks සහ Band Jamming Practice.</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/94772660756?text=Inquiry%20about%20Advanced%20Guitar%20Course" target="_blank" class="btn btn-outline" style="width: 100%;">Enroll Advanced Level <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIAL TECHNIQUES & FOCUS -->
+        <div class="techniques-box">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Key Skills & Techniques Covered</h3>
+            <div class="techniques-grid">
+                <div class="technique-card">
+                    <i class="fa-solid fa-hand-holding"></i>
+                    <h4>Fingerstyle</h4>
+                    <p>තනිවම Rhythm සහ Melody එකවර වාදනය කිරීමේ ශිල්ප ක්‍රම</p>
+                </div>
+                <div class="technique-card">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h4>Lead Soloing</h4>
+                    <p>Electric Guitar එකෙන් Bending, Tapping සහ Speed Licks වාදනය</p>
+                </div>
+                <div class="technique-card">
+                    <i class="fa-solid fa-sliders"></i>
+                    <h4>Tone Shaping</h4>
+                    <p>Amplifiers සහ Pedal Effects භාවිතයෙන් නිවැරදි සවුන්ඩ් එක ලබාගැනීම</p>
+                </div>
+                <div class="technique-card">
+                    <i class="fa-solid fa-drum"></i>
+                    <h4>Rhythm & Grooves</h4>
+                    <p>විවිධ Music Genres (Rock, Pop, Baila, Blues) සඳහා Strumming Patterns</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACK TO COURSES BTN -->
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="../../index.html#courses" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Return to Main Courses Page</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // PRELOADER
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.style.display = 'none', 600);
+        });
+
+        // THEME TOGGLE
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateToggleIcon(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon(newTheme);
+        });
+
+        function updateToggleIcon(theme) {
+            themeToggleBtn.innerHTML = theme === 'dark' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        // MOBILE MENU
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // BACKGROUND CANVAS PARTICLES
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent-blue').trim();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) particles.push(new Particle());
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    </script>
+</body>
+</html>
