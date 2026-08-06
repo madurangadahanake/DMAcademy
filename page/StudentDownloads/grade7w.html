@@ -2,20 +2,1418 @@
 <html lang="si" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Grade 7 Western Music | Dahanake Music Academy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Grade 7 Western Music study materials, notes, past papers, and teacher guides for Dahanake Music Academy students.">
+
+    <!-- ===== PRELOAD CRITICAL RESOURCES ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style> /* same style as grade6w */ </style>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w120">
+
+    <!-- ===== FONT AWESOME ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- ===== GOOGLE FONTS ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            --shadow-xl: 0 20px 40px -8px rgba(37, 99, 235, 0.25);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --gradient-glow: linear-gradient(135deg, #2563eb, #60a5fa, #2563eb);
+            --gradient-warm: linear-gradient(135deg, #d97706, #f59e0b);
+            --gradient-rose: linear-gradient(135deg, #be185d, #ec4899);
+            --gradient-emerald: linear-gradient(135deg, #047857, #34d399);
+            --card-radius: 20px;
+            --transition-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --bottom-nav-height: 68px;
+            --header-height: 72px;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #080d1a;
+            --bg-secondary: #0f172a;
+            --bg-card: #131d31;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --accent-light: rgba(56, 189, 248, 0.12);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.8);
+            --nav-bg: rgba(8, 13, 26, 0.85);
+            --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+        }
+
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: calc(var(--bottom-nav-height) + 30px);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        ::selection {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* ===== NAVBAR ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 14px;
+            background: transparent;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        header.scrolled {
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 14px;
+        }
+        .navbar {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 60px;
+            padding: 4px 14px 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            min-height: 56px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 3px 10px 3px 4px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .logo-container:hover {
+            transform: scale(1.02);
+        }
+        .logo-img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-blue);
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .logo-container:hover .logo-img {
+            transform: rotate(360deg);
+        }
+        .logo-text h1 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1.1;
+        }
+        .logo-text span {
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            display: block;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.78rem;
+            padding: 6px 12px;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+            touch-action: manipulation;
+        }
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+        .nav-links a.back-link {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            font-weight: 600;
+        }
+        .nav-links a.back-link:hover {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .theme-toggle {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            touch-action: manipulation;
+        }
+        .theme-toggle:hover {
+            transform: rotate(30deg) scale(1.06);
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+        }
+        .mobile-menu-btn:hover {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .mobile-menu-btn.active {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* ===== MOBILE OVERLAY ===== */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 340px;
+            height: 100%;
+            background: var(--bg-card);
+            z-index: 1001;
+            padding: 24px 20px 28px;
+            transition: right 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border-color);
+        }
+        .mobile-overlay.open {
+            right: 0;
+        }
+        .mobile-overlay-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        .mobile-overlay-header .mo-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mobile-overlay-header .mo-logo img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-blue);
+        }
+        .mobile-overlay-header .mo-logo span {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--accent-blue);
+        }
+        .mobile-overlay-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+        }
+        .mobile-overlay-close:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: rotate(90deg);
+        }
+        .mobile-overlay-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+        .mobile-overlay-nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 11px 14px;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            touch-action: manipulation;
+            min-height: 48px;
+        }
+        .mobile-overlay-nav a i {
+            width: 22px;
+            color: var(--accent-blue);
+            font-size: 1rem;
+            text-align: center;
+        }
+        .mobile-overlay-nav a:hover {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+        .mobile-overlay-nav a.back-link-mobile {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            border-radius: 14px;
+            margin-top: 6px;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .mobile-overlay-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .mobile-overlay-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--bottom-nav-height);
+            border-top: 1px solid var(--border-color);
+            display: none;
+            z-index: 999;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 6px 6px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.55rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            min-width: 48px;
+            gap: 1px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            touch-action: manipulation;
+            min-height: 48px;
+        }
+        .bottom-nav .nav-item i {
+            font-size: 1.2rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bottom-nav .nav-item:hover {
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--accent-blue);
+        }
+        .bottom-nav .nav-item.active i {
+            transform: scale(1.1);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-hero {
+            padding: 100px 16px 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .page-hero .grade-badge {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            padding: 4px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            margin-bottom: 12px;
+        }
+        .page-hero .grade-badge i {
+            margin-right: 6px;
+        }
+        .page-hero h1 {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .page-hero h1 .highlight {
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .page-hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 640px;
+            margin: 0 auto 20px;
+            font-family: 'Abhaya Libre', serif;
+        }
+        .page-hero .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            touch-action: manipulation;
+        }
+        .page-hero .back-btn:hover {
+            border-color: var(--accent-blue);
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        .page-hero .back-btn i {
+            color: var(--accent-blue);
+        }
+
+        /* ===== SECTION ===== */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 20px 16px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 800;
+        }
+        .section-title h2 .sub-title-si {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            font-family: 'Abhaya Libre', serif;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--gradient-blue);
+            border-radius: 4px;
+        }
+        .section-title p {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        /* ===== RESOURCE CARDS ===== */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 26px;
+            margin-top: 8px;
+        }
+        .resource-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 28px 24px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-blue);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .resource-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-xl);
+        }
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+        .resource-card .card-icon {
+            font-size: 2.4rem;
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all 0.35s ease;
+            flex-shrink: 0;
+        }
+        .resource-card:hover .card-icon {
+            transform: scale(1.06) rotate(4deg);
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .resource-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .resource-card .card-sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .resource-card .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+        .resource-card .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .resource-card .file-list .file-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            font-size: 0.85rem;
+        }
+        .resource-card .file-list .file-item:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+        .resource-card .file-list .file-item i {
+            color: var(--accent-blue);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .resource-card .file-list .file-item .file-size {
+            margin-left: auto;
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            background: var(--bg-card);
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .resource-card .btn {
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            font-size: 0.85rem;
+            touch-action: manipulation;
+            min-height: 44px;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        .resource-card .btn i {
+            transition: transform 0.3s ease;
+        }
+        .resource-card .btn:hover i {
+            transform: scale(1.15) rotate(3deg);
+        }
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-blue);
+            border: 2px solid var(--border-color);
+        }
+        .btn-outline:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            border-color: var(--accent-blue);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.25);
+        }
+        .btn-warm {
+            background: var(--gradient-warm);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(217, 119, 6, 0.25);
+        }
+        .btn-warm:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(217, 119, 6, 0.4);
+        }
+        .btn-rose {
+            background: var(--gradient-rose);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(190, 24, 93, 0.25);
+        }
+        .btn-rose:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(190, 24, 93, 0.4);
+        }
+        .btn-emerald {
+            background: var(--gradient-emerald);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(4, 120, 87, 0.25);
+        }
+        .btn-emerald:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(4, 120, 87, 0.4);
+        }
+
+        /* ===== NOTES SECTION ===== */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .note-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 16px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .note-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        .note-card .note-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .note-card .note-header .n-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .note-card .note-header h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        .note-card .note-header h4 small {
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            display: block;
+        }
+        .note-card .note-desc {
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 12px;
+        }
+        .note-card .btn {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 0.78rem;
+            border-radius: 10px;
+            min-height: 38px;
+        }
+
+        /* ===== TOPIC TAGS ===== */
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 6px 0 10px;
+        }
+        .topic-tags span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .topic-tags span i {
+            color: var(--accent-blue);
+            margin-right: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 22px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: var(--bottom-nav-height);
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: calc(var(--bottom-nav-height) + 16px);
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gradient-blue);
+            color: #fff;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(16px) scale(0.9);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            touch-action: manipulation;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.5);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .bottom-nav {
+                display: flex;
+            }
+            body {
+                padding-bottom: calc(var(--bottom-nav-height) + 16px);
+            }
+            footer {
+                margin-bottom: var(--bottom-nav-height);
+            }
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            .resource-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .notes-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-hero {
+                padding: 80px 16px 30px;
+            }
+            .page-hero h1 {
+                font-size: 1.6rem;
+            }
+            .page-hero p {
+                font-size: 0.95rem;
+            }
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            .bottom-nav .nav-item span {
+                font-size: 0.45rem;
+            }
+            .bottom-nav .nav-item i {
+                font-size: 1rem;
+            }
+            .bottom-nav .nav-item {
+                min-width: 40px;
+                padding: 2px 6px;
+                min-height: 40px;
+            }
+            .resource-card {
+                padding: 20px 16px 18px;
+            }
+            .resource-card .card-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 1.8rem;
+            }
+            .resource-card .file-list .file-item {
+                font-size: 0.78rem;
+                padding: 6px 10px;
+            }
+            .back-to-top {
+                bottom: calc(var(--bottom-nav-height) + 16px);
+                right: 14px;
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.3rem;
+            }
+            .page-hero .grade-badge {
+                font-size: 0.7rem;
+                padding: 3px 14px;
+            }
+            .page-hero .back-btn {
+                font-size: 0.75rem;
+                padding: 8px 16px;
+            }
+            .section-title h2 {
+                font-size: 1.2rem;
+            }
+            .resource-card {
+                padding: 16px 14px 14px;
+            }
+            .resource-card h3 {
+                font-size: 1rem;
+            }
+            .resource-card .card-desc {
+                font-size: 0.82rem;
+            }
+            .resource-card .file-list .file-item {
+                font-size: 0.72rem;
+                padding: 5px 8px;
+                gap: 6px;
+            }
+            .resource-card .file-list .file-item .file-size {
+                font-size: 0.55rem;
+                padding: 1px 8px;
+            }
+            .note-card .note-header h4 {
+                font-size: 0.85rem;
+            }
+            .note-card .note-desc {
+                font-size: 0.78rem;
+            }
+            .bottom-nav .nav-item span {
+                font-size: 0.4rem;
+            }
+            .bottom-nav .nav-item i {
+                font-size: 0.9rem;
+            }
+            .bottom-nav .nav-item {
+                min-width: 34px;
+                padding: 2px 4px;
+                min-height: 36px;
+            }
+        }
+
+        /* ===== UTILITIES ===== */
+        .mt-2 {
+            margin-top: 10px;
+        }
+        .mb-2 {
+            margin-bottom: 10px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-accent {
+            color: var(--accent-blue);
+        }
+    </style>
 </head>
 <body>
-    <!-- same structure as grade6w, with grade 7 -->
-    <div class="page-header">
-        <h2 class="grade-title">Grade 07 - Western Music</h2>
-        <p>බටහිර සංගීත පාඩම් සටහන්, ගුරු අත්පොත් සහ ප්‍රශ්න පත්‍ර</p>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <header id="mainHeader">
+        <nav class="navbar">
+            <a href="../../index.html" class="logo-container">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w80" alt="Logo" class="logo-img" width="34" height="34" loading="lazy" />
+                <div class="logo-text">
+                    <h1>Dahanake</h1>
+                    <span>Music Academy</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../../index.html#home">Home</a></li>
+                <li><a href="../../index.html#courses">Courses</a></li>
+                <li><a href="../../index.html#downloads" class="back-link"><i class="fa-solid fa-arrow-left"></i> Downloads</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode" aria-label="Toggle theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== MOBILE OVERLAY ===== -->
+    <div class="mobile-overlay-backdrop" id="mobileOverlayBackdrop"></div>
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-overlay-header">
+            <div class="mo-logo">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w80" alt="Logo" width="38" height="38" loading="lazy" />
+                <span>Dahanake</span>
+            </div>
+            <button class="mobile-overlay-close" id="mobileOverlayClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="mobile-overlay-nav">
+            <a href="../../index.html#home" data-nav-close><i class="fa-solid fa-house"></i> Home</a>
+            <a href="../../index.html#courses" data-nav-close><i class="fa-solid fa-guitar"></i> Courses</a>
+            <a href="../../index.html#downloads" class="back-link-mobile" data-nav-close><i class="fa-solid fa-arrow-left"></i> Back to Downloads</a>
+            <a href="../../index.html#contact" data-nav-close><i class="fa-solid fa-phone"></i> Contact</a>
+        </nav>
+        <div class="mobile-overlay-footer" style="padding-top:16px;border-top:1px solid var(--border-color);margin-top:auto;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:10px;justify-content:center;">
+                <a href="https://wa.me/94772660756" target="_blank" style="width:38px;height:38px;border-radius:50%;background:var(--bg-primary);border:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:0.95rem;transition:all 0.3s ease;text-decoration:none;"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/nandana.dahanaka" target="_blank" style="width:38px;height:38px;border-radius:50%;background:var(--bg-primary);border:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:0.95rem;transition:all 0.3s ease;text-decoration:none;"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/maduranga_dahahanake" target="_blank" style="width:38px;height:38px;border-radius:50%;background:var(--bg-primary);border:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:0.95rem;transition:all 0.3s ease;text-decoration:none;"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@MadurangaDahanake" target="_blank" style="width:38px;height:38px;border-radius:50%;background:var(--bg-primary);border:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:0.95rem;transition:all 0.3s ease;text-decoration:none;"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
     </div>
-    <!-- Teacher Guide, Lesson Notes, Past Papers - same as grade6w but with grade 7 -->
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="../../index.html#home" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="../../index.html#courses" class="nav-item"><i class="fa-solid fa-guitar"></i><span>Courses</span></a>
+        <a href="../../index.html#downloads" class="nav-item active"><i class="fa-solid fa-file-arrow-down"></i><span>Downloads</span></a>
+        <a href="../../index.html#contact" class="nav-item"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
+    </nav>
+
+    <!-- ============================================================
+    PAGE HERO
+    ============================================================ -->
+    <div class="page-hero">
+        <span class="grade-badge"><i class="fa-solid fa-music"></i> Grade 07 · Western Music</span>
+        <h1>Grade <span class="highlight">07</span> Western Music</h1>
+        <p>බටහිර සංගීතය — පාඩම් සටහන්, ගුරු අත්පොත්, ප්‍රශ්න පත්‍ර සහ අභ්‍යාස</p>
+        <a href="../../index.html#downloads" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Downloads</a>
+    </div>
+
+    <!-- ============================================================
+    MAIN RESOURCES
+    ============================================================ -->
+    <section id="resources">
+        <div class="section-title">
+            <h2>📚 Study Materials <span class="sub-title-si">අධ්‍යයන ද්‍රව්‍ය</span></h2>
+            <p>Grade 07 බටහිර සංගීතය සඳහා අවශ්‍ය සියලුම පාඩම් සටහන්, ගුරු අත්පොත්, ප්‍රශ්න පත්‍ර සහ අභ්‍යාස මෙතැනින් බාගත කරගන්න.</p>
+        </div>
+
+        <div class="resource-grid">
+            <!-- Teacher Guide -->
+            <div class="resource-card">
+                <div class="card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <h3>Teacher Guide</h3>
+                <span class="card-sub">ගුරු අත්පොත — Western Music</span>
+                <p class="card-desc">Grade 07 බටහිර සංගීත ගුරු අත්පොත. පාඩම් සැලසුම්, ඉගැන්වීමේ ක්‍රමවේද සහ විෂය නිර්දේශය ඇතුළත්.</p>
+                <div class="file-list">
+                    <a href="#" class="file-item" onclick="alert('📄 Teacher Guide PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Grade 07 Teacher Guide</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Syllabus PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Western Music Syllabus</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                </div>
+                <button class="btn btn-primary" onclick="alert('📄 Teacher Guide materials will be uploaded soon. Please check back or contact the academy.');">
+                    <i class="fa-solid fa-download"></i> Download All
+                </button>
+            </div>
+
+            <!-- Lesson Notes -->
+            <div class="resource-card">
+                <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                <h3>Lesson Notes</h3>
+                <span class="card-sub">පාඩම් සටහන් — Western Music</span>
+                <p class="card-desc">Grade 07 බටහිර සංගීත පාඩම් සටහන්. සංගීත න්‍යාය, ප්‍රායෝගික පාඩම්, ස්වර රටා සහ විභාග පුහුණුව.</p>
+                <div class="file-list">
+                    <a href="#" class="file-item" onclick="alert('📄 Lesson Notes PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Chapter 01: Music Theory</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Lesson Notes PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Chapter 02: Scales &amp; Keys</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Lesson Notes PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Chapter 03: Rhythm &amp; Meter</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Lesson Notes PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Chapter 04: Intervals &amp; Chords</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                </div>
+                <button class="btn btn-warm" onclick="alert('📄 Lesson Notes will be uploaded soon. Please check back or contact the academy.');">
+                    <i class="fa-solid fa-download"></i> Download All Notes
+                </button>
+            </div>
+
+            <!-- Past Papers -->
+            <div class="resource-card">
+                <div class="card-icon"><i class="fa-solid fa-file-lines"></i></div>
+                <h3>Past Papers</h3>
+                <span class="card-sub">ප්‍රශ්න පත්‍ර — Western Music</span>
+                <p class="card-desc">Grade 07 බටහිර සංගීත ප්‍රශ්න පත්‍ර. පෙර විභාග ප්‍රශ්න, පිළිතුරු පත්‍ර සහ අභ්‍යාස ඇතුළත්.</p>
+                <div class="file-list">
+                    <a href="#" class="file-item" onclick="alert('📄 Past Paper PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>2023 Annual Exam</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Past Paper PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>2022 Mid-Year Exam</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Past Paper PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>2021 Term Test Papers</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Past Paper PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Answer Sheets (Set 1)</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                </div>
+                <button class="btn btn-rose" onclick="alert('📄 Past Papers will be uploaded soon. Please check back or contact the academy.');">
+                    <i class="fa-solid fa-download"></i> Download Past Papers
+                </button>
+            </div>
+
+            <!-- Practice Exercises -->
+            <div class="resource-card">
+                <div class="card-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+                <h3>Practice Exercises</h3>
+                <span class="card-sub">අභ්‍යාස — Western Music</span>
+                <p class="card-desc">Grade 07 බටහිර සංගීත අභ්‍යාස. ස්වර ලිවීම, තාල අභ්‍යාස, කනින් හඳුනාගැනීම සහ වාදන පුහුණුව.</p>
+                <div class="file-list">
+                    <a href="#" class="file-item" onclick="alert('📄 Exercise PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Notation Practice Sheets</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Exercise PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Rhythm &amp; Clapping Exercises</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                    <a href="#" class="file-item" onclick="alert('📄 Exercise PDF will be available soon. Please contact the academy for the latest materials.'); return false;">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Ear Training Worksheets</span>
+                        <span class="file-size">PDF</span>
+                    </a>
+                </div>
+                <button class="btn btn-emerald" onclick="alert('📄 Practice Exercises will be uploaded soon. Please check back or contact the academy.');">
+                    <i class="fa-solid fa-download"></i> Download Exercises
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    DETAILED NOTES
+    ============================================================ -->
+    <section id="notes">
+        <div class="section-title">
+            <h2>📖 Detailed Lesson Notes <span class="sub-title-si">විස්තරාත්මක පාඩම් සටහන්</span></h2>
+            <p>Grade 07 බටහිර සංගීතයේ ප්‍රධාන මාතෘකා පිළිබඳ විස්තරාත්මක සටහන් — ක්ලික් කර බාගත කරගන්න.</p>
+        </div>
+
+        <div class="notes-grid">
+            <!-- Note 1 -->
+            <div class="note-card">
+                <div class="note-header">
+                    <div class="n-icon"><i class="fa-solid fa-music"></i></div>
+                    <h4>Introduction to Western Music <small>බටහිර සංගීතය හැඳින්වීම</small></h4>
+                </div>
+                <div class="topic-tags">
+                    <span><i class="fa-regular fa-star"></i> History</span>
+                    <span><i class="fa-regular fa-note"></i> Notation</span>
+                </div>
+                <p class="note-desc">බටහිර සංගීතයේ මූලික සංකල්ප, ඉතිහාසය, ස්වර ලිවීමේ ක්‍රම සහ ප්‍රධාන සංගීත පද ඇතුළත් සටහන්.</p>
+                <button class="btn btn-outline" onclick="alert('📄 This lesson note will be available soon. Please contact the academy for the latest materials.');">
+                    <i class="fa-solid fa-download"></i> Download Note
+                </button>
+            </div>
+
+            <!-- Note 2 -->
+            <div class="note-card">
+                <div class="note-header">
+                    <div class="n-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h4>Scales &amp; Key Signatures <small>ස්වර රටා සහ යතුරු සලකුණු</small></h4>
+                </div>
+                <div class="topic-tags">
+                    <span><i class="fa-regular fa-note"></i> Major</span>
+                    <span><i class="fa-regular fa-note"></i> Minor</span>
+                    <span><i class="fa-regular fa-sharp"></i> Keys</span>
+                </div>
+                <p class="note-desc">Grade 07 මට්ටමට අදාළ මේජර් සහ මයිනර් ස්කේල්, යතුරු සලකුණු සහ ස්වර රටා පිළිබඳ විස්තරාත්මක පාඩම.</p>
+                <button class="btn btn-outline" onclick="alert('📄 This lesson note will be available soon. Please contact the academy for the latest materials.');">
+                    <i class="fa-solid fa-download"></i> Download Note
+                </button>
+            </div>
+
+            <!-- Note 3 -->
+            <div class="note-card">
+                <div class="note-header">
+                    <div class="n-icon"><i class="fa-solid fa-drum"></i></div>
+                    <h4>Rhythm &amp; Time Signatures <small>තාලය සහ කාල සලකුණු</small></h4>
+                </div>
+                <div class="topic-tags">
+                    <span><i class="fa-regular fa-clock"></i> Time</span>
+                    <span><i class="fa-regular fa-note"></i> Beat</span>
+                </div>
+                <p class="note-desc">තාලය, බීට්, කාල සලකුණු (Time Signatures), සහ රිද්ම රටා පිළිබඳ Grade 07 සටහන්.</p>
+                <button class="btn btn-outline" onclick="alert('📄 This lesson note will be available soon. Please contact the academy for the latest materials.');">
+                    <i class="fa-solid fa-download"></i> Download Note
+                </button>
+            </div>
+
+            <!-- Note 4 -->
+            <div class="note-card">
+                <div class="note-header">
+                    <div class="n-icon"><i class="fa-solid fa-arrow-left-arrow-right"></i></div>
+                    <h4>Intervals &amp; Chords <small>අන්තරාල සහ ස්වර සමුහ</small></h4>
+                </div>
+                <div class="topic-tags">
+                    <span><i class="fa-regular fa-note"></i> Intervals</span>
+                    <span><i class="fa-regular fa-note"></i> Chords</span>
+                </div>
+                <p class="note-desc">අන්තරාල (Intervals), ස්වර සමුහ (Chords), ට්‍රයඩ් සහ හාර්මනි පිළිබඳ Grade 07 පාඩම් සටහන්.</p>
+                <button class="btn btn-outline" onclick="alert('📄 This lesson note will be available soon. Please contact the academy for the latest materials.');">
+                    <i class="fa-solid fa-download"></i> Download Note
+                </button>
+            </div>
+
+            <!-- Note 5 -->
+            <div class="note-card">
+                <div class="note-header">
+                    <div class="n-icon"><i class="fa-solid fa-ear-listen"></i></div>
+                    <h4>Aural Training <small>කනින් හඳුනාගැනීමේ පුහුණුව</small></h4>
+                </div>
+                <div class="topic-tags">
+                    <span><i class="fa-regular fa-star"></i> Ear</span>
+                    <span><i class="fa-regular fa-note"></i> Pitch</span>
+                </div>
+                <p class="note-desc">ස්වර හඳුනාගැනීම, තාලය, පිච්ච් සහ කනින් සංගීතය විශ්ලේෂණය කිරීමේ පුහුණුව.</p>
+                <button class="btn btn-outline" onclick="alert('📄 This lesson note will be available soon. Please contact the academy for the latest materials.');">
+                    <i class="fa-solid fa-download"></i> Download Note
+                </button>
+            </div>
+
+            <!-- Note 6 -->
+            <div class="note-card">
+                <div class="note-header">
+                    <div class="n-icon"><i class="fa-solid fa-guitar"></i></div>
+                    <h4>Practical Performance <small>ප්‍රායෝගික වාදනය</small></h4>
+                </div>
+                <div class="topic-tags">
+                    <span><i class="fa-regular fa-star"></i> Practice</span>
+                    <span><i class="fa-regular fa-star"></i> Performance</span>
+                </div>
+                <p class="note-desc">වාද්‍ය භාණ්ඩ වාදනය, ප්‍රායෝගික පුහුණුව, විභාග සූදානම සහ ගීත වාදනය පිළිබඳ මග පෙන්වීම.</p>
+                <button class="btn btn-outline" onclick="alert('📄 This lesson note will be available soon. Please contact the academy for the latest materials.');">
+                    <i class="fa-solid fa-download"></i> Download Note
+                </button>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin-top:32px;">
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:12px;">
+                <i class="fa-regular fa-circle-info" style="color:var(--accent-blue);"></i>
+                වැඩිදුර ද්‍රව්‍ය සඳහා කරුණාකර ආයතනය අමතන්න.
+            </p>
+            <a href="../../index.html#downloads" class="btn btn-primary" style="display:inline-flex;">
+                <i class="fa-solid fa-arrow-left"></i> Back to Downloads
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer>
+        <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved. | Designed with ❤️</p>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" id="backToTop" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ===== THEME TOGGLER =====
+            const htmlEl = document.documentElement;
+            const themeBtn = document.getElementById('themeToggle');
+
+            function updateThemeIcon() {
+                themeBtn.innerHTML = htmlEl.getAttribute('data-theme') === 'dark' ?
+                    '<i class="fa-solid fa-moon"></i>' :
+                    '<i class="fa-solid fa-sun"></i>';
+            }
+            updateThemeIcon();
+            themeBtn.addEventListener('click', function() {
+                const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                this.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' :
+                    '<i class="fa-solid fa-sun"></i>';
+            });
+
+            // ===== NAVBAR SCROLL =====
+            const header = document.getElementById('mainHeader');
+            const backTop = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', function() {
+                const y = window.pageYOffset;
+                header.classList.toggle('scrolled', y > 40);
+                backTop.classList.toggle('visible', y > 500);
+            }, { passive: true });
+
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ===== MOBILE OVERLAY =====
+            const mobBtn = document.getElementById('mobileMenuBtn');
+            const overlay = document.getElementById('mobileOverlay');
+            const backdrop = document.getElementById('mobileOverlayBackdrop');
+            const closeBtn = document.getElementById('mobileOverlayClose');
+
+            function openMobile() {
+                overlay.classList.add('open');
+                backdrop.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                mobBtn.classList.add('active');
+                mobBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            }
+
+            function closeMobile() {
+                overlay.classList.remove('open');
+                backdrop.classList.remove('open');
+                document.body.style.overflow = '';
+                mobBtn.classList.remove('active');
+                mobBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+
+            mobBtn.addEventListener('click', function() {
+                overlay.classList.contains('open') ? closeMobile() : openMobile();
+            });
+            backdrop.addEventListener('click', closeMobile);
+            closeBtn.addEventListener('click', closeMobile);
+            document.querySelectorAll('[data-nav-close]').forEach(function(el) {
+                el.addEventListener('click', closeMobile);
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('open')) closeMobile();
+            });
+
+            // ===== BOTTOM NAV ACTIVE STATE =====
+            const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+            navItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    navItems.forEach(function(i) { i.classList.remove('active'); });
+                    this.classList.add('active');
+                });
+            });
+
+        })();
+    </script>
+
 </body>
 </html>

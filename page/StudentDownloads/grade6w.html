@@ -1,11 +1,1952 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRADE6</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <title>Grade 6 Western Music | Dahanake Music Academy</title>
+    <meta name="description" content="Grade 6 Western Music study materials, notes, and downloadable resources for students of Dahanake Music Academy." />
+
+    <!-- ===== PRELOAD CRITICAL RESOURCES ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://drive.google.com" />
+
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w120" />
+
+    <!-- ===== FONT AWESOME ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
+
+    <!-- ===== GOOGLE FONTS ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ===== CRITICAL CSS ===== */
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+            --shadow-xl: 0 20px 40px -8px rgba(37, 99, 235, 0.25);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --gradient-glow: linear-gradient(135deg, #2563eb, #60a5fa, #2563eb);
+            --gradient-warm: linear-gradient(135deg, #d97706, #f59e0b);
+            --gradient-rose: linear-gradient(135deg, #be185d, #ec4899);
+            --gradient-emerald: linear-gradient(135deg, #047857, #34d399);
+            --gradient-purple: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            --card-radius: 20px;
+            --transition-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --bottom-nav-height: 68px;
+            --header-height: 72px;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #080d1a;
+            --bg-secondary: #0f172a;
+            --bg-card: #131d31;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --accent-light: rgba(56, 189, 248, 0.12);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.8);
+            --nav-bg: rgba(8, 13, 26, 0.85);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: calc(var(--bottom-nav-height) + 20px);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        ::selection {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* ===== PRELOADER ===== */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-blue);
+            animation: pulseLogo 1.8s infinite ease-in-out;
+        }
+        .loader-spinner {
+            margin-top: 20px;
+            width: 44px;
+            height: 44px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+        .loader-text {
+            margin-top: 14px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            animation: pulseText 1.4s ease-in-out infinite;
+        }
+        @keyframes pulseLogo {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.06);
+            }
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes pulseText {
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ===== CANVAS ===== */
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.45;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger>* {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .stagger.active>*:nth-child(1) {
+            transition-delay: 0.04s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger.active>*:nth-child(2) {
+            transition-delay: 0.08s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger.active>*:nth-child(3) {
+            transition-delay: 0.12s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger.active>*:nth-child(4) {
+            transition-delay: 0.16s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger.active>*:nth-child(5) {
+            transition-delay: 0.20s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger.active>*:nth-child(6) {
+            transition-delay: 0.24s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger.active>*:nth-child(7) {
+            transition-delay: 0.28s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger.active>*:nth-child(8) {
+            transition-delay: 0.32s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== NAVBAR ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 14px;
+            background: transparent;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        header.scrolled {
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 14px;
+        }
+        .navbar {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 60px;
+            padding: 4px 14px 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            min-height: 56px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 3px 10px 3px 4px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .logo-container:hover {
+            border-color: var(--accent-blue);
+            transform: scale(1.02);
+        }
+        .logo-img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-blue);
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .logo-container:hover .logo-img {
+            transform: rotate(360deg);
+        }
+        .logo-text h1 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            line-height: 1.1;
+        }
+        .logo-text span {
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            display: block;
+            line-height: 1;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.78rem;
+            padding: 6px 12px;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+            touch-action: manipulation;
+        }
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+        .nav-links a.shop-link {
+            background: var(--gradient-warm);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .nav-links a.shop-link:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.35);
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .theme-toggle {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            touch-action: manipulation;
+        }
+        .theme-toggle:hover {
+            transform: rotate(30deg) scale(1.06);
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent-blue);
+            font-size: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+        }
+        .mobile-menu-btn:hover {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .mobile-menu-btn.active {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* ===== MOBILE OVERLAY ===== */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 340px;
+            height: 100%;
+            background: var(--bg-card);
+            z-index: 1001;
+            padding: 24px 20px 28px;
+            transition: right 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border-color);
+        }
+        .mobile-overlay.open {
+            right: 0;
+        }
+        .mobile-overlay-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        .mobile-overlay-header .mo-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mobile-overlay-header .mo-logo img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-blue);
+        }
+        .mobile-overlay-header .mo-logo span {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--accent-blue);
+        }
+        .mobile-overlay-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+        }
+        .mobile-overlay-close:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: rotate(90deg);
+        }
+        .mobile-overlay-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+        .mobile-overlay-nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 11px 14px;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            touch-action: manipulation;
+            min-height: 48px;
+        }
+        .mobile-overlay-nav a i {
+            width: 22px;
+            color: var(--accent-blue);
+            font-size: 1rem;
+            text-align: center;
+        }
+        .mobile-overlay-nav a:hover {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+        .mobile-overlay-nav a.shop-link-mobile {
+            background: var(--gradient-warm);
+            color: #fff;
+            border-radius: 14px;
+            margin-top: 6px;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .mobile-overlay-nav a.shop-link-mobile i {
+            color: #fff;
+        }
+        .mobile-overlay-nav a.shop-link-mobile:hover {
+            transform: translateX(0) scale(1.02);
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.3);
+        }
+        .mobile-overlay-footer {
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .mobile-overlay-footer .social-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .mobile-overlay-footer .social-row a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            touch-action: manipulation;
+        }
+        .mobile-overlay-footer .social-row a:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        .mobile-overlay-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .mobile-overlay-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--bottom-nav-height);
+            border-top: 1px solid var(--border-color);
+            display: none;
+            z-index: 999;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 6px 6px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.55rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            min-width: 48px;
+            gap: 1px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            touch-action: manipulation;
+            min-height: 48px;
+        }
+        .bottom-nav .nav-item i {
+            font-size: 1.2rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bottom-nav .nav-item:hover {
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--accent-blue);
+        }
+        .bottom-nav .nav-item.active i {
+            transform: scale(1.1);
+        }
+        .bottom-nav .nav-item.shop-nav {
+            background: var(--gradient-warm);
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: 30px;
+            min-width: auto;
+        }
+        .bottom-nav .nav-item.shop-nav i {
+            color: #fff;
+        }
+        .bottom-nav .nav-item.shop-nav:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.35);
+        }
+
+        /* ===== SECTION ===== */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 70px 16px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 800;
+        }
+        .section-title h2 .sub-title-si {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            font-family: 'Abhaya Libre', serif;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--gradient-blue);
+            border-radius: 4px;
+        }
+        .section-title p {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            font-size: 0.85rem;
+            touch-action: manipulation;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        .btn i {
+            transition: transform 0.3s ease;
+        }
+        .btn:hover i {
+            transform: scale(1.15) rotate(3deg);
+        }
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
+        }
+        .btn-whatsapp {
+            background: #25d366;
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.25);
+        }
+        .btn-whatsapp:hover {
+            background: #1eb954;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-blue);
+            border: 2px solid var(--border-color);
+        }
+        .btn-outline:hover {
+            background: var(--accent-blue);
+            color: #fff;
+            border-color: var(--accent-blue);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.25);
+        }
+        .btn-download {
+            background: var(--gradient-emerald);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(4, 120, 87, 0.25);
+        }
+        .btn-download:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(4, 120, 87, 0.4);
+        }
+        .btn-rose {
+            background: var(--gradient-rose);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(190, 24, 93, 0.25);
+        }
+        .btn-rose:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(190, 24, 93, 0.4);
+        }
+        .btn-warm {
+            background: var(--gradient-warm);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(217, 119, 6, 0.25);
+        }
+        .btn-warm:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(217, 119, 6, 0.4);
+        }
+        .btn-purple {
+            background: var(--gradient-purple);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(109, 40, 217, 0.25);
+        }
+        .btn-purple:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(109, 40, 217, 0.4);
+        }
+        .btn-back {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        .btn-back:hover {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* ===== HERO ===== */
+        .grade-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 90px;
+            padding-bottom: 30px;
+            background: var(--bg-card);
+            border-radius: var(--card-radius);
+            border: 1px solid var(--border-color);
+            margin: 70px 16px 20px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        .grade-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-glow);
+            opacity: 0.6;
+        }
+        .grade-hero-content {
+            padding: 30px 20px;
+            max-width: 800px;
+        }
+        .grade-hero-content .badge-grade {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            padding: 4px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            margin-bottom: 14px;
+        }
+        .grade-hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        .grade-hero-content h1 span {
+            background: var(--gradient-glow);
+            background-size: 300% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        .grade-hero-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 10px;
+            font-family: 'Abhaya Libre', serif;
+        }
+        .grade-hero-content .hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 10px 16px;
+            max-width: 1300px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .breadcrumb a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb .sep {
+            color: var(--text-secondary);
+            opacity: 0.4;
+        }
+
+        /* ===== CONTENT CARDS ===== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 10px;
+        }
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-glow);
+            opacity: 0.4;
+            transition: opacity 0.35s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        .content-card:hover::before {
+            opacity: 1;
+        }
+        .content-card .card-icon {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            display: inline-block;
+            background: var(--accent-light);
+            padding: 10px;
+            border-radius: 14px;
+            transition: all 0.35s ease;
+        }
+        .content-card:hover .card-icon {
+            transform: scale(1.06) rotate(4deg);
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .content-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .content-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .content-card .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .content-card .meta-info span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-primary);
+            padding: 2px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .content-card .meta-info span i {
+            color: var(--accent-blue);
+            font-size: 0.65rem;
+        }
+        .content-card .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 16px;
+        }
+        .content-card .file-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            margin-bottom: 6px;
+            transition: all 0.3s ease;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .content-card .file-list li:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+        .content-card .file-list li .file-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 120px;
+        }
+        .content-card .file-list li .file-info i {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+        .content-card .file-list li .file-info .fname {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        .content-card .file-list li .file-info .fsize {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+        }
+        .content-card .file-list li .btn {
+            padding: 4px 14px;
+            font-size: 0.7rem;
+            min-height: 32px;
+            min-width: auto;
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
+        .content-card .file-list li .btn-download {
+            background: var(--gradient-emerald);
+            color: #fff;
+        }
+        .content-card .file-list li .btn-download:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 16px rgba(4, 120, 87, 0.3);
+        }
+        .content-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ===== TOPICS GRID ===== */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .topic-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px 16px;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .topic-chip:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+        .topic-chip .t-icon {
+            font-size: 1.6rem;
+            color: var(--accent-blue);
+            background: var(--accent-light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.35s ease;
+        }
+        .topic-chip:hover .t-icon {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: rotate(6deg) scale(1.06);
+        }
+        .topic-chip .t-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 4px;
+        }
+        .topic-chip .t-count {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== STUDY TIPS ===== */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .tip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 16px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .tip-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-sm);
+        }
+        .tip-card .tip-num {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: all 0.35s ease;
+        }
+        .tip-card:hover .tip-num {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        .tip-card .tip-content h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .tip-card .tip-content p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: 2px;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: calc(var(--bottom-nav-height) + 16px);
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gradient-blue);
+            color: #fff;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(16px) scale(0.9);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            touch-action: manipulation;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px) scale(1.06);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.5);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 22px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: var(--bottom-nav-height);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .bottom-nav {
+                display: flex;
+            }
+            body {
+                padding-bottom: calc(var(--bottom-nav-height) + 16px);
+            }
+            footer {
+                margin-bottom: var(--bottom-nav-height);
+            }
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .grade-hero {
+                margin: 60px 10px 16px;
+                min-height: 30vh;
+            }
+            .grade-hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grade-hero-content h1 {
+                font-size: 1.6rem;
+            }
+            .grade-hero-content p {
+                font-size: 0.95rem;
+            }
+            .content-card {
+                padding: 20px 16px;
+            }
+            .content-card .file-list li {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 10px;
+            }
+            .content-card .file-list li .file-info {
+                min-width: auto;
+            }
+            .content-card .file-list li .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .topics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .grade-hero {
+                margin: 56px 8px 12px;
+                padding: 16px 12px;
+                min-height: 25vh;
+            }
+            section {
+                padding: 50px 10px 28px;
+            }
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            .back-to-top {
+                bottom: calc(var(--bottom-nav-height) + 16px);
+                right: 14px;
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topics-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .topic-chip {
+                padding: 10px 8px;
+            }
+            .topic-chip .t-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .topic-chip .t-name {
+                font-size: 0.75rem;
+            }
+            .grade-hero-content h1 {
+                font-size: 1.3rem;
+            }
+            .grade-hero-content .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .breadcrumb {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+            }
+            .bottom-nav .nav-item span {
+                font-size: 0.45rem;
+            }
+            .bottom-nav .nav-item i {
+                font-size: 1rem;
+            }
+            .bottom-nav .nav-item {
+                min-width: 40px;
+                padding: 2px 6px;
+                min-height: 40px;
+            }
+            .bottom-nav .nav-item.shop-nav {
+                padding: 2px 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .topics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ===== UTILITIES ===== */
+        .text-accent {
+            color: var(--accent-blue);
+        }
+        .mt-2 {
+            margin-top: 10px;
+        }
+        .mb-2 {
+            margin-bottom: 10px;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gap-1 {
+            gap: 6px;
+        }
+        .gap-2 {
+            gap: 12px;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .grid-full {
+            grid-column: 1 / -1;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to GRADE6</h1>
+
+    <!-- ===== PRELOADER ===== -->
+    <div id="preloader">
+        <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w120" alt="Dahanake Music Academy Logo" class="loader-logo" width="120" height="120" />
+        <div class="loader-spinner"></div>
+        <div class="loader-text">🎵 Loading Grade 6...</div>
+    </div>
+
+    <!-- ===== CANVAS BACKGROUND ===== -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <header id="mainHeader">
+        <nav class="navbar">
+            <a href="../index.html" class="logo-container">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w80" alt="Logo" class="logo-img" width="34" height="34" loading="lazy" />
+                <div class="logo-text">
+                    <h1>Dahanake</h1>
+                    <span>Music Academy</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#courses">Courses</a></li>
+                <li><a href="../index.html#downloads">Downloads</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../shop/shop.html" class="shop-link"><i class="fa-solid fa-store"></i> Shop</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode" aria-label="Toggle theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== MOBILE OVERLAY ===== -->
+    <div class="mobile-overlay-backdrop" id="mobileOverlayBackdrop"></div>
+    <div class="mobile-overlay" id="mobileOverlay">
+        <div class="mobile-overlay-header">
+            <div class="mo-logo">
+                <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w80" alt="Logo" width="38" height="38" loading="lazy" />
+                <span>Dahanake</span>
+            </div>
+            <button class="mobile-overlay-close" id="mobileOverlayClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <nav class="mobile-overlay-nav">
+            <a href="../index.html#home" data-nav-close><i class="fa-solid fa-house"></i> Home</a>
+            <a href="../index.html#courses" data-nav-close><i class="fa-solid fa-guitar"></i> Courses</a>
+            <a href="../index.html#downloads" data-nav-close><i class="fa-solid fa-file-arrow-down"></i> Downloads</a>
+            <a href="../index.html#contact" data-nav-close><i class="fa-solid fa-phone"></i> Contact</a>
+            <a href="../shop/shop.html" class="shop-link-mobile" data-nav-close><i class="fa-solid fa-store"></i> Visit Our Shop</a>
+        </nav>
+        <div class="mobile-overlay-footer">
+            <div class="social-row">
+                <a href="https://wa.me/94772660756" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/nandana.dahanaka" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/maduranga_dahahanake" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@MadurangaDahanake" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@maduranga.dahanake" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="../index.html#home" class="nav-item" data-section="home"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="../index.html#courses" class="nav-item" data-section="courses"><i class="fa-solid fa-guitar"></i><span>Courses</span></a>
+        <a href="../index.html#downloads" class="nav-item active" data-section="downloads"><i class="fa-solid fa-file-arrow-down"></i><span>Downloads</span></a>
+        <a href="../shop/shop.html" class="nav-item shop-nav"><i class="fa-solid fa-store"></i><span>Shop</span></a>
+        <a href="../index.html#contact" class="nav-item" data-section="contact"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
+    </nav>
+
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="breadcrumb">
+        <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <span class="sep">/</span>
+        <a href="../index.html#downloads">Student Downloads</a>
+        <span class="sep">/</span>
+        <span style="color:var(--accent-blue);font-weight:600;">Grade 6 Western Music</span>
+    </div>
+
+    <!-- ============================================================
+    GRADE 6 HERO
+    ============================================================ -->
+    <section class="grade-hero" id="top">
+        <div class="grade-hero-content">
+            <span class="badge-grade"><i class="fa-solid fa-music"></i> Grade 6 · Western Music</span>
+            <h1>🎵 Grade 6 <br /><span>Western Music</span></h1>
+            <p>අපරදිග සංගීතය — 6 ශ්‍රේණිය සඳහා සටහන්, ප්‍රශ්න පත්‍ර සහ අධ්‍යයන ද්‍රව්‍ය</p>
+            <div class="hero-actions">
+                <a href="#notes" class="btn btn-primary"><i class="fa-solid fa-book-open"></i> Study Notes</a>
+                <a href="#papers" class="btn btn-download"><i class="fa-solid fa-file-pdf"></i> Past Papers</a>
+                <a href="#theory" class="btn btn-rose"><i class="fa-solid fa-lightbulb"></i> Theory</a>
+                <a href="../index.html#downloads" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Back to Downloads</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TOPICS OVERVIEW
+    ============================================================ -->
+    <section id="topics" class="reveal">
+        <div class="section-title">
+            <h2>Topics Covered <span class="sub-title-si">ආවරණය වන විෂය කරුණු</span></h2>
+            <p>Grade 6 Western Music පාඨමාලාවේ ප්‍රධාන මාතෘකා</p>
+        </div>
+        <div class="topics-grid stagger">
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-notes"></i></div><div class="t-name">Music Theory</div><div class="t-count">12 Lessons</div></div>
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-eye"></i></div><div class="t-name">Sight Reading</div><div class="t-count">8 Lessons</div></div>
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-ear-listen"></i></div><div class="t-name">Aural Training</div><div class="t-count">10 Lessons</div></div>
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-piano-keyboard"></i></div><div class="t-name">Keyboard Skills</div><div class="t-count">6 Lessons</div></div>
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-scale-balanced"></i></div><div class="t-name">Scales &amp; Arpeggios</div><div class="t-count">14 Lessons</div></div>
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-music"></i></div><div class="t-name">Composition</div><div class="t-count">4 Lessons</div></div>
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-clock"></i></div><div class="t-name">Rhythm &amp; Time</div><div class="t-count">8 Lessons</div></div>
+            <div class="topic-chip"><div class="t-icon"><i class="fa-solid fa-book"></i></div><div class="t-name">Music History</div><div class="t-count">6 Lessons</div></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    NOTES SECTION
+    ============================================================ -->
+    <section id="notes" class="reveal">
+        <div class="section-title">
+            <h2>📖 Study Notes <span class="sub-title-si">පාඩම් සටහන්</span></h2>
+            <p>Grade 6 Western Music සඳහා සවිස්තරාත්මක සටහන් — බාගත කරගෙන පුහුණු වන්න</p>
+        </div>
+        <div class="content-grid stagger">
+            <!-- Theory Notes -->
+            <div class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-file-lines"></i></div>
+                <h3>🎼 Theory Notes</h3>
+                <p>සංගීත න්‍යාය මූලික කරුණු — Staff notation, clefs, time signatures, intervals, chords, and more.</p>
+                <div class="meta-info">
+                    <span><i class="fa-regular fa-file"></i> 8 Pages</span>
+                    <span><i class="fa-regular fa-clock"></i> Updated: Jan 2026</span>
+                    <span><i class="fa-regular fa-star"></i> Grade 6</span>
+                </div>
+                <ul class="file-list">
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Grade 6 Theory — Part 1 (Notation)</span><br /><span class="fsize">PDF · 2.4 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Theory Part 1')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Grade 6 Theory — Part 2 (Scales &amp; Intervals)</span><br /><span class="fsize">PDF · 1.8 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Theory Part 2')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Grade 6 Theory — Part 3 (Chords &amp; Harmony)</span><br /><span class="fsize">PDF · 2.1 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Theory Part 3')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-outline" onclick="downloadAllAlert()"><i class="fa-solid fa-download"></i> Download All Theory Notes (ZIP)</a>
+            </div>
+
+            <!-- Practical Notes -->
+            <div class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-hand"></i></div>
+                <h3>🎻 Practical Notes</h3>
+                <p>ප්‍රායෝගික වාදන උපදෙස්, පරිමාණයන්, arpeggios, සහ sight-reading පුහුණුව.</p>
+                <div class="meta-info">
+                    <span><i class="fa-regular fa-file"></i> 6 Pages</span>
+                    <span><i class="fa-regular fa-clock"></i> Updated: Jan 2026</span>
+                    <span><i class="fa-regular fa-star"></i> Grade 6</span>
+                </div>
+                <ul class="file-list">
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Practical — Scales &amp; Arpeggios</span><br /><span class="fsize">PDF · 1.5 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Scales &amp; Arpeggios')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Practical — Sight Reading Exercises</span><br /><span class="fsize">PDF · 1.2 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Sight Reading')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Practical — Performance Pieces</span><br /><span class="fsize">PDF · 3.2 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Performance Pieces')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-outline" onclick="downloadAllAlert()"><i class="fa-solid fa-download"></i> Download All Practical Notes (ZIP)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAST PAPERS
+    ============================================================ -->
+    <section id="papers" class="reveal">
+        <div class="section-title">
+            <h2>📝 Past Papers <span class="sub-title-si">පසුගිය විභාග ප්‍රශ්න පත්‍ර</span></h2>
+            <p>Grade 6 Western Music සඳහා පෙර විභාග ප්‍රශ්න පත්‍ර — පුහුණුව සඳහා බාගත කරගන්න</p>
+        </div>
+        <div class="content-grid stagger">
+            <div class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-file-pdf" style="color:#dc2626;"></i></div>
+                <h3>📄 Theory Past Papers</h3>
+                <p>න්‍යාය විභාග ප්‍රශ්න පත්‍ර — වසර ගණනාවක ප්‍රශ්න එකතුවක්.</p>
+                <div class="meta-info">
+                    <span><i class="fa-regular fa-file"></i> 5 Papers</span>
+                    <span><i class="fa-regular fa-calendar"></i> 2018–2025</span>
+                </div>
+                <ul class="file-list">
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Theory Paper — 2025 (March)</span><br /><span class="fsize">PDF · 1.1 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Theory Paper 2025')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Theory Paper — 2024 (June)</span><br /><span class="fsize">PDF · 1.0 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Theory Paper 2024')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Theory Paper — 2023 (December)</span><br /><span class="fsize">PDF · 0.9 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Theory Paper 2023')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Theory Paper — 2022 (August)</span><br /><span class="fsize">PDF · 0.8 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Theory Paper 2022')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-outline" onclick="downloadAllAlert()"><i class="fa-solid fa-download"></i> Download All Theory Papers (ZIP)</a>
+            </div>
+
+            <div class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-file-pdf" style="color:#059669;"></i></div>
+                <h3>🎵 Practical Past Papers</h3>
+                <p>ප්‍රායෝගික විභාග ප්‍රශ්න සහ උපදෙස් — විභාගයට මුහුණ දීමට සූදානම් වන්න.</p>
+                <div class="meta-info">
+                    <span><i class="fa-regular fa-file"></i> 4 Papers</span>
+                    <span><i class="fa-regular fa-calendar"></i> 2019–2025</span>
+                </div>
+                <ul class="file-list">
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Practical Paper — 2025 (March)</span><br /><span class="fsize">PDF · 1.4 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Practical Paper 2025')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Practical Paper — 2024 (June)</span><br /><span class="fsize">PDF · 1.2 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Practical Paper 2024')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Practical Paper — 2023 (December)</span><br /><span class="fsize">PDF · 1.0 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Practical Paper 2023')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Practical Paper — 2022 (August)</span><br /><span class="fsize">PDF · 0.9 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Practical Paper 2022')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-outline" onclick="downloadAllAlert()"><i class="fa-solid fa-download"></i> Download All Practical Papers (ZIP)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    THEORY & EXTRA
+    ============================================================ -->
+    <section id="theory" class="reveal">
+        <div class="section-title">
+            <h2>💡 Theory &amp; Reference <span class="sub-title-si">න්‍යාය හා සමුද්දේශ</span></h2>
+            <p>අතිරේක සම්පත්, ප්‍රයෝගික උපදෙස්, සහ විභාග ඉඟි</p>
+        </div>
+        <div class="content-grid stagger">
+            <div class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>🎓 Exam Tips &amp; Guidelines</h3>
+                <p>විභාගයට මුහුණ දීම සඳහා ප්‍රයෝගික උපදෙස්, කාල කළමනාකරණය, සහ ලකුණු ලබා ගැනීමේ උපාය මාර්ග.</p>
+                <div class="meta-info">
+                    <span><i class="fa-regular fa-file"></i> 4 Pages</span>
+                    <span><i class="fa-regular fa-star"></i> Essential</span>
+                </div>
+                <ul class="file-list">
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Exam Tips — Theory Section</span><br /><span class="fsize">PDF · 0.6 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Exam Tips Theory')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Exam Tips — Practical Section</span><br /><span class="fsize">PDF · 0.7 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Exam Tips Practical')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                <h3>📚 Recommended Reading</h3>
+                <p>Grade 6 Western Music සඳහා නිර්දේශිත පොත්පත් සහ අධ්‍යයන මාර්ගෝපදේශ.</p>
+                <div class="meta-info">
+                    <span><i class="fa-regular fa-file"></i> 3 Resources</span>
+                    <span><i class="fa-regular fa-star"></i> Reference</span>
+                </div>
+                <ul class="file-list">
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Reading List — Grade 6 Western</span><br /><span class="fsize">PDF · 0.4 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Reading List')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                    <li>
+                        <div class="file-info">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div><span class="fname">Composer Study Guide</span><br /><span class="fsize">PDF · 1.0 MB</span></div>
+                        </div>
+                        <a href="#" class="btn btn-download" onclick="downloadAlert('Composer Study Guide')"><i class="fa-solid fa-download"></i> Download</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    STUDY TIPS
+    ============================================================ -->
+    <section id="tips" class="reveal">
+        <div class="section-title">
+            <h2>🎯 Study Tips <span class="sub-title-si">ඉගෙනුම් උපදෙස්</span></h2>
+            <p>Grade 6 Western Music සාර්ථකව හදාරන්නට උපකාරී වන ඉඟි</p>
+        </div>
+        <div class="tips-grid stagger">
+            <div class="tip-card">
+                <div class="tip-num">1</div>
+                <div class="tip-content">
+                    <h4>Daily Practice Routine</h4>
+                    <p>දිනපතා අවම වශයෙන් විනාඩි 30 ක් වාදන පුහුණුව සහ න්‍යාය සමාලෝචනය කරන්න.</p>
+                </div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">2</div>
+                <div class="tip-content">
+                    <h4>Sight Reading Every Day</h4>
+                    <p>දිනපතා නව සංගීත කෑල්ලක් දෘෂ්ටි කියවීම (sight-reading) පුහුණු වන්න.</p>
+                </div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">3</div>
+                <div class="tip-content">
+                    <h4>Use a Metronome</h4>
+                    <p>තාලය නිවැරදිව පවත්වා ගැනීමට මෙට්‍රොනෝමයක් භාවිත කරන්න.</p>
+                </div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">4</div>
+                <div class="tip-content">
+                    <h4>Record Yourself</h4>
+                    <p>ඔබගේ වාදනය පටිගත කර නැවත සවන් දී වැඩිදියුණු කිරීමට අවශ්‍ය කරුණු හඳුනාගන්න.</p>
+                </div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">5</div>
+                <div class="tip-content">
+                    <h4>Practice Past Papers</h4>
+                    <p>පසුගිය විභාග ප්‍රශ්න පත්‍ර කාල සීමාවක් තුළ පුහුණු වන්න.</p>
+                </div>
+            </div>
+            <div class="tip-card">
+                <div class="tip-num">6</div>
+                <div class="tip-content">
+                    <h4>Join Group Classes</h4>
+                    <p>කණ්ඩායම් පන්ති සහ සංගීත කණ්ඩායම් සමඟ එකතු වී පුහුණු වන්න.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <button class="back-to-top" id="backToTop" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer>
+        <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved. | Designed with ❤️</p>
+        <p style="font-size:0.75rem;margin-top:4px;">
+            <a href="../index.html" style="color:var(--accent-blue);text-decoration:none;">Home</a> &middot;
+            <a href="../index.html#courses" style="color:var(--accent-blue);text-decoration:none;">Courses</a> &middot;
+            <a href="../index.html#downloads" style="color:var(--accent-blue);text-decoration:none;">Downloads</a> &middot;
+            <a href="../index.html#contact" style="color:var(--accent-blue);text-decoration:none;">Contact</a>
+        </p>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ===== PRELOADER =====
+            const preloader = document.getElementById('preloader');
+
+            function hidePreloader() {
+                preloader.classList.add('hidden');
+                setTimeout(() => { preloader.style.display = 'none'; }, 600);
+            }
+            if (document.readyState === 'complete') hidePreloader();
+            else { window.addEventListener('load', hidePreloader);
+                setTimeout(hidePreloader, 3500); }
+
+            // ===== THEME TOGGLER =====
+            const htmlEl = document.documentElement;
+            const themeBtn = document.getElementById('themeToggle');
+
+            function updateThemeIcon() {
+                themeBtn.innerHTML = htmlEl.getAttribute('data-theme') === 'dark' ?
+                    '<i class="fa-solid fa-moon"></i>' :
+                    '<i class="fa-solid fa-sun"></i>';
+            }
+            updateThemeIcon();
+            themeBtn.addEventListener('click', function() {
+                const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', newTheme);
+                this.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' :
+                    '<i class="fa-solid fa-sun"></i>';
+            });
+
+            // ===== NAVBAR SCROLL =====
+            const header = document.getElementById('mainHeader');
+            const backTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                const y = window.pageYOffset;
+                header.classList.toggle('scrolled', y > 40);
+                backTop.classList.toggle('visible', y > 500);
+            }, { passive: true });
+            backTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+            // ===== MOBILE OVERLAY =====
+            const mobBtn = document.getElementById('mobileMenuBtn');
+            const overlay = document.getElementById('mobileOverlay');
+            const backdrop = document.getElementById('mobileOverlayBackdrop');
+            const closeBtn = document.getElementById('mobileOverlayClose');
+
+            function openMobile() { overlay.classList.add('open');
+                backdrop.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                mobBtn.classList.add('active');
+                mobBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'; }
+
+            function closeMobile() { overlay.classList.remove('open');
+                backdrop.classList.remove('open');
+                document.body.style.overflow = '';
+                mobBtn.classList.remove('active');
+                mobBtn.innerHTML = '<i class="fa-solid fa-bars"></i>'; }
+            mobBtn.addEventListener('click', function() { overlay.classList.contains('open') ? closeMobile() :
+                openMobile(); });
+            backdrop.addEventListener('click', closeMobile);
+            closeBtn.addEventListener('click', closeMobile);
+            document.querySelectorAll('[data-nav-close]').forEach(function(el) { el.addEventListener('click',
+                    closeMobile); });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains(
+                    'open')) closeMobile(); });
+
+            // ===== SCROLL REVEAL =====
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('active'); });
+            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+            document.querySelectorAll('.reveal, .stagger').forEach(function(el) { observer.observe(el); });
+
+            // ===== DOWNLOAD FUNCTIONS =====
+            window.downloadAlert = function(name) {
+                alert('📥 "' + name + '" is being prepared for download.\n\nPlease check back soon or contact the academy for access.');
+            };
+
+            window.downloadAllAlert = function() {
+                alert('📦 All files in this section will be available as a ZIP download.\n\nPlease check back soon or contact the academy for access.');
+            };
+
+            // ===== CANVAS BACKGROUND =====
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            let cW, cH;
+            const dpr = window.devicePixelRatio || 1;
+
+            function resizeCanvas() {
+                cW = window.innerWidth;
+                cH = window.innerHeight;
+                canvas.width = cW * dpr;
+                canvas.height = cH * dpr;
+                canvas.style.width = cW + 'px';
+                canvas.style.height = cH + 'px';
+                ctx.scale(dpr, dpr);
+            }
+            window.addEventListener('resize', resizeCanvas, { passive: true });
+            resizeCanvas();
+
+            const symbols = ['♪', '♫', '♬', '♩'];
+            const particles = [];
+            const count = Math.min(40, Math.floor(cW / 32));
+            let mouseX = -1000,
+                mouseY = -1000,
+                mouseInfluence = 0;
+
+            document.addEventListener('mousemove', function(e) { mouseX = e.clientX;
+                mouseY = e.clientY;
+                mouseInfluence = 1; }, { passive: true });
+            document.addEventListener('mouseleave', function() { mouseInfluence = 0; }, { passive: true });
+
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * cW,
+                    y: Math.random() * cH,
+                    size: Math.random() * 16 + 6,
+                    symbol: symbols[Math.floor(Math.random() * symbols.length)],
+                    speedY: Math.random() * 0.25 + 0.06,
+                    speedX: (Math.random() - 0.5) * 0.08,
+                    opacity: Math.random() * 0.2 + 0.06,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.01,
+                    drift: Math.random() * 100,
+                    waveAmp: Math.random() * 16 + 4,
+                    waveSpeed: Math.random() * 0.01 + 0.003,
+                });
+            }
+            let time = 0;
+
+            function animateCanvas() {
+                time += 0.008;
+                ctx.clearRect(0, 0, cW, cH);
+                const mI = mouseInfluence;
+                particles.forEach(function(p) {
+                    const waveX = Math.sin(time * p.waveSpeed + p.drift) * p.waveAmp * 0.2;
+                    const waveY = Math.cos(time * p.waveSpeed * 0.7 + p.drift * 1.3) * p.waveAmp * 0.12;
+                    const dx = mouseX - p.x,
+                        dy = mouseY - p.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    let fx = 0,
+                        fy = 0;
+                    if (dist < 160 && dist > 0 && mI > 0) {
+                        const str = (1 - dist / 160) * 0.7 * mI;
+                        const ang = Math.atan2(dy, dx);
+                        fx = -Math.cos(ang) * str * 0.4;
+                        fy = -Math.sin(ang) * str * 0.4;
+                        p.size = Math.min(22, p.size + 0.1);
+                    } else { p.size += (p.size > 10 ? -0.025 : 0);
+                        p.size = Math.max(6, p.size); }
+                    p.x += p.speedX + waveX * 0.01 + fx * 0.3;
+                    p.y -= p.speedY + waveY * 0.01 + fy * 0.3;
+                    if (p.y < -30) { p.y = cH + 30;
+                        p.x = Math.random() * cW; }
+                    if (p.x < -30) p.x = cW + 30;
+                    if (p.x > cW + 30) p.x = -30;
+                    p.rotation += p.rotSpeed + (fx * 0.0006);
+                    let op = p.opacity;
+                    if (dist < 120 && mI > 0) op = Math.min(0.5, p.opacity + 0.25 * (1 - dist / 120) * mI);
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation);
+                    ctx.font = p.size + 'px Poppins, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    if (dist < 120 && mI > 0) { ctx.shadowColor = 'rgba(56, 189, 248, ' + (0.25 * (1 - dist / 120) *
+                            mI) + ')';
+                        ctx.shadowBlur = 16; }
+                    ctx.fillStyle = 'rgba(56, 189, 248, ' + op + ')';
+                    ctx.fillText(p.symbol, 0, 0);
+                    ctx.restore();
+                });
+                if (mI > 0) {
+                    ctx.save();
+                    particles.forEach(function(p) {
+                        const dx = mouseX - p.x,
+                            dy = mouseY - p.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) { const alpha = (1 - dist / 120) * 0.06 * mI;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(mouseX, mouseY);
+                            ctx.strokeStyle = 'rgba(56, 189, 248, ' + alpha + ')';
+                            ctx.lineWidth = 1;
+                            ctx.stroke(); }
+                    });
+                    ctx.restore();
+                }
+                requestAnimationFrame(animateCanvas);
+            }
+            animateCanvas();
+
+        })();
+    </script>
+
 </body>
 </html>
