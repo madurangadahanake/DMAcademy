@@ -882,7 +882,7 @@
             color: var(--text-secondary) !important;
         }
 
-        /* ===== HERO ===== */
+        /* ===== HERO (UPDATED WITH CONSTRUCTION BADGE) ===== */
         .hero {
             min-height: 70vh;
             display: flex;
@@ -894,6 +894,13 @@
         .hero-content {
             flex: 1;
         }
+        .hero-tag-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
         .hero-tag {
             background: var(--accent-light);
             color: var(--accent-blue);
@@ -902,8 +909,26 @@
             font-size: 0.8rem;
             font-weight: 600;
             display: inline-block;
-            margin-bottom: 14px;
             border: 1px solid var(--border-color);
+        }
+        .hero-badge-construction {
+            background: #fef9c3;
+            color: #854d0e;
+            padding: 3px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid #ca8a04;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(202, 138, 4, 0.15);
+        }
+        [data-theme="dark"] .hero-badge-construction {
+            background: #422006;
+            color: #fde047;
+            border-color: #ca8a04;
         }
         .hero-content h1 {
             font-size: 2.6rem;
@@ -1192,7 +1217,24 @@
             justify-content: center;
         }
 
-        /* ===== INSTRUCTORS ===== */
+        /* ===== INSTRUCTORS (hidden by default, shown by button) ===== */
+        #instructorsContainer {
+            display: none;
+        }
+        #instructorsContainer.open {
+            display: block;
+        }
+        .show-instructors-btn-wrapper {
+            text-align: center;
+            margin: 20px 0 10px;
+        }
+        #showInstructorsBtn i {
+            transition: transform 0.3s ease;
+        }
+        #showInstructorsBtn.active i {
+            transform: rotate(180deg);
+        }
+
         .instructors-section {
             margin-top: 24px;
             padding-top: 16px;
@@ -2126,58 +2168,28 @@
             margin-bottom: 12px;
         }
 
-        /* ===== DOWNLOADS ===== */
-        .downloads-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
+        /* ===== DOWNLOADS — FIXED LAYOUT (NO COMPRESSION) ===== */
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 8px;
         }
-        .download-filter-bar {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 8px;
-            padding: 8px;
-            background: var(--bg-card);
-            border-radius: 40px;
-            border: 1px solid var(--border-color);
-        }
-        .download-filter-bar a {
-            padding: 5px 18px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: var(--text-secondary);
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            touch-action: manipulation;
-            min-height: 36px;
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        .download-filter-bar a:hover,
-        .download-filter-bar a.active {
-            background: var(--accent-blue);
-            color: #fff;
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
-        }
-        .download-category-block {
+
+        .download-subject-block {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--card-radius);
-            padding: 28px 24px 20px;
+            padding: 24px 22px 20px;
             box-shadow: var(--shadow-sm);
             transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        .download-category-block::before {
+
+        .download-subject-block::before {
             content: '';
             position: absolute;
             top: 0;
@@ -2185,24 +2197,29 @@
             right: 0;
             height: 3px;
             background: var(--gradient-glow);
-            opacity: 0.4;
+            opacity: 0.3;
         }
-        .download-category-block:hover {
+
+        .download-subject-block:hover {
             border-color: var(--accent-blue);
             box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
-        .download-category-block .cat-head {
+
+        .subject-header {
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             padding-bottom: 12px;
             border-bottom: 2px solid var(--border-color);
+            flex-wrap: wrap;
+            flex-shrink: 0;
         }
-        .download-category-block .cat-head .cat-icon-wrap {
-            width: 46px;
-            height: 46px;
+
+        .subject-header .subject-icon {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: var(--accent-light);
             color: var(--accent-blue);
@@ -2213,169 +2230,242 @@
             flex-shrink: 0;
             transition: all 0.35s ease;
         }
-        .download-category-block .cat-head:hover .cat-icon-wrap {
-            transform: rotate(10deg) scale(1.06);
+
+        .download-subject-block:hover .subject-icon {
+            transform: rotate(8deg) scale(1.06);
             background: var(--accent-blue);
             color: #fff;
         }
-        .download-category-block .cat-head .cat-title {
-            flex: 1;
-        }
-        .download-category-block .cat-head .cat-title h3 {
+
+        .subject-header h3 {
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--text-primary);
+            margin: 0;
+            line-height: 1.2;
         }
-        .download-category-block .cat-head .cat-title span {
-            font-weight: 400;
-            font-size: 0.8rem;
+
+        .subject-header .subject-sub {
+            font-size: 0.75rem;
             color: var(--text-secondary);
+            font-weight: 400;
             display: block;
         }
-        .download-category-block .cat-head .cat-badge {
+
+        .subject-header .subject-badge {
+            margin-left: auto;
             background: var(--accent-light);
             color: var(--accent-blue);
             padding: 3px 14px;
-            border-radius: 20px;
+            border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 600;
             border: 1px solid var(--border-color);
             white-space: nowrap;
         }
-        .level-divider {
+
+        .grade-cards {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            gap: 12px;
+            flex: 1;
+            align-content: flex-start;
+        }
+
+        .grade-card-new {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             gap: 10px;
-            margin: 18px 0 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        .level-divider i {
-            color: var(--accent-blue);
-        }
-        .level-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-        }
-        .grade-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 12px;
-        }
-        .grade-card {
+            padding: 8px 14px 8px 12px;
+            border-radius: 14px;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 14px 10px 10px;
             text-decoration: none;
             color: var(--text-primary);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex: 0 0 auto;
+            min-width: 110px;
+            max-width: 160px;
+            touch-action: manipulation;
             position: relative;
             overflow: hidden;
-            min-height: 80px;
-            cursor: pointer;
+            height: auto;
+            min-height: 44px;
         }
-        .grade-card::after {
+
+        .grade-card-new::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: var(--gradient-blue);
             opacity: 0;
-            transition: opacity 0.35s ease;
+            transition: opacity 0.3s ease;
         }
-        .grade-card:hover {
+
+        .grade-card-new:hover {
             transform: translateY(-4px) scale(1.02);
             border-color: var(--accent-blue);
             box-shadow: var(--shadow-lg);
         }
-        .grade-card:hover::after {
+
+        .grade-card-new:hover::after {
             opacity: 1;
         }
-        .grade-card .g-number {
-            font-size: 1.6rem;
+
+        .grade-card-new .grade-number {
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--accent-blue);
             line-height: 1;
-            transition: transform 0.35s ease;
+            min-width: 28px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
-        .grade-card:hover .g-number {
-            transform: scale(1.08) rotate(-3deg);
+
+        .grade-card-new:hover .grade-number {
+            transform: scale(1.08) rotate(-2deg);
         }
-        .grade-card .g-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-        .grade-card .g-arrow {
-            margin-top: 4px;
-            font-size: 0.75rem;
-            color: var(--accent-blue);
-            opacity: 0;
-            transform: translateX(-6px);
-            transition: all 0.3s ease;
-        }
-        .grade-card:hover .g-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .grade-card .g-tag {
-            font-size: 0.5rem;
+
+        .grade-card-new .grade-label {
+            font-size: 0.85rem;
             font-weight: 600;
-            padding: 1px 8px;
-            border-radius: 10px;
+            color: var(--text-primary);
+            flex: 0 1 auto;
+            white-space: nowrap;
+        }
+
+        .grade-card-new .grade-tag {
+            font-size: 0.55rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 30px;
             background: var(--accent-light);
             color: var(--accent-blue);
-            margin-top: 2px;
             border: 1px solid var(--border-color);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
-        .grade-card.ol-card .g-number {
+
+        .grade-card-new .grade-arrow {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .grade-card-new:hover .grade-arrow {
+            color: var(--accent-blue);
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        /* Level-based color accents */
+        .grade-card-new[data-level="ol"] .grade-number {
             color: #2563eb;
         }
-        .grade-card.ol-card:hover {
-            border-color: #2563eb;
-        }
-        .grade-card.ol-card::after {
-            background: var(--gradient-blue);
-        }
-        .grade-card.al-card .g-number {
+        .grade-card-new[data-level="al"] .grade-number {
             color: #7c3aed;
         }
-        .grade-card.al-card:hover {
-            border-color: #7c3aed;
-        }
-        .grade-card.al-card::after {
-            background: var(--gradient-purple);
-        }
-        .grade-card.other-card .g-number {
+        .grade-card-new[data-level="other"] .grade-number {
             color: #059669;
         }
-        .grade-card.other-card:hover {
+        .grade-card-new[data-level="ol"]:hover {
+            border-color: #2563eb;
+        }
+        .grade-card-new[data-level="al"]:hover {
+            border-color: #7c3aed;
+        }
+        .grade-card-new[data-level="other"]:hover {
             border-color: #059669;
         }
-        .grade-card.other-card::after {
-            background: var(--gradient-emerald);
-        }
-        .grade-card .g-icon {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            transition: transform 0.35s ease;
-        }
-        .grade-card:hover .g-icon {
-            transform: scale(1.1);
-        }
-        /* filter hidden */
-        .download-category-block.hidden-cat {
+
+        /* Filter states */
+        .grade-card-new.hidden-level {
             display: none;
+        }
+        .download-subject-block.block-hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .downloads-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .download-subject-block {
+                padding: 18px 14px 16px;
+            }
+            .subject-header {
+                gap: 10px;
+            }
+            .subject-header h3 {
+                font-size: 1rem;
+            }
+            .subject-header .subject-badge {
+                font-size: 0.6rem;
+                padding: 2px 10px;
+            }
+            .grade-cards {
+                gap: 10px;
+            }
+            .grade-card-new {
+                padding: 6px 12px 6px 10px;
+                min-width: 90px;
+                max-width: 140px;
+                min-height: 38px;
+                border-radius: 12px;
+            }
+            .grade-card-new .grade-number {
+                font-size: 1.2rem;
+                min-width: 24px;
+            }
+            .grade-card-new .grade-label {
+                font-size: 0.75rem;
+            }
+            .grade-card-new .grade-tag {
+                font-size: 0.5rem;
+                padding: 1px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grade-cards {
+                gap: 8px;
+            }
+            .grade-card-new {
+                flex: 0 0 calc(50% - 4px);
+                min-width: 0;
+                max-width: 100%;
+                padding: 6px 10px;
+                justify-content: center;
+            }
+            .grade-card-new .grade-number {
+                font-size: 1.1rem;
+                min-width: 20px;
+            }
+            .grade-card-new .grade-label {
+                font-size: 0.7rem;
+                white-space: nowrap;
+            }
+            .grade-card-new .grade-tag {
+                font-size: 0.45rem;
+                padding: 1px 6px;
+            }
+            .grade-card-new .grade-arrow {
+                font-size: 0.7rem;
+            }
         }
 
         /* ===== TOOLS ===== */
@@ -2744,6 +2834,9 @@
                 text-align: center;
                 padding-top: 70px;
             }
+            .hero-tag-group {
+                justify-content: center;
+            }
             .hero-content h1 {
                 font-size: 2rem;
             }
@@ -2808,6 +2901,11 @@
             .course-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            /* Downloads new */
+            .downloads-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -2859,25 +2957,39 @@
                 width: 100%;
                 justify-content: center;
             }
-            .download-category-block {
-                padding: 18px 14px 14px;
+            .download-subject-block {
+                padding: 18px 14px 16px;
             }
-            .grade-card-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-                gap: 8px;
+            .subject-header {
+                gap: 10px;
             }
-            .grade-card {
-                padding: 10px 8px 8px;
-                min-height: 60px;
-            }
-            .grade-card .g-number {
-                font-size: 1.3rem;
-            }
-            .download-category-block .cat-head .cat-title h3 {
+            .subject-header h3 {
                 font-size: 1rem;
             }
-            .download-category-block .cat-head .cat-badge {
-                display: none;
+            .subject-header .subject-badge {
+                font-size: 0.6rem;
+                padding: 2px 10px;
+            }
+            .grade-cards {
+                gap: 10px;
+            }
+            .grade-card-new {
+                padding: 6px 12px 6px 10px;
+                min-width: 90px;
+                max-width: 140px;
+                min-height: 38px;
+                border-radius: 12px;
+            }
+            .grade-card-new .grade-number {
+                font-size: 1.2rem;
+                min-width: 24px;
+            }
+            .grade-card-new .grade-label {
+                font-size: 0.75rem;
+            }
+            .grade-card-new .grade-tag {
+                font-size: 0.5rem;
+                padding: 1px 8px;
             }
             .download-filter-bar {
                 border-radius: 30px;
@@ -3173,6 +3285,32 @@
             .carousel-card.next-mobile {
                 transform: scale(0.8) translateX(50px) !important;
             }
+            /* downloads new */
+            .grade-cards {
+                gap: 8px;
+            }
+            .grade-card-new {
+                flex: 0 0 calc(50% - 4px);
+                min-width: 0;
+                max-width: 100%;
+                padding: 6px 10px;
+                justify-content: center;
+            }
+            .grade-card-new .grade-number {
+                font-size: 1.1rem;
+                min-width: 20px;
+            }
+            .grade-card-new .grade-label {
+                font-size: 0.7rem;
+                white-space: nowrap;
+            }
+            .grade-card-new .grade-tag {
+                font-size: 0.45rem;
+                padding: 1px 6px;
+            }
+            .grade-card-new .grade-arrow {
+                font-size: 0.7rem;
+            }
         }
 
         @media (max-width: 400px) {
@@ -3307,6 +3445,36 @@
             background: var(--accent-blue);
             color: #fff;
         }
+
+        /* ===== HIDE INSTRUMENT COURSES INITIALLY ===== */
+        #instrumentCoursesContainer {
+            display: none;
+        }
+        #instrumentCoursesContainer.open {
+            display: block;
+        }
+        .show-instrument-btn-wrapper {
+            text-align: center;
+            margin: 30px 0 10px;
+        }
+        #showInstrumentBtn i {
+            transition: transform 0.3s ease;
+        }
+        #showInstrumentBtn.active i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== DISABLE INSPECT / DEVTOOLS ===== */
+        .no-inspect {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        img, video, iframe {
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
     </style>
 </head>
 <body>
@@ -3421,11 +3589,14 @@
     </div>
 
     <!-- ============================================================
-    HERO
+    HERO (UPDATED WITH CONSTRUCTION BADGE)
     ============================================================ -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <span class="hero-tag"><i class="fa-solid fa-music"></i> Saptaswara Mihira — Master of Seven Notes</span>
+            <div class="hero-tag-group">
+                <span class="hero-tag"><i class="fa-solid fa-music"></i> Saptaswara Mihira — Master of Seven Notes</span>
+                <span class="hero-badge-construction"><i class="fa-solid fa-triangle-exclamation"></i> Under Construction</span>
+            </div>
             <h1 class="animated-title">Dahanake Music Academy</h1>
             <p>පොතේ දැනුමට පමණක් සීමා නොකර සංගීත ශාස්ත්‍රීය විශාරදයන් බිහිකරන සංගීත පාසල</p>
             <div class="cta-buttons">
@@ -3433,6 +3604,7 @@
                 <a href="#courses" class="btn btn-primary"><i class="fa-solid fa-compact-disc"></i> Explore Courses</a>
                 <a href="page/shop/shop.html" class="btn btn-shop"><i class="fa-solid fa-store"></i> Visit Our Shop</a>
                 <a href="#downloads" class="btn btn-outline"><i class="fa-solid fa-file-arrow-down"></i> Student Downloads</a>
+                <a href="page/Courses/iep.html" class="btn btn-warm"><i class="fa-solid fa-flag"></i> Apply to Indian Exam</a>
             </div>
         </div>
         <div class="hero-image">
@@ -3445,7 +3617,7 @@
     </section>
 
     <!-- ============================================================
-    GALLERY (updated with assets/ images)
+    GALLERY
     ============================================================ -->
     <section id="gallery" class="reveal">
         <div class="section-title">
@@ -3512,42 +3684,51 @@
             <h2>Our Instructors <span class="sub-title-si">අපගේ ගුරු මණ්ඩලය</span></h2>
             <p>අපගේ ප්‍රවීණ ගුරු මණ්ඩලය හා ඔවුන්ගේ විශේෂතා</p>
         </div>
-        <div class="instructors-grid stagger">
-            <div class="instructor-card">
-                <img src="https://drive.google.com/thumbnail?id=1XmwtQnP5_Xl3xmLfO-g73O1jb6eRdVVd&sz=w200" alt="Nandana Dahanaka" class="inst-img" width="130" height="130" loading="lazy" onerror="this.src='https://picsum.photos/seed/nandana/200/200'" />
-                <div class="inst-name">Nandana Dahanaka</div>
-                <div class="inst-role">Founder &amp; Principal Instructor</div>
-                <span class="inst-speciality"><i class="fa-solid fa-violin"></i> Violin · Vocal</span>
-                <div class="inst-qualifications"><span>🎓 B.Mus (Violin)</span><span>🏅 Visharada (Sangeet)</span><span>📜 ABRSM Grade 8</span></div>
-                <p class="inst-bio">වසර 20කට වැඩි පළපුරුද්දක් ඇති ගුරුතුමා, බටහිර හා ශ්‍රී ලාංකික සම්භාව්‍ය සංගීතයේ ප්‍රවීණයෙකි.</p>
-                <a href="https://www.facebook.com/nandana.dahanaka" target="_blank" class="btn btn-outline"><i class="fa-brands fa-facebook"></i> View Profile</a>
-            </div>
-            <div class="instructor-card">
-                <img src="https://picsum.photos/seed/sandaruwan/200/200" alt="Sandaruwan Dahanaka" class="inst-img" width="130" height="130" loading="lazy" />
-                <div class="inst-name">Sandaruwan Dahanaka</div>
-                <div class="inst-role">Senior Instructor</div>
-                <span class="inst-speciality"><i class="fa-solid fa-drumstick"></i> Tabla · Percussion</span>
-                <div class="inst-qualifications"><span>🎓 Diploma (Tabla)</span><span>🥁 Prayag Sangeet Samiti</span><span>📜 Grade 5 Theory</span></div>
-                <p class="inst-bio">තබ්ලාව හා තාල වාද්‍ය ක්ෂේත්‍රයේ දක්ෂ ගුරුතුමා, හින්දුස්ථානී සංගීතයේ මූලික ප්‍රවීණතාවයෙන් සිසුන් පුහුණු කරයි.</p>
-                <a href="#" class="btn btn-outline"><i class="fa-solid fa-user"></i> View Profile</a>
-            </div>
-            <div class="instructor-card">
-                <img src="https://picsum.photos/seed/lakshmi/200/200" alt="Lakshmi Perera" class="inst-img" width="130" height="130" loading="lazy" />
-                <div class="inst-name">Lakshmi Perera</div>
-                <div class="inst-role">Vocal &amp; Piano Instructor</div>
-                <span class="inst-speciality"><i class="fa-solid fa-microphone"></i> Vocal · Piano</span>
-                <div class="inst-qualifications"><span>🎓 B.A (Music)</span><span>🎹 Trinity ATCL</span><span>🏅 Light Music Vocal</span></div>
-                <p class="inst-bio">සම්භාව්‍ය හා සැහැල්ලු ගායනයේ මෙන්ම පියානෝ වාදනයේ ප්‍රවීණතාවයෙන් සිසුන්ට මග පෙන්වයි.</p>
-                <a href="#" class="btn btn-outline"><i class="fa-solid fa-user"></i> View Profile</a>
-            </div>
-            <div class="instructor-card">
-                <img src="https://picsum.photos/seed/chamara/200/200" alt="Chamara Rathnayake" class="inst-img" width="130" height="130" loading="lazy" />
-                <div class="inst-name">Chamara Rathnayake</div>
-                <div class="inst-role">Guitar &amp; Western Music</div>
-                <span class="inst-speciality"><i class="fa-solid fa-guitar"></i> Guitar · Theory</span>
-                <div class="inst-qualifications"><span>🎓 B.Mus (Guitar)</span><span>🎸 Rock School Grade 8</span><span>📜 Theory Specialist</span></div>
-                <p class="inst-bio">පොප්, ජෑස් හා සම්භාව්‍ය ගිටාර් වාදනයේ මෙන්ම සංගීත න්‍යායේද ප්‍රවීණතාවයක් ඇත.</p>
-                <a href="#" class="btn btn-outline"><i class="fa-solid fa-user"></i> View Profile</a>
+
+        <div class="show-instructors-btn-wrapper">
+            <button id="showInstructorsBtn" class="btn btn-primary">
+                <i class="fa-solid fa-chevron-down"></i> See Our Instructors
+            </button>
+        </div>
+
+        <div id="instructorsContainer">
+            <div class="instructors-grid stagger">
+                <div class="instructor-card">
+                    <img src="https://drive.google.com/thumbnail?id=1XmwtQnP5_Xl3xmLfO-g73O1jb6eRdVVd&sz=w200" alt="Nandana Dahanaka" class="inst-img" width="130" height="130" loading="lazy" onerror="this.src='https://picsum.photos/seed/nandana/200/200'" />
+                    <div class="inst-name">Nandana Dahanaka</div>
+                    <div class="inst-role">Founder &amp; Principal Instructor</div>
+                    <span class="inst-speciality"><i class="fa-solid fa-violin"></i> Violin · Vocal</span>
+                    <div class="inst-qualifications"><span>🎓 B.Mus (Violin)</span><span>🏅 Visharada (Sangeet)</span><span>📜 ABRSM Grade 8</span></div>
+                    <p class="inst-bio">වසර 20කට වැඩි පළපුරුද්දක් ඇති ගුරුතුමා, බටහිර හා ශ්‍රී ලාංකික සම්භාව්‍ය සංගීතයේ ප්‍රවීණයෙකි.</p>
+                    <a href="https://www.facebook.com/nandana.dahanaka" target="_blank" class="btn btn-outline"><i class="fa-brands fa-facebook"></i> View Profile</a>
+                </div>
+                <div class="instructor-card">
+                    <img src="https://picsum.photos/seed/sandaruwan/200/200" alt="Sandaruwan Dahanaka" class="inst-img" width="130" height="130" loading="lazy" />
+                    <div class="inst-name">Sandaruwan Dahanaka</div>
+                    <div class="inst-role">Senior Instructor</div>
+                    <span class="inst-speciality"><i class="fa-solid fa-drumstick"></i> Tabla · Percussion</span>
+                    <div class="inst-qualifications"><span>🎓 Diploma (Tabla)</span><span>🥁 Prayag Sangeet Samiti</span><span>📜 Grade 5 Theory</span></div>
+                    <p class="inst-bio">තබ්ලාව හා තාල වාද්‍ය ක්ෂේත්‍රයේ දක්ෂ ගුරුතුමා, හින්දුස්ථානී සංගීතයේ මූලික ප්‍රවීණතාවයෙන් සිසුන් පුහුණු කරයි.</p>
+                    <a href="#" class="btn btn-outline"><i class="fa-solid fa-user"></i> View Profile</a>
+                </div>
+                <div class="instructor-card">
+                    <img src="https://picsum.photos/seed/lakshmi/200/200" alt="Lakshmi Perera" class="inst-img" width="130" height="130" loading="lazy" />
+                    <div class="inst-name">Lakshmi Perera</div>
+                    <div class="inst-role">Vocal &amp; Piano Instructor</div>
+                    <span class="inst-speciality"><i class="fa-solid fa-microphone"></i> Vocal · Piano</span>
+                    <div class="inst-qualifications"><span>🎓 B.A (Music)</span><span>🎹 Trinity ATCL</span><span>🏅 Light Music Vocal</span></div>
+                    <p class="inst-bio">සම්භාව්‍ය හා සැහැල්ලු ගායනයේ මෙන්ම පියානෝ වාදනයේ ප්‍රවීණතාවයෙන් සිසුන්ට මග පෙන්වයි.</p>
+                    <a href="#" class="btn btn-outline"><i class="fa-solid fa-user"></i> View Profile</a>
+                </div>
+                <div class="instructor-card">
+                    <img src="https://picsum.photos/seed/chamara/200/200" alt="Chamara Rathnayake" class="inst-img" width="130" height="130" loading="lazy" />
+                    <div class="inst-name">Chamara Rathnayake</div>
+                    <div class="inst-role">Guitar &amp; Western Music</div>
+                    <span class="inst-speciality"><i class="fa-solid fa-guitar"></i> Guitar · Theory</span>
+                    <div class="inst-qualifications"><span>🎓 B.Mus (Guitar)</span><span>🎸 Rock School Grade 8</span><span>📜 Theory Specialist</span></div>
+                    <p class="inst-bio">පොප්, ජෑස් හා සම්භාව්‍ය ගිටාර් වාදනයේ මෙන්ම සංගීත න්‍යායේද ප්‍රවීණතාවයක් ඇත.</p>
+                    <a href="#" class="btn btn-outline"><i class="fa-solid fa-user"></i> View Profile</a>
+                </div>
             </div>
         </div>
     </section>
@@ -3587,7 +3768,7 @@
     </section>
 
     <!-- ============================================================
-    COURSES (full content – unchanged)
+    COURSES
     ============================================================ -->
     <section id="courses" class="reveal">
         <div class="section-title">
@@ -3595,7 +3776,7 @@
             <p>දේශීය, පේරදිග, අපරදිග සංගීත භාණ්ඩ සහ විෂය/ඩිප්ලෝමා පාඨමාලා</p>
         </div>
 
-        <!-- Exam & Diploma Programs -->
+        <!-- Exam & Diploma Programs (always visible) -->
         <div class="course-category-block">
             <div class="category-header">
                 <div class="cat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
@@ -3630,87 +3811,90 @@
             </div>
         </div>
 
-        <!-- Instrument Tabs -->
-        <div class="instrument-tabs" id="instrumentTabs">
-            <button class="tab-btn active" data-tab="tab-string"><i class="fa-solid fa-guitar"></i> <span>String</span></button>
-            <button class="tab-btn" data-tab="tab-keyboard"><i class="fa-solid fa-keyboard"></i> <span>Keyboard &amp; Piano</span></button>
-            <button class="tab-btn" data-tab="tab-percussion"><i class="fa-solid fa-drum"></i> <span>Percussion</span></button>
-            <button class="tab-btn" data-tab="tab-wind"><i class="fa-solid fa-wind"></i> <span>Wind</span></button>
+        <!-- ===== SHOW / HIDE BUTTON for Instrument Courses ===== -->
+        <div class="show-instrument-btn-wrapper">
+            <button id="showInstrumentBtn" class="btn btn-primary">
+                <i class="fa-solid fa-chevron-down"></i> Show me more Instrument Courses
+            </button>
         </div>
 
-        <div class="tab-content-wrapper">
-            <!-- STRING TAB -->
-            <div class="tab-panel active" id="tab-string">
-                <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-guitar"></i></div><h3>String Instruments <small>තත් වාද්‍ය — දේශීය, පේරදිග සහ අපරදිග</small></h3><span class="cat-badge">14+ Instruments</span></div>
-                <div class="course-grid stagger">
-                    <!-- Violin -->
-                    <div class="course-card highlight-violin">
-                        <div class="course-top"><div class="course-icon"><i class="fa-solid fa-violin"></i></div><div class="course-title-group"><h4>🎻 Violin <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">වයලීනය — Western Classical &amp; Sri Lankan</span></div></div>
-                        <div class="course-desc"><i class="fa-solid fa-check-circle"></i> Western Classical, Sri Lankan folk, Film music &amp; Orchestral training.</div>
-                        <div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2–3</span></div>
-                        <div class="course-actions"><a href="page/Courses/violin.html" class="btn btn-primary" style="background:var(--gradient-rose);">Enroll Now <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-violin" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div>
-                        <div class="course-more" id="more-violin"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn violin from basics to advanced levels. Covers Western classical, Sri Lankan folk, film music, and orchestral training. Includes sight-reading, ear training, and performance techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Individual &amp; group classes</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div><div class="more-item"><i class="fa-solid fa-check"></i> Annual concert performances</div><div class="more-item"><i class="fa-solid fa-check"></i> 15+ years of teaching experience</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Ages 6+, beginners to advanced, exam candidates, and hobbyists.</div></div>
+        <!-- ===== INSTRUMENT COURSES (hidden initially) ===== -->
+        <div id="instrumentCoursesContainer">
+            <!-- Instrument Tabs -->
+            <div class="instrument-tabs" id="instrumentTabs">
+                <button class="tab-btn active" data-tab="tab-string"><i class="fa-solid fa-guitar"></i> <span>String</span></button>
+                <button class="tab-btn" data-tab="tab-keyboard"><i class="fa-solid fa-keyboard"></i> <span>Keyboard &amp; Piano</span></button>
+                <button class="tab-btn" data-tab="tab-percussion"><i class="fa-solid fa-drum"></i> <span>Percussion</span></button>
+                <button class="tab-btn" data-tab="tab-wind"><i class="fa-solid fa-wind"></i> <span>Wind</span></button>
+            </div>
+
+            <div class="tab-content-wrapper">
+                <!-- STRING TAB -->
+                <div class="tab-panel active" id="tab-string">
+                    <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-guitar"></i></div><h3>String Instruments <small>තත් වාද්‍ය — දේශීය, පේරදිග සහ අපරදිග</small></h3><span class="cat-badge">14+ Instruments</span></div>
+                    <div class="course-grid stagger">
+                        <div class="course-card highlight-violin">
+                            <div class="course-top"><div class="course-icon"><i class="fa-solid fa-violin"></i></div><div class="course-title-group"><h4>🎻 Violin <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">වයලීනය — Western Classical &amp; Sri Lankan</span></div></div>
+                            <div class="course-desc"><i class="fa-solid fa-check-circle"></i> Western Classical, Sri Lankan folk, Film music &amp; Orchestral training.</div>
+                            <div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2–3</span></div>
+                            <div class="course-actions"><a href="page/Courses/violin.html" class="btn btn-primary" style="background:var(--gradient-rose);">Enroll Now <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-violin" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div>
+                            <div class="course-more" id="more-violin"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn violin from basics to advanced levels. Covers Western classical, Sri Lankan folk, film music, and orchestral training. Includes sight-reading, ear training, and performance techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Individual &amp; group classes</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div><div class="more-item"><i class="fa-solid fa-check"></i> Annual concert performances</div><div class="more-item"><i class="fa-solid fa-check"></i> 15+ years of teaching experience</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Ages 6+, beginners to advanced, exam candidates, and hobbyists.</div></div>
+                        </div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle"></i></div><div class="course-title-group"><h4>Sitar <span class="course-badge level-intermediate">Intermediate → Advanced</span></h4><span class="course-sub">සිතාරය — Hindustani Classical</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Hindustani sitar with raga, taala &amp; improvisation.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 60 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/sitar.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-sitar" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-sitar"><div class="more-text"><strong>📖 Course Highlights:</strong> Deep dive into Hindustani classical sitar. Learn raga structures, taala systems, improvisation (alaap, jor, jhala), and traditional compositions.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Raga &amp; taala mastery</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; accompaniment techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Prayag Sangeet Samiti syllabus</div><div class="more-item"><i class="fa-solid fa-check"></i> Regular practice sessions</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced players, diploma aspirants, and performers.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-guitar"></i></div><div class="course-title-group"><h4>Acoustic / Electric Guitar <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">ගිටාරය — Western &amp; Pop</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Chords, strumming, fingerstyle, lead guitar, and music theory.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/aeguitar.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-guitar" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-guitar"><div class="more-text"><strong>📖 Course Highlights:</strong> Master acoustic and electric guitar. Covers chords, strumming patterns, fingerstyle, lead guitar techniques, music theory, and song arrangements.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Pop, rock, jazz, blues styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Fingerpicking &amp; flatpicking</div><div class="more-item"><i class="fa-solid fa-check"></i> Improvisation &amp; soloing</div><div class="more-item"><i class="fa-solid fa-check"></i> Rock School / Trinity exam prep</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Ages 8+, all levels, hobbyists, and aspiring performers.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-bass"></i></div><div class="course-title-group"><h4>Cello · Double Bass <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">සෙලෝ, ඩබල් බාස් — Western</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Western classical &amp; orchestral training for cello and double bass.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/fviolin.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-cello" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-cello"><div class="more-text"><strong>📖 Course Highlights:</strong> Comprehensive training for cello and double bass. Includes orchestral repertoire, bowing techniques, shifting, and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Orchestral &amp; solo repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div><div class="more-item"><i class="fa-solid fa-check"></i> Chamber music &amp; ensembles</div><div class="more-item"><i class="fa-solid fa-check"></i> Professional performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced players, orchestral aspirants.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle-nodes"></i></div><div class="course-title-group"><h4>Esraj · Veena · Dilruba <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">එස්රාජ්, වීණාව, ඩිල්රුබා</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan &amp; Indian bowed &amp; plucked string instruments.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/esraj.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-esraj" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-esraj"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore traditional Sri Lankan and Indian string instruments. Learn esraj, veena, and dilruba techniques with classical and folk repertoires.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Traditional Sri Lankan music</div><div class="more-item"><i class="fa-solid fa-check"></i> Indian classical &amp; folk styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Bowing &amp; plucking techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate players, cultural enthusiasts, and folk music lovers.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle-dot"></i></div><div class="course-title-group"><h4>Sarod · Santour · Tanpura <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">සරොද්, සන්තූර්, තම්පුරාව</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Indian classical instruments – sarod, santour, and tanpura drone.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/s.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-sarod" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-sarod"><div class="more-text"><strong>📖 Course Highlights:</strong> Master sarod, santour, and tanpura. Includes Indian classical techniques, raga improvisation, and drone accompaniment.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Hindustani classical ragas</div><div class="more-item"><i class="fa-solid fa-check"></i> Santour hammer techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Tanpura tuning &amp; playing</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; ensemble performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced players, Indian classical enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Bass Guitar · Ukulele · Mandolin <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">බාස්, උකුලේලේ, මැන්ඩොලින්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Bass guitar, ukulele, mandolin &amp; banjo – pop, folk &amp; bluegrass.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/bumguitar.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-bass" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-bass"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn bass guitar, ukulele, mandolin, and banjo. Covers pop, folk, bluegrass, and contemporary styles with chord progressions and rhythm techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Strumming &amp; fingerpicking</div><div class="more-item"><i class="fa-solid fa-check"></i> Bass line &amp; groove techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Folk &amp; bluegrass styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Easy chord progressions</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, hobbyists, and pop/folk music lovers.</div></div></div>
                     </div>
-                    <!-- Sitar -->
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle"></i></div><div class="course-title-group"><h4>Sitar <span class="course-badge level-intermediate">Intermediate → Advanced</span></h4><span class="course-sub">සිතාරය — Hindustani Classical</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Hindustani sitar with raga, taala &amp; improvisation.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 60 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/sitar.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-sitar" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-sitar"><div class="more-text"><strong>📖 Course Highlights:</strong> Deep dive into Hindustani classical sitar. Learn raga structures, taala systems, improvisation (alaap, jor, jhala), and traditional compositions.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Raga &amp; taala mastery</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; accompaniment techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Prayag Sangeet Samiti syllabus</div><div class="more-item"><i class="fa-solid fa-check"></i> Regular practice sessions</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced players, diploma aspirants, and performers.</div></div></div>
-                    <!-- Acoustic/Electric Guitar -->
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-guitar"></i></div><div class="course-title-group"><h4>Acoustic / Electric Guitar <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">ගිටාරය — Western &amp; Pop</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Chords, strumming, fingerstyle, lead guitar, and music theory.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/aeguitar.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-guitar" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-guitar"><div class="more-text"><strong>📖 Course Highlights:</strong> Master acoustic and electric guitar. Covers chords, strumming patterns, fingerstyle, lead guitar techniques, music theory, and song arrangements.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Pop, rock, jazz, blues styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Fingerpicking &amp; flatpicking</div><div class="more-item"><i class="fa-solid fa-check"></i> Improvisation &amp; soloing</div><div class="more-item"><i class="fa-solid fa-check"></i> Rock School / Trinity exam prep</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Ages 8+, all levels, hobbyists, and aspiring performers.</div></div></div>
-                    <!-- Cello · Double Bass -->
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-bass"></i></div><div class="course-title-group"><h4>Cello · Double Bass <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">සෙලෝ, ඩබල් බාස් — Western</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Western classical &amp; orchestral training for cello and double bass.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/fviolin.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-cello" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-cello"><div class="more-text"><strong>📖 Course Highlights:</strong> Comprehensive training for cello and double bass. Includes orchestral repertoire, bowing techniques, shifting, and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Orchestral &amp; solo repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div><div class="more-item"><i class="fa-solid fa-check"></i> Chamber music &amp; ensembles</div><div class="more-item"><i class="fa-solid fa-check"></i> Professional performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced players, orchestral aspirants.</div></div></div>
-                    <!-- Esraj · Veena · Dilruba -->
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle-nodes"></i></div><div class="course-title-group"><h4>Esraj · Veena · Dilruba <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">එස්රාජ්, වීණාව, ඩිල්රුබා</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan &amp; Indian bowed &amp; plucked string instruments.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/esraj.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-esraj" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-esraj"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore traditional Sri Lankan and Indian string instruments. Learn esraj, veena, and dilruba techniques with classical and folk repertoires.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Traditional Sri Lankan music</div><div class="more-item"><i class="fa-solid fa-check"></i> Indian classical &amp; folk styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Bowing &amp; plucking techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate players, cultural enthusiasts, and folk music lovers.</div></div></div>
-                    <!-- Sarod · Santour · Tanpura -->
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle-dot"></i></div><div class="course-title-group"><h4>Sarod · Santour · Tanpura <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">සරොද්, සන්තූර්, තම්පුරාව</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Indian classical instruments – sarod, santour, and tanpura drone.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/s.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-sarod" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-sarod"><div class="more-text"><strong>📖 Course Highlights:</strong> Master sarod, santour, and tanpura. Includes Indian classical techniques, raga improvisation, and drone accompaniment.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Hindustani classical ragas</div><div class="more-item"><i class="fa-solid fa-check"></i> Santour hammer techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Tanpura tuning &amp; playing</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; ensemble performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced players, Indian classical enthusiasts.</div></div></div>
-                    <!-- Bass Guitar · Ukulele · Mandolin -->
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Bass Guitar · Ukulele · Mandolin <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">බාස්, උකුලේලේ, මැන්ඩොලින්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Bass guitar, ukulele, mandolin &amp; banjo – pop, folk &amp; bluegrass.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/bumguitar.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-bass" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-bass"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn bass guitar, ukulele, mandolin, and banjo. Covers pop, folk, bluegrass, and contemporary styles with chord progressions and rhythm techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Strumming &amp; fingerpicking</div><div class="more-item"><i class="fa-solid fa-check"></i> Bass line &amp; groove techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Folk &amp; bluegrass styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Easy chord progressions</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, hobbyists, and pop/folk music lovers.</div></div></div>
+                </div>
+
+                <!-- KEYBOARD TAB -->
+                <div class="tab-panel" id="tab-keyboard">
+                    <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-keyboard"></i></div><h3>Keyboard &amp; Piano <small>යතුරු පුවරු වාද්‍ය</small></h3><span class="cat-badge">5 Instruments</span></div>
+                    <div class="course-grid stagger">
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-piano"></i></div><div class="course-title-group"><h4>Piano <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">පියානෝ — Western Classical &amp; Modern</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Classical piano, sight-reading, chord progressions, and performance.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/piano.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-piano" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-piano"><div class="more-text"><strong>📖 Course Highlights:</strong> Comprehensive piano training from beginner to advanced. Includes classical repertoire, sight-reading, chord progressions, and performance techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Classical &amp; modern repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div><div class="more-item"><i class="fa-solid fa-check"></i> Chord &amp; improvisation skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Annual concert opportunities</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Ages 6+, all levels, exam candidates, and music enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Digital Keyboard <span class="course-badge level-beginner">Beginner → Intermediate</span></h4><span class="course-sub">ඉලෙක්ට්‍රොනික යතුරුපුවරුව</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Pop, rock, film music, chord progressions, and electronic keyboard.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/dk.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-dk" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-dk"><div class="more-text"><strong>📖 Course Highlights:</strong> Master digital keyboard with pop, rock, and film music styles. Learn chord progressions, melody playing, and electronic keyboard features.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Pop &amp; film music repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> Chord &amp; accompaniment skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Keyboard sound &amp; effects</div><div class="more-item"><i class="fa-solid fa-check"></i> Easy to advanced levels</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners to intermediate, hobbyists, and pop music fans.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-wind"></i></div><div class="course-title-group"><h4>Harmonium <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">හාමෝනියම් — Bhajan &amp; Classical</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Indian classical harmonium for bhajan, kirtan, and light music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/Harmonium.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-harmonium" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-harmonium"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn harmonium for bhajan, kirtan, and Indian classical music. Includes hand techniques, scale exercises, and accompaniment.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Bhajan &amp; kirtan repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> Indian classical accompaniment</div><div class="more-item"><i class="fa-solid fa-check"></i> Scale &amp; raga exercises</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; group performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, devotional music lovers, and classical aspirants.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-piano"></i></div><div class="course-title-group"><h4>Melodica · Accordion <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">මෙලෝඩිකා, ඇකෝඩියනය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Melodica and accordion for folk, pop, and light classical music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/melodica.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-melodica" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-melodica"><div class="more-text"><strong>📖 Course Highlights:</strong> Play melodica and accordion with folk, pop, and light classical music. Covers breath control, bellows technique, and melody playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Folk &amp; pop repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; bellows control</div><div class="more-item"><i class="fa-solid fa-check"></i> Melody &amp; chord playing</div><div class="more-item"><i class="fa-solid fa-check"></i> Fun and engaging lessons</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, children, and music enthusiasts.</div></div></div>
+                    </div>
+                </div>
+
+                <!-- PERCUSSION TAB -->
+                <div class="tab-panel" id="tab-percussion">
+                    <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-drum"></i></div><h3>Percussion <small>තාල වාද්‍ය — බෙර, තබ්ලා, ඩ්‍රම්ස්</small></h3><span class="cat-badge">10+ Instruments</span></div>
+                    <div class="course-grid stagger">
+                        <div class="course-card highlight-tabla"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drumstick"></i></div><div class="course-title-group"><h4>🥁 Tabla <span class="course-badge level-intermediate">Intermediate → Advanced</span></h4><span class="course-sub">තබ්ලාව — Hindustani Percussion</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional tabla bols, taalas (Tintal, Jhaptal, Ektaal), solo &amp; accompaniment.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2–3</span></div><div class="course-actions"><a href="page/Courses/tabla.html" class="btn btn-primary" style="background:var(--gradient-warm);">Enroll Now <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-tabla" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-tabla"><div class="more-text"><strong>📖 Course Highlights:</strong> Master tabla with traditional bols, taalas, and improvisation. Includes solo and accompaniment techniques for Hindustani classical music.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Bols &amp; taala mastery</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; accompaniment skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Prayag Sangeet Samiti syllabus</div><div class="more-item"><i class="fa-solid fa-check"></i> Regular practice &amp; performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced, percussionists, and Indian classical enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum"></i></div><div class="course-title-group"><h4>Geta Beraya · Yak Beraya <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">ගැට බෙරය, යක් බෙරය — Sri Lankan</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Kandyan &amp; low-country drumming with authentic rhythms.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-geta" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-geta"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn traditional Kandyan and low-country drumming with authentic rhythms and cultural context. Includes geta beraya and yak beraya techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Kandyan &amp; low-country styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Traditional rhythms &amp; patterns</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble &amp; solo playing</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, cultural enthusiasts, and performers.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum"></i></div><div class="course-title-group"><h4>Daula · Thammattama · Udekkiya <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">දවුල, තම්මැට්ටම, උඩැක්කිය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan drums: Daula, Thammattama, Udekkiya, Bummadiya &amp; Rabana.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-daula" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-daula"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore traditional Sri Lankan drums including daula, thammattama, udekkiya, bummadiya, and rabana. Learn authentic rhythms and cultural significance.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> 5 traditional Sri Lankan drums</div><div class="more-item"><i class="fa-solid fa-check"></i> Authentic rhythm patterns</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural &amp; ceremonial music</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, cultural enthusiasts, and folk music lovers.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle"></i></div><div class="course-title-group"><h4>Mridangam · Dholak <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">මෘදංගම්, ඩොලක් — South &amp; North Indian</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Carnatic &amp; Hindustani percussion with traditional talas.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-mridangam" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-mridangam"><div class="more-text"><strong>📖 Course Highlights:</strong> Master mridangam and dholak with Carnatic and Hindustani percussion techniques. Learn traditional talas, accompaniment, and solo performance.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Carnatic &amp; Hindustani styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Traditional talas &amp; rhythms</div><div class="more-item"><i class="fa-solid fa-check"></i> Accompaniment &amp; solo skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate players, Indian classical enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum-steelpan"></i></div><div class="course-title-group"><h4>Drum Kit · Octapad <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">ඩ්‍රම් කිට්, ඔක්ටපෑඩ්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Rock, pop, jazz drumming with stick control, grooves, and fills. Also Octapad.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-drums" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-drums"><div class="more-text"><strong>📖 Course Highlights:</strong> Comprehensive drum kit and octapad training. Covers rock, pop, jazz styles with stick control, grooves, fills, and electronic percussion.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Rock, pop, jazz styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Stick control &amp; groove</div><div class="more-item"><i class="fa-solid fa-check"></i> Fill &amp; solo techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Octapad &amp; electronic percussion</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, drummers, and contemporary music lovers.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum"></i></div><div class="course-title-group"><h4>Conga · Bongo · Cajon <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">කොන්ගා, බොන්ගෝ, කැජෝන්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Latin, Afro-Cuban, and world percussion rhythms.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-conga" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-conga"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore Latin, Afro-Cuban, and world percussion with conga, bongo, and cajon. Learn traditional rhythms and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Latin &amp; Afro-Cuban rhythms</div><div class="more-item"><i class="fa-solid fa-check"></i> Hand drumming techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> World percussion styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, world music enthusiasts, and percussionists.</div></div></div>
+                    </div>
+                </div>
+
+                <!-- WIND TAB -->
+                <div class="tab-panel" id="tab-wind">
+                    <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-wind"></i></div><h3>Wind Instruments <small>පිඹින භාණ්ඩ — නලා, හොරණෑව, සැක්සෆෝනය</small></h3><span class="cat-badge">8+ Instruments</span></div>
+                    <div class="course-grid stagger">
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Bamboo Flute <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">බංසුරි — Indian &amp; Sri Lankan</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Classical bansuri flute with raga, alankara, and folk melodies.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-flute" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-flute"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn bamboo flute (bansuri) with Indian and Sri Lankan classical and folk styles. Includes raga, alankara, and traditional compositions.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Indian &amp; Sri Lankan styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Raga &amp; alankara training</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Folk &amp; classical repertoire</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, classical music lovers, and folk enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-wind"></i></div><div class="course-title-group"><h4>Saxophone <span class="course-badge level-intermediate">Intermediate → Advanced</span></h4><span class="course-sub">සැක්සෆෝනය — Jazz &amp; Western</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Jazz, blues, pop saxophone with embouchure &amp; improvisation.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-sax" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-sax"><div class="more-text"><strong>📖 Course Highlights:</strong> Master saxophone with jazz, blues, and pop styles. Includes embouchure, breath control, improvisation, and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Jazz, blues, pop styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Embouchure &amp; breath control</div><div class="more-item"><i class="fa-solid fa-check"></i> Improvisation techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced, jazz and pop enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-trumpet"></i></div><div class="course-title-group"><h4>Horanawa · Shehnai <span class="course-badge level-beginner">Beginner → Intermediate</span></h4><span class="course-sub">හොරණෑව, ෂෙහ්නායි — Sri Lankan &amp; Indian</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan horanawa and Indian shehnai for ceremonial music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-horanawa" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-horanawa"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn traditional horanawa and shehnai for ceremonial and cultural music. Includes breath control, fingering, and traditional melodies.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Sri Lankan &amp; Indian styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Ceremonial &amp; folk music</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners to intermediate, cultural enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Harmonica <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">හාර්මොනිකා / මවුත් කඩනය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Blues, folk, and pop harmonica techniques.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 40 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-harmonica" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-harmonica"><div class="more-text"><strong>📖 Course Highlights:</strong> Play harmonica with blues, folk, and pop styles. Learn breath control, bending, tongue blocking, and melody playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Blues, folk, pop styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; bending techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Tongue blocking &amp; vibrato</div><div class="more-item"><i class="fa-solid fa-check"></i> Easy melody playing</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, hobbyists, and blues/pop fans.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-trumpet"></i></div><div class="course-title-group"><h4>Trumpet · Trombone <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">ට්‍රම්පට්, ට්‍රොම්බෝන් — Western</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Brass instruments for jazz, orchestral, and band music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-trumpet" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-trumpet"><div class="more-text"><strong>📖 Course Highlights:</strong> Master trumpet and trombone for jazz, orchestral, and band music. Includes embouchure, breath control, and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Jazz &amp; orchestral styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Embouchure &amp; breath control</div><div class="more-item"><i class="fa-solid fa-check"></i> Slide &amp; valve techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate players, brass enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-wind"></i></div><div class="course-title-group"><h4>Clarinet · Recorder <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">ක්ලැරිනට්, රෙකෝඩර්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Woodwind instruments for classical, folk, and ensemble music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-clarinet" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-clarinet"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn clarinet and recorder with classical, folk, and ensemble music. Includes breath control, fingering, and repertoire.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Classical &amp; folk styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble playing skills</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM exam preparation</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, woodwind enthusiasts.</div></div></div>
+                        <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle"></i></div><div class="course-title-group"><h4>Pullahangilawa · Hakgediya <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">පුල්ලහංගිලාව, හාක්ගෙඩිය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan wind instruments.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-pulla" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-pulla"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore traditional Sri Lankan wind instruments pulhangilawa and hakgediya. Learn breath control, fingering, and cultural melodies.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Sri Lankan traditional music</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural &amp; folk melodies</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; ensemble playing</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, cultural enthusiasts.</div></div></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- KEYBOARD TAB -->
-            <div class="tab-panel" id="tab-keyboard">
-                <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-keyboard"></i></div><h3>Keyboard &amp; Piano <small>යතුරු පුවරු වාද්‍ය</small></h3><span class="cat-badge">5 Instruments</span></div>
+            <!-- Vocal Music -->
+            <div class="course-category-block" style="margin-top:40px;">
+                <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-microphone"></i></div><h3>Vocal Music <small>වාචික සංගීතය — ගායනය</small></h3><span class="cat-badge">4+ Styles</span></div>
                 <div class="course-grid stagger">
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-piano"></i></div><div class="course-title-group"><h4>Piano <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">පියානෝ — Western Classical &amp; Modern</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Classical piano, sight-reading, chord progressions, and performance.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/piano.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-piano" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-piano"><div class="more-text"><strong>📖 Course Highlights:</strong> Comprehensive piano training from beginner to advanced. Includes classical repertoire, sight-reading, chord progressions, and performance techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Classical &amp; modern repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div><div class="more-item"><i class="fa-solid fa-check"></i> Chord &amp; improvisation skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Annual concert opportunities</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Ages 6+, all levels, exam candidates, and music enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Digital Keyboard <span class="course-badge level-beginner">Beginner → Intermediate</span></h4><span class="course-sub">ඉලෙක්ට්‍රොනික යතුරුපුවරුව</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Pop, rock, film music, chord progressions, and electronic keyboard.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/dk.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-dk" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-dk"><div class="more-text"><strong>📖 Course Highlights:</strong> Master digital keyboard with pop, rock, and film music styles. Learn chord progressions, melody playing, and electronic keyboard features.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Pop &amp; film music repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> Chord &amp; accompaniment skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Keyboard sound &amp; effects</div><div class="more-item"><i class="fa-solid fa-check"></i> Easy to advanced levels</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners to intermediate, hobbyists, and pop music fans.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-wind"></i></div><div class="course-title-group"><h4>Harmonium <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">හාමෝනියම් — Bhajan &amp; Classical</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Indian classical harmonium for bhajan, kirtan, and light music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/Harmonium.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-harmonium" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-harmonium"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn harmonium for bhajan, kirtan, and Indian classical music. Includes hand techniques, scale exercises, and accompaniment.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Bhajan &amp; kirtan repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> Indian classical accompaniment</div><div class="more-item"><i class="fa-solid fa-check"></i> Scale &amp; raga exercises</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; group performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, devotional music lovers, and classical aspirants.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-piano"></i></div><div class="course-title-group"><h4>Melodica · Accordion <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">මෙලෝඩිකා, ඇකෝඩියනය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Melodica and accordion for folk, pop, and light classical music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/melodica.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-melodica" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-melodica"><div class="more-text"><strong>📖 Course Highlights:</strong> Play melodica and accordion with folk, pop, and light classical music. Covers breath control, bellows technique, and melody playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Folk &amp; pop repertoire</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; bellows control</div><div class="more-item"><i class="fa-solid fa-check"></i> Melody &amp; chord playing</div><div class="more-item"><i class="fa-solid fa-check"></i> Fun and engaging lessons</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, children, and music enthusiasts.</div></div></div>
+                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-microphone"></i></div><div class="course-title-group"><h4>Classical Vocal <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">සම්භාව්‍ය ගායනය — Hindustani &amp; Carnatic</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Raga, swara, alankar, and traditional compositions with tanpura.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/vocal.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-vocal" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-vocal"><div class="more-text"><strong>📖 Course Highlights:</strong> Classical vocal training with Hindustani and Carnatic styles. Includes raga, swara, alankar, and traditional compositions.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Raga &amp; swara training</div><div class="more-item"><i class="fa-solid fa-check"></i> Traditional compositions</div><div class="more-item"><i class="fa-solid fa-check"></i> Tanpura accompaniment</div><div class="more-item"><i class="fa-solid fa-check"></i> Vocal techniques &amp; breath control</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, classical music lovers.</div></div></div>
+                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-microphone-lines"></i></div><div class="course-title-group"><h4>Light &amp; Film Vocal <span class="course-badge level-beginner">Beginner → Intermediate</span></h4><span class="course-sub">සැහැල්ලු හා චිත්‍රපට ගායනය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Sri Lankan, Indian &amp; Western film songs, pop, and light music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/vocal.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-lightvocal" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-lightvocal"><div class="more-text"><strong>📖 Course Highlights:</strong> Light and film vocal training with Sri Lankan, Indian, and Western songs. Includes pop, film music, and contemporary styles.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Sri Lankan &amp; Indian film songs</div><div class="more-item"><i class="fa-solid fa-check"></i> Pop &amp; light music styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Vocal techniques &amp; expression</div><div class="more-item"><i class="fa-solid fa-check"></i> Stage performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners to intermediate, film &amp; pop music lovers.</div></div></div>
                 </div>
-            </div>
-
-            <!-- PERCUSSION TAB -->
-            <div class="tab-panel" id="tab-percussion">
-                <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-drum"></i></div><h3>Percussion <small>තාල වාද්‍ය — බෙර, තබ්ලා, ඩ්‍රම්ස්</small></h3><span class="cat-badge">10+ Instruments</span></div>
-                <div class="course-grid stagger">
-                    <div class="course-card highlight-tabla"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drumstick"></i></div><div class="course-title-group"><h4>🥁 Tabla <span class="course-badge level-intermediate">Intermediate → Advanced</span></h4><span class="course-sub">තබ්ලාව — Hindustani Percussion</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional tabla bols, taalas (Tintal, Jhaptal, Ektaal), solo &amp; accompaniment.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2–3</span></div><div class="course-actions"><a href="page/Courses/tabla.html" class="btn btn-primary" style="background:var(--gradient-warm);">Enroll Now <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-tabla" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-tabla"><div class="more-text"><strong>📖 Course Highlights:</strong> Master tabla with traditional bols, taalas, and improvisation. Includes solo and accompaniment techniques for Hindustani classical music.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Bols &amp; taala mastery</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; accompaniment skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Prayag Sangeet Samiti syllabus</div><div class="more-item"><i class="fa-solid fa-check"></i> Regular practice &amp; performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced, percussionists, and Indian classical enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum"></i></div><div class="course-title-group"><h4>Geta Beraya · Yak Beraya <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">ගැට බෙරය, යක් බෙරය — Sri Lankan</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Kandyan &amp; low-country drumming with authentic rhythms.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-geta" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-geta"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn traditional Kandyan and low-country drumming with authentic rhythms and cultural context. Includes geta beraya and yak beraya techniques.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Kandyan &amp; low-country styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Traditional rhythms &amp; patterns</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble &amp; solo playing</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, cultural enthusiasts, and performers.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum"></i></div><div class="course-title-group"><h4>Daula · Thammattama · Udekkiya <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">දවුල, තම්මැට්ටම, උඩැක්කිය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan drums: Daula, Thammattama, Udekkiya, Bummadiya &amp; Rabana.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-daula" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-daula"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore traditional Sri Lankan drums including daula, thammattama, udekkiya, bummadiya, and rabana. Learn authentic rhythms and cultural significance.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> 5 traditional Sri Lankan drums</div><div class="more-item"><i class="fa-solid fa-check"></i> Authentic rhythm patterns</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural &amp; ceremonial music</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, cultural enthusiasts, and folk music lovers.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle"></i></div><div class="course-title-group"><h4>Mridangam · Dholak <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">මෘදංගම්, ඩොලක් — South &amp; North Indian</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Carnatic &amp; Hindustani percussion with traditional talas.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-mridangam" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-mridangam"><div class="more-text"><strong>📖 Course Highlights:</strong> Master mridangam and dholak with Carnatic and Hindustani percussion techniques. Learn traditional talas, accompaniment, and solo performance.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Carnatic &amp; Hindustani styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Traditional talas &amp; rhythms</div><div class="more-item"><i class="fa-solid fa-check"></i> Accompaniment &amp; solo skills</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate players, Indian classical enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum-steelpan"></i></div><div class="course-title-group"><h4>Drum Kit · Octapad <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">ඩ්‍රම් කිට්, ඔක්ටපෑඩ්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Rock, pop, jazz drumming with stick control, grooves, and fills. Also Octapad.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-drums" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-drums"><div class="more-text"><strong>📖 Course Highlights:</strong> Comprehensive drum kit and octapad training. Covers rock, pop, jazz styles with stick control, grooves, fills, and electronic percussion.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Rock, pop, jazz styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Stick control &amp; groove</div><div class="more-item"><i class="fa-solid fa-check"></i> Fill &amp; solo techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Octapad &amp; electronic percussion</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, drummers, and contemporary music lovers.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-drum"></i></div><div class="course-title-group"><h4>Conga · Bongo · Cajon <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">කොන්ගා, බොන්ගෝ, කැජෝන්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Latin, Afro-Cuban, and world percussion rhythms.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/p.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-conga" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-conga"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore Latin, Afro-Cuban, and world percussion with conga, bongo, and cajon. Learn traditional rhythms and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Latin &amp; Afro-Cuban rhythms</div><div class="more-item"><i class="fa-solid fa-check"></i> Hand drumming techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> World percussion styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble performance</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, world music enthusiasts, and percussionists.</div></div></div>
-                </div>
-            </div>
-
-            <!-- WIND TAB -->
-            <div class="tab-panel" id="tab-wind">
-                <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-wind"></i></div><h3>Wind Instruments <small>පිඹින භාණ්ඩ — නලා, හොරණෑව, සැක්සෆෝනය</small></h3><span class="cat-badge">8+ Instruments</span></div>
-                <div class="course-grid stagger">
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Bamboo Flute <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">බංසුරි — Indian &amp; Sri Lankan</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Classical bansuri flute with raga, alankara, and folk melodies.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-flute" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-flute"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn bamboo flute (bansuri) with Indian and Sri Lankan classical and folk styles. Includes raga, alankara, and traditional compositions.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Indian &amp; Sri Lankan styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Raga &amp; alankara training</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Folk &amp; classical repertoire</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, classical music lovers, and folk enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-wind"></i></div><div class="course-title-group"><h4>Saxophone <span class="course-badge level-intermediate">Intermediate → Advanced</span></h4><span class="course-sub">සැක්සෆෝනය — Jazz &amp; Western</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Jazz, blues, pop saxophone with embouchure &amp; improvisation.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-sax" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-sax"><div class="more-text"><strong>📖 Course Highlights:</strong> Master saxophone with jazz, blues, and pop styles. Includes embouchure, breath control, improvisation, and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Jazz, blues, pop styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Embouchure &amp; breath control</div><div class="more-item"><i class="fa-solid fa-check"></i> Improvisation techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate to advanced, jazz and pop enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-trumpet"></i></div><div class="course-title-group"><h4>Horanawa · Shehnai <span class="course-badge level-beginner">Beginner → Intermediate</span></h4><span class="course-sub">හොරණෑව, ෂෙහ්නායි — Sri Lankan &amp; Indian</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan horanawa and Indian shehnai for ceremonial music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-horanawa" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-horanawa"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn traditional horanawa and shehnai for ceremonial and cultural music. Includes breath control, fingering, and traditional melodies.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Sri Lankan &amp; Indian styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Ceremonial &amp; folk music</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners to intermediate, cultural enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-music"></i></div><div class="course-title-group"><h4>Harmonica <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">හාර්මොනිකා / මවුත් කඩනය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Blues, folk, and pop harmonica techniques.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 40 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-harmonica" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-harmonica"><div class="more-text"><strong>📖 Course Highlights:</strong> Play harmonica with blues, folk, and pop styles. Learn breath control, bending, tongue blocking, and melody playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Blues, folk, pop styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; bending techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Tongue blocking &amp; vibrato</div><div class="more-item"><i class="fa-solid fa-check"></i> Easy melody playing</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, hobbyists, and blues/pop fans.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-trumpet"></i></div><div class="course-title-group"><h4>Trumpet · Trombone <span class="course-badge level-intermediate">Intermediate</span></h4><span class="course-sub">ට්‍රම්පට්, ට්‍රොම්බෝන් — Western</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Brass instruments for jazz, orchestral, and band music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 50 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-trumpet" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-trumpet"><div class="more-text"><strong>📖 Course Highlights:</strong> Master trumpet and trombone for jazz, orchestral, and band music. Includes embouchure, breath control, and ensemble playing.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Jazz &amp; orchestral styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Embouchure &amp; breath control</div><div class="more-item"><i class="fa-solid fa-check"></i> Slide &amp; valve techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM / Trinity exam prep</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Intermediate players, brass enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-wind"></i></div><div class="course-title-group"><h4>Clarinet · Recorder <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">ක්ලැරිනට්, රෙකෝඩර්</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Woodwind instruments for classical, folk, and ensemble music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-clarinet" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-clarinet"><div class="more-text"><strong>📖 Course Highlights:</strong> Learn clarinet and recorder with classical, folk, and ensemble music. Includes breath control, fingering, and repertoire.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Classical &amp; folk styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Ensemble playing skills</div><div class="more-item"><i class="fa-solid fa-check"></i> ABRSM exam preparation</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, woodwind enthusiasts.</div></div></div>
-                    <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-circle"></i></div><div class="course-title-group"><h4>Pullahangilawa · Hakgediya <span class="course-badge level-beginner">Beginner</span></h4><span class="course-sub">පුල්ලහංගිලාව, හාක්ගෙඩිය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Traditional Sri Lankan wind instruments.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/w.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-pulla" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-pulla"><div class="more-text"><strong>📖 Course Highlights:</strong> Explore traditional Sri Lankan wind instruments pulhangilawa and hakgediya. Learn breath control, fingering, and cultural melodies.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Sri Lankan traditional music</div><div class="more-item"><i class="fa-solid fa-check"></i> Breath &amp; fingering techniques</div><div class="more-item"><i class="fa-solid fa-check"></i> Cultural &amp; folk melodies</div><div class="more-item"><i class="fa-solid fa-check"></i> Solo &amp; ensemble playing</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners, cultural enthusiasts.</div></div></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Vocal Music -->
-        <div class="course-category-block" style="margin-top:40px;">
-            <div class="category-header"><div class="cat-icon"><i class="fa-solid fa-microphone"></i></div><h3>Vocal Music <small>වාචික සංගීතය — ගායනය</small></h3><span class="cat-badge">4+ Styles</span></div>
-            <div class="course-grid stagger">
-                <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-microphone"></i></div><div class="course-title-group"><h4>Classical Vocal <span class="course-badge level-beginner">Beginner → Advanced</span></h4><span class="course-sub">සම්භාව්‍ය ගායනය — Hindustani &amp; Carnatic</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Raga, swara, alankar, and traditional compositions with tanpura.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/vocal.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-vocal" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-vocal"><div class="more-text"><strong>📖 Course Highlights:</strong> Classical vocal training with Hindustani and Carnatic styles. Includes raga, swara, alankar, and traditional compositions.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Raga &amp; swara training</div><div class="more-item"><i class="fa-solid fa-check"></i> Traditional compositions</div><div class="more-item"><i class="fa-solid fa-check"></i> Tanpura accompaniment</div><div class="more-item"><i class="fa-solid fa-check"></i> Vocal techniques &amp; breath control</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> All levels, classical music lovers.</div></div></div>
-                <div class="course-card"><div class="course-top"><div class="course-icon"><i class="fa-solid fa-microphone-lines"></i></div><div class="course-title-group"><h4>Light &amp; Film Vocal <span class="course-badge level-beginner">Beginner → Intermediate</span></h4><span class="course-sub">සැහැල්ලු හා චිත්‍රපට ගායනය</span></div></div><div class="course-desc"><i class="fa-solid fa-check-circle"></i> Sri Lankan, Indian &amp; Western film songs, pop, and light music.</div><div class="course-meta"><span><i class="fa-regular fa-clock"></i> 45 min</span><span><i class="fa-regular fa-calendar"></i> Weekly 2</span></div><div class="course-actions"><a href="page/Courses/vocal.html" class="btn btn-outline">Learn More <i class="fa-solid fa-arrow-right"></i></a><button class="btn-readmore" data-target="more-lightvocal" aria-expanded="false"><i class="fa-solid fa-chevron-down"></i> Read More</button></div><div class="course-more" id="more-lightvocal"><div class="more-text"><strong>📖 Course Highlights:</strong> Light and film vocal training with Sri Lankan, Indian, and Western songs. Includes pop, film music, and contemporary styles.</div><div class="more-grid"><div class="more-item"><i class="fa-solid fa-check"></i> Sri Lankan &amp; Indian film songs</div><div class="more-item"><i class="fa-solid fa-check"></i> Pop &amp; light music styles</div><div class="more-item"><i class="fa-solid fa-check"></i> Vocal techniques &amp; expression</div><div class="more-item"><i class="fa-solid fa-check"></i> Stage performance training</div></div><div class="more-text"><strong>🎯 Suitable for:</strong> Beginners to intermediate, film &amp; pop music lovers.</div></div></div>
             </div>
         </div>
     </section>
@@ -3763,7 +3947,7 @@
         </div>
     </section>
 
-    <!-- ===== NEWS MODAL (safe, uses textContent) ===== -->
+    <!-- ===== NEWS MODAL ===== -->
     <div id="newsModal" class="news-modal">
         <div class="news-modal-box">
             <button class="modal-close-btn" onclick="closeNewsModal()">&times;</button>
@@ -3775,69 +3959,74 @@
     </div>
 
     <!-- ============================================================
-    DOWNLOADS (with working filter)
+    STUDENT DOWNLOADS — FIXED LAYOUT
     ============================================================ -->
     <section id="downloads" class="reveal">
         <div class="section-title">
             <h2>Student Downloads <span class="sub-title-si">ශිෂ්ය බාගත කිරීම්</span></h2>
             <p>ඔබගේ විෂය හා ශ්‍රේණිය අනුව ප්‍රශ්න පත්‍ර හා සටහන් බාගත කරගන්න</p>
         </div>
+
+        <!-- Filter Bar -->
         <div class="download-filter-bar" id="downloadFilterBar">
             <a data-filter="all" class="active">All</a>
-            <a data-filter="ol">Ordinary Level (6-11)</a>
-            <a data-filter="al">Advanced Level (12-13)</a>
+            <a data-filter="ol">Ordinary Level (6–11)</a>
+            <a data-filter="al">Advanced Level (12–13)</a>
             <a data-filter="other">Other Exams</a>
         </div>
-        <div class="downloads-layout" id="downloadsLayout">
-            <!-- Oriental Music -->
-            <div class="download-category-block" data-cat="ol">
-                <div class="cat-head"><div class="cat-icon-wrap"><i class="fa-solid fa-music"></i></div><div class="cat-title"><h3>Oriental Music <span>පේරදිග සංගීතය</span></h3></div><span class="cat-badge">9 Grades</span></div>
-                <div class="level-divider"><i class="fa-regular fa-book-open"></i> Ordinary Level (6-11)</div>
-                <div class="grade-card-grid">
-                    <a href="page/StudentDownloads/Grade6.html" class="grade-card ol-card"><span class="g-number">6</span><span class="g-label">Grade 6</span><span class="g-tag">Theory</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/Grade7.html" class="grade-card ol-card"><span class="g-number">7</span><span class="g-label">Grade 7</span><span class="g-tag">Theory</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/Grade8.html" class="grade-card ol-card"><span class="g-number">8</span><span class="g-label">Grade 8</span><span class="g-tag">Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/Grade9.html" class="grade-card ol-card"><span class="g-number">9</span><span class="g-label">Grade 9</span><span class="g-tag">Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/Grade10.html" class="grade-card ol-card"><span class="g-number">10</span><span class="g-label">Grade 10</span><span class="g-tag">Past Papers</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/Grade11.html" class="grade-card ol-card"><span class="g-number">11</span><span class="g-label">Grade 11</span><span class="g-tag">Past Papers</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+
+        <!-- Downloads Grid -->
+        <div class="downloads-grid" id="downloadsGrid">
+            <!-- ORIENTAL MUSIC -->
+            <div class="download-subject-block">
+                <div class="subject-header">
+                    <div class="subject-icon"><i class="fa-solid fa-music"></i></div>
+                    <div>
+                        <h3>Oriental Music</h3>
+                        <span class="subject-sub">පේරදිග සංගීතය</span>
+                    </div>
+                    <span class="subject-badge">9 Levels</span>
                 </div>
-                <div class="level-divider"><i class="fa-regular fa-graduation-cap"></i> Advanced Level (12-13)</div>
-                <div class="grade-card-grid">
-                    <a href="page/StudentDownloads/Grade12.html" class="grade-card al-card"><span class="g-number">12</span><span class="g-label">Grade 12</span><span class="g-tag">Theory+Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/Grade13.html" class="grade-card al-card"><span class="g-number">13</span><span class="g-label">Grade 13</span><span class="g-tag">Theory+Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                </div>
-                <div class="level-divider"><i class="fa-regular fa-file-lines"></i> Other Exams</div>
-                <div class="grade-card-grid">
-                    <a href="page/StudentDownloads/OtherExam.html" class="grade-card other-card"><span class="g-icon"><i class="fa-regular fa-star"></i></span><span class="g-label">Other Exam</span><span class="g-tag">Diploma Prep</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+                <div class="grade-cards">
+                    <a href="page/StudentDownloads/Grade6.html" class="grade-card-new" data-level="ol"><span class="grade-number">6</span><span class="grade-label">Grade 6</span><span class="grade-tag">Theory</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/Grade7.html" class="grade-card-new" data-level="ol"><span class="grade-number">7</span><span class="grade-label">Grade 7</span><span class="grade-tag">Theory</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/Grade8.html" class="grade-card-new" data-level="ol"><span class="grade-number">8</span><span class="grade-label">Grade 8</span><span class="grade-tag">Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/Grade9.html" class="grade-card-new" data-level="ol"><span class="grade-number">9</span><span class="grade-label">Grade 9</span><span class="grade-tag">Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/Grade10.html" class="grade-card-new" data-level="ol"><span class="grade-number">10</span><span class="grade-label">Grade 10</span><span class="grade-tag">Past Papers</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/Grade11.html" class="grade-card-new" data-level="ol"><span class="grade-number">11</span><span class="grade-label">Grade 11</span><span class="grade-tag">Past Papers</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/Grade12.html" class="grade-card-new" data-level="al"><span class="grade-number">12</span><span class="grade-label">Grade 12</span><span class="grade-tag">Theory+Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/Grade13.html" class="grade-card-new" data-level="al"><span class="grade-number">13</span><span class="grade-label">Grade 13</span><span class="grade-tag">Theory+Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/OtherExam.html" class="grade-card-new" data-level="other"><span class="grade-number">📄</span><span class="grade-label">Other Exam</span><span class="grade-tag">Diploma Prep</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <!-- Western Music -->
-            <div class="download-category-block" data-cat="ol">
-                <div class="cat-head"><div class="cat-icon-wrap"><i class="fa-solid fa-guitar"></i></div><div class="cat-title"><h3>Western Music <span>අපරදිග සංගීතය</span></h3></div><span class="cat-badge">9 Grades</span></div>
-                <div class="level-divider"><i class="fa-regular fa-book-open"></i> Ordinary Level (6-11)</div>
-                <div class="grade-card-grid">
-                    <a href="page/StudentDownloads/grade6w.html" class="grade-card ol-card"><span class="g-number">6</span><span class="g-label">Grade 6</span><span class="g-tag">Theory</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/grade7w.html" class="grade-card ol-card"><span class="g-number">7</span><span class="g-label">Grade 7</span><span class="g-tag">Theory</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/grade8w.html" class="grade-card ol-card"><span class="g-number">8</span><span class="g-label">Grade 8</span><span class="g-tag">Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/grade9w.html" class="grade-card ol-card"><span class="g-number">9</span><span class="g-label">Grade 9</span><span class="g-tag">Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/grade10w.html" class="grade-card ol-card"><span class="g-number">10</span><span class="g-label">Grade 10</span><span class="g-tag">Past Papers</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/grade11w.html" class="grade-card ol-card"><span class="g-number">11</span><span class="g-label">Grade 11</span><span class="g-tag">Past Papers</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+
+            <!-- WESTERN MUSIC -->
+            <div class="download-subject-block">
+                <div class="subject-header">
+                    <div class="subject-icon"><i class="fa-solid fa-guitar"></i></div>
+                    <div>
+                        <h3>Western Music</h3>
+                        <span class="subject-sub">අපරදිග සංගීතය</span>
+                    </div>
+                    <span class="subject-badge">9 Levels</span>
                 </div>
-                <div class="level-divider"><i class="fa-regular fa-graduation-cap"></i> Advanced Level (12-13)</div>
-                <div class="grade-card-grid">
-                    <a href="page/StudentDownloads/grade12w.html" class="grade-card al-card"><span class="g-number">12</span><span class="g-label">Grade 12</span><span class="g-tag">Theory+Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="page/StudentDownloads/grade13w.html" class="grade-card al-card"><span class="g-number">13</span><span class="g-label">Grade 13</span><span class="g-tag">Theory+Practical</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
-                </div>
-                <div class="level-divider"><i class="fa-regular fa-file-lines"></i> Other Exams</div>
-                <div class="grade-card-grid">
-                    <a href="page/StudentDownloads/otherexamw.html" class="grade-card other-card"><span class="g-icon"><i class="fa-regular fa-star"></i></span><span class="g-label">Other Exam</span><span class="g-tag">Diploma Prep</span><span class="g-arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+                <div class="grade-cards">
+                    <a href="page/StudentDownloads/grade6w.html" class="grade-card-new" data-level="ol"><span class="grade-number">6</span><span class="grade-label">Grade 6</span><span class="grade-tag">Theory</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/grade7w.html" class="grade-card-new" data-level="ol"><span class="grade-number">7</span><span class="grade-label">Grade 7</span><span class="grade-tag">Theory</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/grade8w.html" class="grade-card-new" data-level="ol"><span class="grade-number">8</span><span class="grade-label">Grade 8</span><span class="grade-tag">Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/grade9w.html" class="grade-card-new" data-level="ol"><span class="grade-number">9</span><span class="grade-label">Grade 9</span><span class="grade-tag">Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/grade10w.html" class="grade-card-new" data-level="ol"><span class="grade-number">10</span><span class="grade-label">Grade 10</span><span class="grade-tag">Past Papers</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/grade11w.html" class="grade-card-new" data-level="ol"><span class="grade-number">11</span><span class="grade-label">Grade 11</span><span class="grade-tag">Past Papers</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/grade12w.html" class="grade-card-new" data-level="al"><span class="grade-number">12</span><span class="grade-label">Grade 12</span><span class="grade-tag">Theory+Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/grade13w.html" class="grade-card-new" data-level="al"><span class="grade-number">13</span><span class="grade-label">Grade 13</span><span class="grade-tag">Theory+Practical</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
+                    <a href="page/StudentDownloads/otherexamw.html" class="grade-card-new" data-level="other"><span class="grade-number">📄</span><span class="grade-label">Other Exam</span><span class="grade-tag">Diploma Prep</span><i class="grade-arrow fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-    YOUTUBE VIDEO SECTION (added before Tools)
+    YOUTUBE VIDEO SECTION
     ============================================================ -->
     <section id="videos" class="reveal" style="padding-top:20px;">
         <div class="section-title">
@@ -3846,20 +4035,13 @@
         </div>
         <div style="max-width:800px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border-color);">
             <div style="position:relative;padding-bottom:56.25%;height:0;">
-                <iframe 
-                    src="https://www.youtube.com/embed/xJt1Msetzd8" 
-                    title="Dahanake Music Academy Video" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen 
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;">
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/xJt1Msetzd8" title="Dahanake Music Academy Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;"></iframe>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-    TOOLS (added Harmonium Web)
+    TOOLS
     ============================================================ -->
     <section id="tools" class="reveal">
         <div class="section-title">
@@ -3877,7 +4059,6 @@
             <div class="tool-card-exp"><div class="t-icon"><i class="fa-solid fa-drum"></i></div><span class="tool-tag">Rhythm</span><h4>Rhythm Trainer</h4><p class="t-desc">තාල රටා සහ බීට් පුහුණුව සඳහා.</p><a href="https://www.rhythm-trainer.com/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open</a></div>
             <div class="tool-card-exp"><div class="t-icon"><i class="fa-solid fa-pen-ruler"></i></div><span class="tool-tag">Notation</span><h4>Staff Paper</h4><p class="t-desc">සංගීත සටහන් ලිවීම සඳහා PDF පිටු.</p><a href="https://www.blanksheetmusic.net/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open</a></div>
             <div class="tool-card-exp"><div class="t-icon"><i class="fa-solid fa-scale-balanced"></i></div><span class="tool-tag">Scales</span><h4>Scale &amp; Mode Finder</h4><p class="t-desc">විවිධ ස්වර රටා හා මෝඩ් සොයාගන්න.</p><a href="https://www.scales-chords.com/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open</a></div>
-            <!-- NEW: Harmonium Web Tool -->
             <div class="tool-card-exp"><div class="t-icon"><i class="fa-solid fa-wind"></i></div><span class="tool-tag">Harmonium</span><h4>Harmonium Web</h4><p class="t-desc">ඔන්ලයින් හාමෝනියම් වාදනය කරන්න.</p><a href="https://web-harmonium.com/" target="_blank" class="btn btn-outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open</a></div>
         </div>
     </section>
@@ -3920,46 +4101,59 @@
     <!-- ===== BACK TO TOP ===== -->
     <button class="back-to-top" id="backToTop" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <!-- ===== FOOTER (updated with 68studioMD) ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer>
         <p>&copy; 2026 Dahanake Music Academy. All Rights Reserved. | Designed with 68studioMD</p>
     </footer>
 
     <!-- ============================================================
-    JAVASCRIPT — ENHANCED BACKGROUND ANIMATION
+    JAVASCRIPT
     ============================================================ -->
     <script>
         (function() {
             'use strict';
 
-            // ===== PRELOADER =====
+            // ============================================================
+            // DISABLE INSPECT / DEVTOOLS
+            // ============================================================
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12') { e.preventDefault(); return false; }
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) { e.preventDefault(); return false; }
+                if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+                if (e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); return false; }
+            });
+            document.querySelectorAll('img, iframe, video').forEach(function(el) { el.setAttribute('draggable', 'false'); });
+
+            // ============================================================
+            // PRELOADER
+            // ============================================================
             const preloader = document.getElementById('preloader');
 
-            function hidePreloader() {
-                preloader.classList.add('hidden');
-                setTimeout(() => { preloader.style.display = 'none'; }, 600);
-            }
+            function hidePreloader() { preloader.classList.add('hidden');
+                setTimeout(() => { preloader.style.display = 'none'; }, 600); }
             if (document.readyState === 'complete') hidePreloader();
             else window.addEventListener('load', hidePreloader);
 
-            // ===== THEME TOGGLER =====
+            // ============================================================
+            // THEME TOGGLER
+            // ============================================================
             const htmlEl = document.documentElement;
             const themeBtn = document.getElementById('themeToggle');
 
-            function updateThemeIcon() {
-                themeBtn.innerHTML = htmlEl.getAttribute('data-theme') === 'dark' ?
-                    '<i class="fa-solid fa-moon"></i>' :
-                    '<i class="fa-solid fa-sun"></i>';
-            }
+            function updateThemeIcon() { themeBtn.innerHTML = htmlEl.getAttribute('data-theme') === 'dark' ? '<i class="fa-solid fa-moon"></i>' :
+                    '<i class="fa-solid fa-sun"></i>'; }
             updateThemeIcon();
             themeBtn.addEventListener('click', function() {
                 const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
                 htmlEl.setAttribute('data-theme', newTheme);
                 this.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' :
-                    '<i class="fa-solid fa-sun"></i>';
+                '<i class="fa-solid fa-sun"></i>';
             });
 
-            // ===== NAVBAR SCROLL =====
+            // ============================================================
+            // NAVBAR SCROLL
+            // ============================================================
             const header = document.getElementById('mainHeader');
             const backTop = document.getElementById('backToTop');
             window.addEventListener('scroll', function() {
@@ -3969,7 +4163,9 @@
             }, { passive: true });
             backTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-            // ===== MOBILE OVERLAY =====
+            // ============================================================
+            // MOBILE OVERLAY
+            // ============================================================
             const mobBtn = document.getElementById('mobileMenuBtn');
             const overlay = document.getElementById('mobileOverlay');
             const backdrop = document.getElementById('mobileOverlayBackdrop');
@@ -3995,7 +4191,9 @@
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains(
                     'open')) closeMobile(); });
 
-            // ===== BOTTOM SHEET =====
+            // ============================================================
+            // BOTTOM SHEET
+            // ============================================================
             const fab = document.getElementById('fabSheet');
             const sheet = document.getElementById('bottomSheet');
             const sheetOverlay = document.getElementById('bottomSheetOverlay');
@@ -4017,7 +4215,9 @@
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && sheet.classList.contains(
                     'open')) closeSheet(); });
 
-            // ===== BOTTOM NAV =====
+            // ============================================================
+            // BOTTOM NAV
+            // ============================================================
             const navItems = document.querySelectorAll('.bottom-nav .nav-item[data-section]');
             const sections = ['home', 'courses', 'downloads', 'contact'];
             const sectionEls = sections.map(function(id) { return document.getElementById(id); });
@@ -4044,13 +4244,17 @@
                     'data-section') === current); });
             }, { passive: true });
 
-            // ===== SCROLL REVEAL =====
+            // ============================================================
+            // SCROLL REVEAL
+            // ============================================================
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('active'); });
             }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
             document.querySelectorAll('.reveal, .stagger').forEach(function(el) { observer.observe(el); });
 
-            // ===== GALLERY CAROUSEL =====
+            // ============================================================
+            // GALLERY CAROUSEL
+            // ============================================================
             const isMobile = window.innerWidth < 768;
             const cards = document.querySelectorAll('.carousel-card');
             const prevBtn = document.getElementById('prevBtn');
@@ -4080,8 +4284,7 @@
                             tx = offset * 100,
                             scale = Math.max(0.6, 1 - Math.abs(offset) * 0.15);
                         card.style.transform = 'translateX(' + tx + 'px) translateZ(' + (tz - Math.abs(
-                            offset) * 70) +
-                            'px) rotateY(' + (angle * -0.5) + 'deg) scale(' + scale + ')';
+                            offset) * 70) + 'px) rotateY(' + (angle * -0.5) + 'deg) scale(' + scale + ')';
                         card.style.opacity = Math.abs(offset) > 2 ? 0 : 1;
                         card.style.zIndex = 100 - Math.abs(offset);
                         card.style.filter = offset === 0 ? 'brightness(1.05)' : 'brightness(0.7)';
@@ -4109,7 +4312,9 @@
             updateCarousel();
             startAuto();
 
-            // ===== IMAGE MODAL =====
+            // ============================================================
+            // IMAGE MODAL
+            // ============================================================
             const imageModal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
             window.openModal = function(src) { imageModal.style.display = 'block';
@@ -4121,7 +4326,9 @@
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && imageModal.style.display ===
                     'block') closeModal(); });
 
-            // ===== NEWS MODAL =====
+            // ============================================================
+            // NEWS MODAL
+            // ============================================================
             const newsModal = document.getElementById('newsModal');
             window.openNewsModal = function(title, content) {
                 document.getElementById('newsModalTitle').textContent = title;
@@ -4139,7 +4346,9 @@
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && newsModal.classList.contains(
                     'active')) closeNewsModal(); });
 
-            // ===== TABS =====
+            // ============================================================
+            // TABS
+            // ============================================================
             const tabBtns = document.querySelectorAll('.instrument-tabs .tab-btn');
             const panels = document.querySelectorAll('.tab-panel');
             tabBtns.forEach(function(btn) {
@@ -4152,14 +4361,15 @@
                 });
             });
 
-            // ===== READ MORE (Global Accordion) =====
+            // ============================================================
+            // READ MORE
+            // ============================================================
             document.querySelectorAll('.btn-readmore').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const target = document.getElementById(this.getAttribute('data-target'));
                     if (!target) return;
                     const isOpen = target.classList.contains('open');
-                    // Close all others
                     document.querySelectorAll('.course-more.open').forEach(function(el) {
                         if (el.id !== target.id) {
                             el.classList.remove('open');
@@ -4174,7 +4384,6 @@
                             }
                         }
                     });
-                    // Toggle current
                     if (isOpen) {
                         target.classList.remove('open');
                         this.classList.remove('active');
@@ -4189,17 +4398,28 @@
                 });
             });
 
-            // ===== DOWNLOADS FILTER =====
+            // ============================================================
+            // DOWNLOADS FILTER — FIXED
+            // ============================================================
             const filterLinks = document.querySelectorAll('#downloadFilterBar a');
-            const catBlocks = document.querySelectorAll('.download-category-block');
+            const gradeCards = document.querySelectorAll('.grade-card-new');
 
-            function filterDownloads(filter) {
-                catBlocks.forEach(function(block) {
-                    if (filter === 'all') {
-                        block.classList.remove('hidden-cat');
+            function filterDownloads(level) {
+                gradeCards.forEach(function(card) {
+                    const cardLevel = card.getAttribute('data-level');
+                    if (level === 'all') {
+                        card.classList.remove('hidden-level');
                     } else {
-                        const hasMatch = block.querySelector('.grade-card.' + filter + '-card') !== null;
-                        block.classList.toggle('hidden-cat', !hasMatch);
+                        card.classList.toggle('hidden-level', cardLevel !== level);
+                    }
+                });
+                const blocks = document.querySelectorAll('.download-subject-block');
+                blocks.forEach(function(block) {
+                    const visibleCards = block.querySelectorAll('.grade-card-new:not(.hidden-level)');
+                    if (visibleCards.length === 0) {
+                        block.classList.add('block-hidden');
+                    } else {
+                        block.classList.remove('block-hidden');
                     }
                 });
             }
@@ -4215,7 +4435,45 @@
             });
 
             // ============================================================
-            // ENHANCED CANVAS BACKGROUND — Rich Musical Particle System
+            // TOGGLE INSTRUMENT COURSES
+            // ============================================================
+            const instrumentContainer = document.getElementById('instrumentCoursesContainer');
+            const showBtn = document.getElementById('showInstrumentBtn');
+
+            showBtn.addEventListener('click', function() {
+                const isOpen = instrumentContainer.classList.contains('open');
+                if (isOpen) {
+                    instrumentContainer.classList.remove('open');
+                    this.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show me more Instrument Courses';
+                    this.classList.remove('active');
+                } else {
+                    instrumentContainer.classList.add('open');
+                    this.innerHTML = '<i class="fa-solid fa-chevron-up"></i> Hide Instrument Courses';
+                    this.classList.add('active');
+                }
+            });
+
+            // ============================================================
+            // TOGGLE INSTRUCTORS
+            // ============================================================
+            const instructorsContainer = document.getElementById('instructorsContainer');
+            const showInstructorsBtn = document.getElementById('showInstructorsBtn');
+
+            showInstructorsBtn.addEventListener('click', function() {
+                const isOpen = instructorsContainer.classList.contains('open');
+                if (isOpen) {
+                    instructorsContainer.classList.remove('open');
+                    this.innerHTML = '<i class="fa-solid fa-chevron-down"></i> See Our Instructors';
+                    this.classList.remove('active');
+                } else {
+                    instructorsContainer.classList.add('open');
+                    this.innerHTML = '<i class="fa-solid fa-chevron-up"></i> Hide Instructors';
+                    this.classList.add('active');
+                }
+            });
+
+            // ============================================================
+            // ENHANCED CANVAS BACKGROUND
             // ============================================================
             const canvas = document.getElementById('bg-canvas');
             const ctx = canvas.getContext('2d');
@@ -4226,15 +4484,10 @@
             if (prefersReduced) {
                 canvas.style.display = 'none';
             } else {
-                const SYMBOLS = [
-                    '♪', '♫', '♬', '♩', '🎵', '🎶', '🎼',
-                    '♯', '♭', '𝄞', '𝄢', '𝄡', '🎹', '🎻', '🥁', '🎸', '🎷', '🎺'
+                const SYMBOLS = ['♪', '♫', '♬', '♩', '🎵', '🎶', '🎼', '♯', '♭', '𝄞', '𝄢', '𝄡', '🎹', '🎻', '🥁', '🎸', '🎷', '🎺'];
+                const COLORS = ['rgba(37, 99, 235, ', 'rgba(56, 189, 248, ', 'rgba(99, 102, 241, ', 'rgba(139, 92, 246, ',
+                    'rgba(14, 165, 233, ', 'rgba(96, 165, 250, '
                 ];
-                const COLORS = [
-                    'rgba(37, 99, 235, ', 'rgba(56, 189, 248, ', 'rgba(99, 102, 241, ',
-                    'rgba(139, 92, 246, ', 'rgba(14, 165, 233, ', 'rgba(96, 165, 250, '
-                ];
-
                 let particles = [];
                 const MAX_PARTICLES = Math.min(90, Math.floor((window.innerWidth * window.innerHeight) / 9000) + 40);
                 const CONNECTION_DIST = 160;
@@ -4254,14 +4507,10 @@
                 window.addEventListener('resize', resizeCanvas, { passive: true });
                 resizeCanvas();
 
-                document.addEventListener('mousemove', function(e) {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                }, { passive: true });
-                document.addEventListener('mouseleave', function() {
-                    mouseX = -9999;
-                    mouseY = -9999;
-                }, { passive: true });
+                document.addEventListener('mousemove', function(e) { mouseX = e.clientX;
+                    mouseY = e.clientY; }, { passive: true });
+                document.addEventListener('mouseleave', function() { mouseX = -9999;
+                    mouseY = -9999; }, { passive: true });
 
                 function createParticle() {
                     const size = Math.random() * 18 + 10;
@@ -4284,30 +4533,23 @@
                         glow: Math.random() > 0.65,
                     };
                 }
-
-                for (let i = 0; i < MAX_PARTICLES; i++) {
-                    particles.push(createParticle());
-                }
-
+                for (let i = 0; i < MAX_PARTICLES; i++) { particles.push(createParticle()); }
                 let time = 0;
 
                 function animateCanvas() {
                     time += 0.006;
                     ctx.clearRect(0, 0, cW, cH);
                     const mouseActive = mouseX > -1000 && mouseY > -1000;
-
-                    particles.forEach(function(p, idx) {
+                    particles.forEach(function(p) {
                         const waveX = Math.sin(time * p.waveSpeed + p.drift) * p.waveAmp * 0.3;
-                        const waveY = Math.cos(time * p.waveSpeed * 0.7 + p.drift * 1.3 + p.phase) * p.waveAmp *
-                        0.2;
+                        const waveY = Math.cos(time * p.waveSpeed * 0.7 + p.drift * 1.3 + p.phase) * p
+                            .waveAmp * 0.2;
                         let dx = 0,
                             dy = 0,
                             dist = Infinity;
-                        if (mouseActive) {
-                            dx = mouseX - p.x;
+                        if (mouseActive) { dx = mouseX - p.x;
                             dy = mouseY - p.y;
-                            dist = Math.sqrt(dx * dx + dy * dy);
-                        }
+                            dist = Math.sqrt(dx * dx + dy * dy); }
                         let fx = 0,
                             fy = 0;
                         if (mouseActive && dist < MOUSE_RADIUS && dist > 0) {
@@ -4329,7 +4571,6 @@
                             p.x = Math.random() * cW; }
                         if (p.x < -40) p.x = cW + 40;
                         if (p.x > cW + 40) p.x = -40;
-
                         let op = p.opacity;
                         if (mouseActive && dist < MOUSE_RADIUS) {
                             op = Math.min(0.65, p.opacity + 0.35 * (1 - dist / MOUSE_RADIUS));
@@ -4340,8 +4581,8 @@
                         if (p.glow || (mouseActive && dist < MOUSE_RADIUS)) {
                             const glowIntensity = p.glow ? 0.6 : 0.4 * (1 - dist / MOUSE_RADIUS);
                             ctx.shadowColor = 'rgba(56, 189, 248, ' + (glowIntensity * 0.35) + ')';
-                            ctx.shadowBlur = 25 + (mouseActive && dist < MOUSE_RADIUS ? 15 * (1 - dist / MOUSE_RADIUS) :
-                            0);
+                            ctx.shadowBlur = 25 + (mouseActive && dist < MOUSE_RADIUS ? 15 * (1 - dist /
+                                MOUSE_RADIUS) : 0);
                         }
                         const colorStr = COLORS[p.colorIndex] + op + ')';
                         ctx.font = p.size + 'px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif';
@@ -4355,7 +4596,6 @@
                         p._x = p.x;
                         p._y = p.y;
                     });
-
                     if (particles.length <= 80) {
                         for (let i = 0; i < particles.length; i++) {
                             for (let j = i + 1; j < particles.length; j++) {
@@ -4370,16 +4610,17 @@
                                     ctx.beginPath();
                                     ctx.moveTo(a.x, a.y);
                                     ctx.lineTo(b.x, b.y);
-                                    ctx.strokeStyle = 'rgba(56, 189, 248, ' + (Math.max(alpha, bright) * 0.9) + ')';
+                                    ctx.strokeStyle = 'rgba(56, 189, 248, ' + (Math.max(alpha, bright) * 0.9) +
+                                        ')';
                                     ctx.lineWidth = 0.6 + (1 - dist / CONNECTION_DIST) * 0.6;
                                     ctx.stroke();
                                 }
                             }
                         }
                     }
-
                     if (mouseActive) {
-                        const grad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, MOUSE_RADIUS * 0.7);
+                        const grad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, MOUSE_RADIUS *
+                        0.7);
                         grad.addColorStop(0, 'rgba(56, 189, 248, 0.04)');
                         grad.addColorStop(1, 'rgba(56, 189, 248, 0)');
                         ctx.fillStyle = grad;
@@ -4392,37 +4633,33 @@
                         ctx.lineWidth = 1.5;
                         ctx.stroke();
                     }
-
                     requestAnimationFrame(animateCanvas);
                 }
-
                 animateCanvas();
 
                 let resizeTimer;
                 window.addEventListener('resize', function() {
                     clearTimeout(resizeTimer);
                     resizeTimer = setTimeout(function() {
-                        const newCount = Math.min(90, Math.floor((window.innerWidth * window.innerHeight) /
-                            9000) + 40);
+                        const newCount = Math.min(90, Math.floor((window.innerWidth * window
+                            .innerHeight) / 9000) + 40);
                         const diff = newCount - particles.length;
-                        if (diff > 0) {
-                            for (let i = 0; i < diff; i++) particles.push(createParticle());
-                        } else if (diff < 0) {
-                            particles = particles.slice(0, newCount);
-                        }
+                        if (diff > 0) { for (let i = 0; i < diff; i++) particles.push(
+                            createParticle()); } else if (diff < 0) { particles = particles.slice(
+                                0, newCount); }
                     }, 300);
                 }, { passive: true });
             }
 
-            // ===== RESIZE OBSERVER for carousel mobile =====
+            // ============================================================
+            // RESIZE OBSERVER
+            // ============================================================
             let resizeTimer2;
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimer2);
                 resizeTimer2 = setTimeout(function() {
                     const nowMobile = window.innerWidth < 768;
-                    if (nowMobile !== isMobile) {
-                        location.reload();
-                    }
+                    if (nowMobile !== isMobile) { location.reload(); }
                 }, 300);
             }, { passive: true });
 
