@@ -36,6 +36,7 @@
             --gradient-warm: linear-gradient(135deg, #d97706, #f59e0b);
             --gradient-purple: linear-gradient(135deg, #6d28d9, #8b5cf6);
             --gradient-emerald: linear-gradient(135deg, #047857, #34d399);
+            --gradient-rose: linear-gradient(135deg, #be185d, #ec4899);
             --btn-outline-text: #0f172a;
             --btn-outline-border: #e2e8f0;
             --card-radius: 20px;
@@ -306,6 +307,15 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(217, 119, 6, 0.5);
         }
+        .btn-rose {
+            background: var(--gradient-rose);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(190, 24, 93, 0.3);
+        }
+        .btn-rose:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(190, 24, 93, 0.5);
+        }
 
         /* ===== LAYOUT ===== */
         section {
@@ -474,7 +484,7 @@
             line-height: 1.5;
         }
 
-        /* ===== FEE SECTION (NEW) ===== */
+        /* ===== FEE SECTION ===== */
         .fee-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -869,6 +879,87 @@
             color: var(--text-secondary);
         }
 
+        /* ===== EXAM LEVELS GRID ===== */
+        .exam-levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .exam-level-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 26px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exam-level-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-blue);
+        }
+
+        .exam-level-card .level-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 14px;
+            border-radius: 30px;
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+        }
+
+        .exam-level-card .level-badge.instrumental {
+            background: rgba(37, 99, 235, 0.12);
+            color: #1d4ed8;
+        }
+        .exam-level-card .level-badge.vocal {
+            background: rgba(236, 72, 153, 0.12);
+            color: #be185d;
+        }
+
+        .exam-level-card h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .exam-level-card .level-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .exam-level-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .exam-level-card .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exam-level-card .btn-group .btn {
+            flex: 1;
+            min-width: 100px;
+            justify-content: center;
+            padding: 8px 16px;
+            font-size: 0.82rem;
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: var(--bg-secondary);
@@ -939,9 +1030,15 @@
                 left: 12px;
                 max-width: none;
             }
+            .exam-levels-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 600px) {
+            .exam-levels-grid {
+                grid-template-columns: 1fr;
+            }
             .fee-section .fee-header h2 {
                 font-size: 1.3rem;
             }
@@ -976,7 +1073,7 @@
             }
         }
 
-        /* ===== LOADING SPINNER INSIDE BUTTON ===== */
+        /* ===== LOADING SPINNER ===== */
         .btn .spinner {
             display: none;
             width: 20px;
@@ -1065,45 +1162,118 @@
             </div>
         </div>
 
-        <!-- ===== AFFILIATED EXAM BOARDS ===== -->
+        <!-- ============================================================
+        EXAM LEVELS — INSTRUMENTAL & VOCAL (MOVED UP)
+        ============================================================ -->
         <div style="margin-top:60px;">
             <div class="section-title">
-                <h2>AFFILIATED EXAM BOARDS</h2>
-                <p>අප ආයතනය මගින් පාඨමාලා මෙහෙයවනු ලබන ප්‍රධාන ඉන්දියානු සංගීත මණ්ඩල</p>
+                <h2>INSTRUMENTAL &amp; VOCAL</h2>
+                <p>සියලුම ඉන්දියානු විභාග මට්ටම් සඳහා පුහුණු පාඨමාලා</p>
             </div>
 
-            <div class="boards-grid">
-                <!-- Prayag Sangeet Samiti -->
-                <div class="board-card">
-                    <div class="board-icon"><i class="fa-solid fa-building-columns"></i></div>
-                    <h3>Prayag Sangeet Samiti</h3>
-                    <span class="board-sub">Allahabad (Prayagraj), India</span>
-                    <p>Hindustani vocal, Instrumental (Violin, Sitar, Harmonium) සහ Percussion (Tabla) සඳහා වන ප්‍රමුඛතම විභාග මණ්ඩලයකි.</p>
-                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+            <div class="exam-levels-grid">
+                <!-- ===== INSTRUMENTAL ===== -->
+                <!-- Prathama Instrumental -->
+                <div class="exam-level-card">
+                    <span class="level-badge instrumental"><i class="fa-solid fa-guitar"></i> Instrumental</span>
+                    <h4>Prathama Instrumental</h4>
+                    <span class="level-sub">ප්‍රථමා වාද්‍ය — මූලික මට්ටම</span>
+                    <p>මූලික ස්වර, අලංකාර, සරල රාග හා තාල, වාද්‍ය තාක්ෂණය පිළිබඳ මූලික දැනුම.</p>
+                    <div class="btn-group">
+                        <a href="iep/pi.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
                 </div>
 
-                <!-- Bhatkhande Music Institute -->
-                <div class="board-card bhatkhande">
-                    <div class="board-icon"><i class="fa-solid fa-music"></i></div>
-                    <h3>Bhatkhande Sangeet Vidyapith</h3>
-                    <span class="board-sub">Lucknow, India</span>
-                    <p>දේශීය සහ ජාත්‍යන්තර මට්ටමෙන් පිළිගත් හින්දුස්ථානී රාග සංගීතය පිළිබඳ සම්පූර්ණ විෂය නිර්දේශයන් ආවරණය කෙරේ.</p>
-                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+                <!-- Madhyama Instrumental -->
+                <div class="exam-level-card">
+                    <span class="level-badge instrumental"><i class="fa-solid fa-guitar"></i> Instrumental</span>
+                    <h4>Madhyama Instrumental</h4>
+                    <span class="level-sub">මධ්‍යමා වාද්‍ය — අතරමැදි මට්ටම</span>
+                    <p>වඩාත් සංකීර්ණ රාග, විලාම්බිත් ඛයාල්, තාන්, තාල සහ වාද්‍ය ඉම්ප්‍රොවයිසේෂන්.</p>
+                    <div class="btn-group">
+                        <a href="iep/mi.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
                 </div>
 
-                <!-- Gandharva Mahavidyalaya -->
-                <div class="board-card gandharva">
-                    <div class="board-icon"><i class="fa-solid fa-scroll"></i></div>
-                    <h3>Gandharva Mahavidyalaya</h3>
-                    <span class="board-sub">Mumbai / Miraj, India</span>
-                    <p>වාචික, වාද්‍ය සහ නෘත්‍ය අංශයන් සඳහා වන විභාග අදියරයන් ඉතා ක්‍රමවත්ව ප්‍රායෝගික හා න්‍යායාත්මකව උගන්වනු ලබයි.</p>
-                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+                <!-- Visharad 1 Instrumental -->
+                <div class="exam-level-card">
+                    <span class="level-badge instrumental"><i class="fa-solid fa-guitar"></i> Instrumental</span>
+                    <h4>Visharad – 1 Instrumental</h4>
+                    <span class="level-sub">විශාරද – 1 වාද්‍ය — උසස් මට්ටම (Part 1)</span>
+                    <p>සම්පූර්ණ විශාරද උපාධි මට්ටමේ පළමු කොටස. සංකීර්ණ රාග, ආලාප්, ජෝඩ්, ජාලා සහ ගැඹුරු න්‍යාය.</p>
+                    <div class="btn-group">
+                        <a href="iep/vi1.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
+                </div>
+
+                <!-- Visharad 2 Instrumental -->
+                <div class="exam-level-card">
+                    <span class="level-badge instrumental"><i class="fa-solid fa-guitar"></i> Instrumental</span>
+                    <h4>Visharad – 2 Instrumental</h4>
+                    <span class="level-sub">විශාරද – 2 වාද්‍ය — උසස් මට්ටම (Part 2)</span>
+                    <p>විශාරද උපාධියේ දෙවන කොටස. ඉහළ මට්ටමේ රාග, තාන්, ගමක් තාන, සහ පර්යේෂණාත්මක අංශ.</p>
+                    <div class="btn-group">
+                        <a href="iep/vi2.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
+                </div>
+
+                <!-- ===== VOCAL ===== -->
+                <!-- Prathama Vocal -->
+                <div class="exam-level-card">
+                    <span class="level-badge vocal"><i class="fa-solid fa-microphone"></i> Vocal</span>
+                    <h4>Prathama Vocal</h4>
+                    <span class="level-sub">ප්‍රථමා ගායන — මූලික ගායන මට්ටම</span>
+                    <p>මූලික ස්වර, අලංකාර, සරල රාග සහ තාල, හර්මෝනියම් සහ තම්පුරා සමඟ ගායන පුහුණුව.</p>
+                    <div class="btn-group">
+                        <a href="iep/pv.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
+                </div>
+
+                <!-- Madhyama Vocal -->
+                <div class="exam-level-card">
+                    <span class="level-badge vocal"><i class="fa-solid fa-microphone"></i> Vocal</span>
+                    <h4>Madhyama Vocal</h4>
+                    <span class="level-sub">මධ්‍යමා ගායන — අතරමැදි ගායන මට්ටම</span>
+                    <p>මධ්‍යම මට්ටමේ රාග, විලාම්බිත් සහ දෘත ඛයාල්, තාන්, බෝල් තාන් සහ සංකීර්ණ තාල.</p>
+                    <div class="btn-group">
+                        <a href="iep/mv.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
+                </div>
+
+                <!-- Visharad 1 Vocal -->
+                <div class="exam-level-card">
+                    <span class="level-badge vocal"><i class="fa-solid fa-microphone"></i> Vocal</span>
+                    <h4>Visharad – 1 Vocal</h4>
+                    <span class="level-sub">විශාරද – 1 ගායන — උසස් මට්ටම (Part 1)</span>
+                    <p>විශාරද ගායන උපාධියේ පළමු කොටස. ගැඹුරු රාග, ආලාප්, ශ්‍රුති, සහ ගායන ශිල්පීය ක්‍රම.</p>
+                    <div class="btn-group">
+                        <a href="iep/vv1.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
+                </div>
+
+                <!-- Visharad 2 Vocal -->
+                <div class="exam-level-card">
+                    <span class="level-badge vocal"><i class="fa-solid fa-microphone"></i> Vocal</span>
+                    <h4>Visharad – 2 Vocal</h4>
+                    <span class="level-sub">විශාරද – 2 ගායන — උසස් මට්ටම (Part 2)</span>
+                    <p>විශාරද ගායන උපාධියේ දෙවන කොටස. දුෂ්කර රාග, විරල තාල, සරගම්, තාන්, සහ ගායන විභාගය සඳහා සම්පූර්ණ සූදානම.</p>
+                    <div class="btn-group">
+                        <a href="iep/vv2.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                        <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Apply</a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- ============================================================
-        BHATKHANDE FEE SECTION (NEW)
+        BHATKHANDE FEE SECTION
         ============================================================ -->
         <div class="fee-section" id="fee-section">
             <div class="fee-header">
@@ -1127,19 +1297,19 @@
                             <td class="exam-fee">රු 3,950</td>
                         </tr>
                         <tr>
-                            <td class="exam-name">ප්‍රතමා</td>
+                            <td class="exam-name">ප්‍රතමා (Instrumental / Vocal)</td>
                             <td class="exam-fee">රු 6,950</td>
                         </tr>
                         <tr>
-                            <td class="exam-name">මද්‍යමා</td>
+                            <td class="exam-name">මද්‍යමා (Instrumental / Vocal)</td>
                             <td class="exam-fee">රු 7,250</td>
                         </tr>
                         <tr>
-                            <td class="exam-name">විශරද් 1</td>
+                            <td class="exam-name">විශරද් 1 (Instrumental / Vocal)</td>
                             <td class="exam-fee">රු 7,500</td>
                         </tr>
                         <tr>
-                            <td class="exam-name">විශරද් 2</td>
+                            <td class="exam-name">විශරද් 2 (Instrumental / Vocal)</td>
                             <td class="exam-fee">රු 7,750</td>
                         </tr>
                     </tbody>
@@ -1191,10 +1361,14 @@
                             <select id="examLevel" name="exam_level" required>
                                 <option value="">— තෝරන්න —</option>
                                 <option value="ප්‍රවේශිකා">ප්‍රවේශිකා (රු 3,950)</option>
-                                <option value="ප්‍රතමා">ප්‍රතමා (රු 6,950)</option>
-                                <option value="මද්‍යමා">මද්‍යමා (රු 7,250)</option>
-                                <option value="විශරද් 1">විශරද් 1 (රු 7,500)</option>
-                                <option value="විශරද් 2">විශරද් 2 (රු 7,750)</option>
+                                <option value="ප්‍රතමා (Instrumental)">ප්‍රතමා Instrumental (රු 6,950)</option>
+                                <option value="ප්‍රතමා (Vocal)">ප්‍රතමා Vocal (රු 6,950)</option>
+                                <option value="මද්‍යමා (Instrumental)">මද්‍යමා Instrumental (රු 7,250)</option>
+                                <option value="මද්‍යමා (Vocal)">මද්‍යමා Vocal (රු 7,250)</option>
+                                <option value="විශරද් 1 (Instrumental)">විශරද් 1 Instrumental (රු 7,500)</option>
+                                <option value="විශරද් 1 (Vocal)">විශරද් 1 Vocal (රු 7,500)</option>
+                                <option value="විශරද් 2 (Instrumental)">විශරද් 2 Instrumental (රු 7,750)</option>
+                                <option value="විශරද් 2 (Vocal)">විශරද් 2 Vocal (රු 7,750)</option>
                             </select>
                         </div>
                     </div>
@@ -1223,35 +1397,6 @@
             </div>
         </div>
 
-        <!-- ===== EXAM STAGES / LEVELS ===== -->
-        <div class="stage-box" style="margin-top:50px;background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);padding:35px;box-shadow:var(--shadow-sm);">
-            <h3 style="font-size:1.4rem;color:var(--accent-blue);margin-bottom:20px;display:flex;align-items:center;gap:10px;">
-                <i class="fa-solid fa-layer-group"></i> Exam Qualification Stages (විභාග අදියරයන්)
-            </h3>
-            <div class="stages-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
-                <div class="stage-item" style="background:var(--bg-primary);border:1px solid var(--border-color);padding:20px;border-radius:16px;transition:all 0.35s ease;">
-                    <h4 style="font-size:1.05rem;color:var(--text-primary);margin-bottom:6px;">1. Prathama (ප්‍රථමා)</h4>
-                    <span class="duration" style="font-size:0.8rem;color:var(--accent-blue);font-weight:600;display:inline-block;margin-bottom:10px;">Basic Level — Year 1</span>
-                    <p style="font-size:0.85rem;color:var(--text-secondary);">මූලික ස්වර, අලංකාර, ප්‍රාරම්භක රාග, තාල සහ මූලික සංගීත න්‍යාය (Theory) හැදෑරීම.</p>
-                </div>
-                <div class="stage-item" style="background:var(--bg-primary);border:1px solid var(--border-color);padding:20px;border-radius:16px;transition:all 0.35s ease;">
-                    <h4 style="font-size:1.05rem;color:var(--text-primary);margin-bottom:6px;">2. Madhyama (මධ්‍යමා)</h4>
-                    <span class="duration" style="font-size:0.8rem;color:var(--accent-blue);font-weight:600;display:inline-block;margin-bottom:10px;">Intermediate Level — Year 2 &amp; 3</span>
-                    <p style="font-size:0.85rem;color:var(--text-secondary);">මධ්‍යම මට්ටමේ රාග සංවර්ධනය, විලාම්බිත් ඛයාල්, තාන්, තබ්ලා බෝල් සහ විස්තරාත්මක න්‍යාය.</p>
-                </div>
-                <div class="stage-item" style="background:var(--bg-primary);border:1px solid var(--border-color);padding:20px;border-radius:16px;transition:all 0.35s ease;">
-                    <h4 style="font-size:1.05rem;color:var(--text-primary);margin-bottom:6px;">3. Visharad (විශාරද)</h4>
-                    <span class="duration" style="font-size:0.8rem;color:var(--accent-blue);font-weight:600;display:inline-block;margin-bottom:10px;">Diploma Degree Level — Final Years</span>
-                    <p style="font-size:0.85rem;color:var(--text-secondary);">සම්පූර්ණ විශාරද උපාධි මට්ටම. සංකීර්ණ රාග, ආලාප්, තාන්, ශ්‍රුති සහ ගැඹුරු සංගීත ශාස්ත්‍රය.</p>
-                </div>
-                <div class="stage-item" style="background:var(--bg-primary);border:1px solid var(--border-color);padding:20px;border-radius:16px;transition:all 0.35s ease;">
-                    <h4 style="font-size:1.05rem;color:var(--text-primary);margin-bottom:6px;">4. Nipat / Alankar (නිපුණ/අලංකාර්)</h4>
-                    <span class="duration" style="font-size:0.8rem;color:var(--accent-blue);font-weight:600;display:inline-block;margin-bottom:10px;">Post Graduate Level</span>
-                    <p style="font-size:0.85rem;color:var(--text-secondary);">විශාරදයෙන් පසු සිදුකරන උසස් ප්‍රගුණ කිරීම් සහ පර්යේෂණාත්මක සංගීත අධ්‍යයනය.</p>
-                </div>
-            </div>
-        </div>
-
         <!-- ===== SYLLABUS (Collapsible) ===== -->
         <div class="syllabus-section" style="margin-top:60px;">
             <div class="section-title">
@@ -1264,9 +1409,10 @@
                 <i class="fa-solid fa-guitar"></i> INSTRUMENTAL (වාද්‍ය) SYLLABUS
             </h3>
 
+            <!-- Prathama Instrumental -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Prathama (First Year)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Prathama Instrumental (First Year)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
@@ -1298,43 +1444,61 @@
                             <span style="background:var(--bg-card);border:1px solid var(--border-color);padding:2px 14px;border-radius:30px;font-size:0.85rem;color:var(--text-primary);">Kaharva</span>
                         </div>
                         <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:10px;"><i class="fa-regular fa-circle-check"></i> Note: No theory paper in Prathama instrumental.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="iep\pi.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Additional syllabus toggles (shortened for brevity) -->
+            <!-- Madhyama Instrumental -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Madhyama (Part I &amp; II)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Madhyama Instrumental (Part I &amp; II)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
                     <div style="padding:28px 0;">
-                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="https://wa.me/94772660756" target="_blank" style="color:var(--accent-blue);font-weight:600;">WhatsApp</a> මගින් සම්බන්ධ වන්න.</p>
+                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="page/Courses/mi.html" style="color:var(--accent-blue);font-weight:600;">මෙතැන</a> ක්ලික් කරන්න. එසේත් නැත්නම් WhatsApp මගින් සම්බන්ධ වන්න.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="iep/mi.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Visharad 1 Instrumental -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad (Part I &amp; II)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad – 1 Instrumental (Part I)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
                     <div style="padding:28px 0;">
-                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="https://wa.me/94772660756" target="_blank" style="color:var(--accent-blue);font-weight:600;">WhatsApp</a> මගින් සම්බන්ධ වන්න.</p>
+                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="page/Courses/vi1.html" style="color:var(--accent-blue);font-weight:600;">මෙතැන</a> ක්ලික් කරන්න. එසේත් නැත්නම් WhatsApp මගින් සම්බන්ධ වන්න.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="page/Courses/vi1.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Visharad 2 Instrumental -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Nipun (Part I, II &amp; III)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad – 2 Instrumental (Part II)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
                     <div style="padding:28px 0;">
-                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="https://wa.me/94772660756" target="_blank" style="color:var(--accent-blue);font-weight:600;">WhatsApp</a> මගින් සම්බන්ධ වන්න.</p>
+                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="page/Courses/vi2.html" style="color:var(--accent-blue);font-weight:600;">මෙතැන</a> ක්ලික් කරන්න. එසේත් නැත්නම් WhatsApp මගින් සම්බන්ධ වන්න.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="page/Courses/vi2.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1344,54 +1508,73 @@
                 <i class="fa-solid fa-microphone"></i> VOCAL (ගායන) SYLLABUS
             </h3>
 
+            <!-- Prathama Vocal -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Prathama (First &amp; Second Year)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Prathama Vocal (First &amp; Second Year)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
                     <div style="padding:28px 0;">
-                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="https://wa.me/94772660756" target="_blank" style="color:var(--accent-blue);font-weight:600;">WhatsApp</a> මගින් සම්බන්ධ වන්න.</p>
+                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="page/Courses/pv.html" style="color:var(--accent-blue);font-weight:600;">මෙතැන</a> ක්ලික් කරන්න. එසේත් නැත්නම් WhatsApp මගින් සම්බන්ධ වන්න.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="page/Courses/pv.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Madhyama Vocal -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Madhyama (Part I &amp; II)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Madhyama Vocal (Part I &amp; II)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
                     <div style="padding:28px 0;">
-                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="https://wa.me/94772660756" target="_blank" style="color:var(--accent-blue);font-weight:600;">WhatsApp</a> මගින් සම්බන්ධ වන්න.</p>
+                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="page/Courses/mv.html" style="color:var(--accent-blue);font-weight:600;">මෙතැන</a> ක්ලික් කරන්න. එසේත් නැත්නම් WhatsApp මගින් සම්බන්ධ වන්න.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="page/Courses/mv.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Visharad 1 Vocal -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad (Part I &amp; II)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad – 1 Vocal (Part I)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
                     <div style="padding:28px 0;">
-                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="https://wa.me/94772660756" target="_blank" style="color:var(--accent-blue);font-weight:600;">WhatsApp</a> මගින් සම්බන්ධ වන්න.</p>
+                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="page/Courses/vv1.html" style="color:var(--accent-blue);font-weight:600;">මෙතැන</a> ක්ලික් කරන්න. එසේත් නැත්නම් WhatsApp මගින් සම්බන්ධ වන්න.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="page/Courses/vv1.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Visharad 2 Vocal -->
             <div class="syllabus-toggle" style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--card-radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.3s ease;">
                 <div class="syllabus-toggle-header" onclick="toggleSyllabus(this)" style="padding:20px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;background:var(--bg-secondary);border-bottom:1px solid transparent;transition:background 0.3s ease;">
-                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Nipun (Part I, II &amp; III)</span>
+                    <span><i class="fa-regular fa-circle" style="margin-right:10px;"></i> Visharad – 2 Vocal (Part II)</span>
                     <i class="fa-solid fa-chevron-down" style="color:var(--accent-blue);transition:transform 0.4s ease;"></i>
                 </div>
                 <div class="syllabus-toggle-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.34,1.56,0.64,1),padding 0.3s ease;padding:0 28px;background:var(--bg-primary);">
                     <div style="padding:28px 0;">
-                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="https://wa.me/94772660756" target="_blank" style="color:var(--accent-blue);font-weight:600;">WhatsApp</a> මගින් සම්බන්ධ වන්න.</p>
+                        <p style="color:var(--text-secondary);">විස්තරාත්මක සිලබස් සඳහා කරුණාකර <a href="page/Courses/vv2.html" style="color:var(--accent-blue);font-weight:600;">මෙතැන</a> ක්ලික් කරන්න. එසේත් නැත්නම් WhatsApp මගින් සම්බන්ධ වන්න.</p>
+                        <div style="margin-top:16px;display:flex;gap:12px;">
+                            <a href="page/Courses/vv2.html" class="btn btn-primary"><i class="fa-regular fa-note-sticky"></i> Note</a>
+                            <a href="https://wa.me/94772660756" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div><!-- end syllabus-section -->
 
         <!-- ===== WHY STUDY WITH US ===== -->
@@ -1429,6 +1612,45 @@
                         <h4>High Pass Rate</h4>
                         <p>විභාගවලින් ඉහළම සාමාර්ථ ලබා ගැනීමේ විශිෂ්ට වාර්තා.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+        AFFILIATED EXAM BOARDS (MOVED TO BOTTOM)
+        ============================================================ -->
+        <div style="margin-top:60px;">
+            <div class="section-title">
+                <h2>AFFILIATED EXAM BOARDS</h2>
+                <p>අප ආයතනය මගින් පාඨමාලා මෙහෙයවනු ලබන ප්‍රධාන ඉන්දියානු සංගීත මණ්ඩල</p>
+            </div>
+
+            <div class="boards-grid">
+                <!-- Prayag Sangeet Samiti -->
+                <div class="board-card">
+                    <div class="board-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <h3>Prayag Sangeet Samiti</h3>
+                    <span class="board-sub">Allahabad (Prayagraj), India</span>
+                    <p>Hindustani vocal, Instrumental (Violin, Sitar, Harmonium) සහ Percussion (Tabla) සඳහා වන ප්‍රමුඛතම විභාග මණ්ඩලයකි.</p>
+                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Bhatkhande Music Institute -->
+                <div class="board-card bhatkhande">
+                    <div class="board-icon"><i class="fa-solid fa-music"></i></div>
+                    <h3>Bhatkhande Sangeet Vidyapith</h3>
+                    <span class="board-sub">Lucknow, India</span>
+                    <p>දේශීය සහ ජාත්‍යන්තර මට්ටමෙන් පිළිගත් හින්දුස්ථානී රාග සංගීතය පිළිබඳ සම්පූර්ණ විෂය නිර්දේශයන් ආවරණය කෙරේ.</p>
+                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Gandharva Mahavidyalaya -->
+                <div class="board-card gandharva">
+                    <div class="board-icon"><i class="fa-solid fa-scroll"></i></div>
+                    <h3>Gandharva Mahavidyalaya</h3>
+                    <span class="board-sub">Mumbai / Miraj, India</span>
+                    <p>වාචික, වාද්‍ය සහ නෘත්‍ය අංශයන් සඳහා වන විභාග අදියරයන් ඉතා ක්‍රමවත්ව ප්‍රායෝගික හා න්‍යායාත්මකව උගන්වනු ලබයි.</p>
+                    <a href="https://wa.me/94772660756" target="_blank" class="btn btn-outline" style="width:100%;">Inquire Syllabus <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
             </div>
         </div>
@@ -1568,9 +1790,6 @@
                 form.reset();
             }, 3000);
         });
-
-        // If Formspree redirects, we handle it via the redirect URL
-        // But we can also listen for the page visibility change if the form redirects
 
         // ===== CANVAS BACKGROUND =====
         const canvas = document.getElementById('bg-canvas');
