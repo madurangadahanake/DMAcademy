@@ -2,237 +2,485 @@
 <html lang="si" data-theme="light">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
     <title>Dahanake Music Shop | සංගීත භාණ්ඩ අලෙවිසැල</title>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" />
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Font Awesome 6 (Pro-style icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Abhaya+Libre:wght@500;700;800&display=swap" rel="stylesheet" />
 
     <style>
-        /* ===== ROOT VARIABLES (mirror main site) ===== */
+        /* ============================================================
+                   ROOT VARIABLES — Modern Dark/Light
+                   ============================================================ */
         :root {
-            --bg-primary: #f8fafc;
-            --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
-            --text-primary: #0f172a;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-sinhala: 'Abhaya Libre', serif;
+
+            /* Light Theme */
+            --bg-body: #f6f9fc;
+            --bg-surface: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.78);
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --bg-glass: rgba(255, 255, 255, 0.55);
+            --text-primary: #0b1120;
             --text-secondary: #475569;
-            --accent-blue: #2563eb;
-            --accent-hover: #1d4ed8;
-            --accent-light: #dbeafe;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.08);
-            --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
-            --shadow-xl: 0 20px 40px -8px rgba(37, 99, 235, 0.25);
-            --nav-bg: rgba(255, 255, 255, 0.85);
-            --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            --gradient-glow: linear-gradient(135deg, #2563eb, #60a5fa, #2563eb);
-            --gradient-warm: linear-gradient(135deg, #d97706, #f59e0b);
+            --text-muted: #94a3b8;
+            --border-color: rgba(203, 213, 225, 0.5);
+            --border-active: rgba(37, 99, 235, 0.4);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 40px 80px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.15);
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+            --gradient-secondary: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            --gradient-accent: linear-gradient(135deg, #d97706, #f59e0b);
             --gradient-rose: linear-gradient(135deg, #be185d, #ec4899);
             --gradient-emerald: linear-gradient(135deg, #047857, #34d399);
-            --gradient-purple: linear-gradient(135deg, #6d28d9, #8b5cf6);
-            --btn-outline-text: #0f172a;
-            --btn-outline-border: #e2e8f0;
-            --card-radius: 20px;
-            --transition-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --gradient-glow: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(96, 165, 250, 0.1));
+            --gradient-cart: linear-gradient(135deg, #22c55e, #16a34a);
+
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: rgba(37, 99, 235, 0.10);
+            --accent-glow: rgba(37, 99, 235, 0.25);
+
+            --whatsapp: #25d366;
+            --whatsapp-hover: #1eb954;
+
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+
+            --transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+            --nav-blur: 20px;
+            --card-border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         [data-theme="dark"] {
-            --bg-primary: #080d1a;
-            --bg-secondary: #0f172a;
-            --bg-card: #131d31;
-            --text-primary: #f8fafc;
+            --bg-body: #070b17;
+            --bg-surface: #0e1629;
+            --bg-card: rgba(18, 30, 51, 0.82);
+            --bg-card-hover: rgba(26, 42, 70, 0.95);
+            --bg-glass: rgba(10, 18, 34, 0.60);
+            --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
-            --accent-blue: #38bdf8;
+            --text-muted: #64748b;
+            --border-color: rgba(56, 189, 248, 0.15);
+            --border-active: rgba(56, 189, 248, 0.35);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 40px 80px rgba(0, 0, 0, 0.8);
+            --shadow-glow: 0 0 40px rgba(56, 189, 248, 0.10);
+            --gradient-primary: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
+            --gradient-glow: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(37, 99, 235, 0.05));
+            --accent: #38bdf8;
             --accent-hover: #0ea5e9;
-            --accent-light: rgba(56, 189, 248, 0.12);
-            --border-color: rgba(56, 189, 248, 0.2);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
-            --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.8);
-            --nav-bg: rgba(8, 13, 26, 0.85);
-            --gradient-blue: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-            --gradient-glow: linear-gradient(135deg, #0284c7, #38bdf8, #0284c7);
-            --btn-outline-text: #38bdf8;
-            --btn-outline-border: rgba(56, 189, 248, 0.4);
+            --accent-light: rgba(56, 189, 248, 0.10);
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --card-border: 1px solid rgba(56, 189, 248, 0.08);
+            --gradient-cart: linear-gradient(135deg, #22c55e, #16a34a);
         }
 
-        /* ===== RESET ===== */
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s var(--transition-smooth), box-shadow 0.3s ease;
         }
 
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Poppins', 'Abhaya Libre', sans-serif;
-            background-color: var(--bg-primary);
+            font-family: var(--font-primary);
+            background: var(--bg-body);
             color: var(--text-primary);
             overflow-x: hidden;
             line-height: 1.6;
-            cursor: default;
             min-height: 100vh;
+            transition: background 0.4s ease, color 0.3s ease;
         }
 
         ::selection {
-            background: var(--accent-blue);
+            background: var(--accent);
             color: #fff;
         }
 
-        /* ===== INTERACTIVE CANVAS BACKGROUND ===== */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.55;
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
         }
 
-        /* ===== PRELOADER ===== */
+        /* ============================================================
+                   PRELOADER
+                   ============================================================ */
         #preloader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
+            inset: 0;
+            z-index: 99999;
+            background: var(--bg-body);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            transition: opacity 0.6s ease, visibility 0.6s;
+            transition: opacity 0.7s ease, visibility 0.7s;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-ring {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent);
+            animation: spin 0.9s linear infinite;
+            box-shadow: 0 0 30px var(--accent-glow);
         }
         .loader-logo {
-            width: 130px;
-            height: 130px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--accent-blue);
-            animation: pulseLogo 1.8s infinite ease-in-out;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
-        }
-        .loader-spinner {
-            margin-top: 25px;
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--border-color);
-            border-top: 4px solid var(--accent-blue);
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-        }
-        .loader-text {
-            margin-top: 16px;
-            color: var(--accent-blue);
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 2px;
-            animation: pulseText 1.4s ease-in-out infinite;
-        }
-        @keyframes pulseLogo {
-            0%,
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-            }
-            50% {
-                transform: scale(1.08);
-                box-shadow: 0 0 50px rgba(56, 189, 248, 0.8);
-            }
+            margin-bottom: 20px;
+            border: 2px solid var(--accent);
+            animation: pulseLogo 1.8s ease-in-out infinite;
         }
         @keyframes spin {
             to {
                 transform: rotate(360deg);
             }
         }
-        @keyframes pulseText {
+        @keyframes pulseLogo {
             0%,
             100% {
-                opacity: 0.6;
+                transform: scale(1);
+                box-shadow: 0 0 0 0 var(--accent-glow);
             }
             50% {
-                opacity: 1;
+                transform: scale(1.06);
+                box-shadow: 0 0 30px var(--accent-glow);
             }
         }
 
-        /* ===== SCROLL REVEAL ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px) scale(0.97);
-            transition: opacity 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+        /* ============================================================
+                   ANIMATED BG — Floating Orbs
+                   ============================================================ */
+        .bg-orbs {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        .bg-orbs .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            will-change: transform;
+            animation: orbFloat 18s ease-in-out infinite alternate;
         }
-        .stagger>* {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .bg-orbs .orb:nth-child(1) {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-primary);
+            top: -10%;
+            left: -8%;
+            animation-duration: 22s;
         }
-        .stagger.active>*:nth-child(1) {
-            transition-delay: 0.05s;
-            opacity: 1;
-            transform: translateY(0);
+        .bg-orbs .orb:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-secondary);
+            bottom: -10%;
+            right: -5%;
+            animation-duration: 26s;
+            animation-delay: -4s;
         }
-        .stagger.active>*:nth-child(2) {
-            transition-delay: 0.10s;
-            opacity: 1;
-            transform: translateY(0);
+        .bg-orbs .orb:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-accent);
+            top: 40%;
+            left: 55%;
+            animation-duration: 20s;
+            animation-delay: -8s;
+            opacity: 0.12;
         }
-        .stagger.active>*:nth-child(3) {
-            transition-delay: 0.15s;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .stagger.active>*:nth-child(4) {
-            transition-delay: 0.20s;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .stagger.active>*:nth-child(5) {
-            transition-delay: 0.25s;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .stagger.active>*:nth-child(6) {
-            transition-delay: 0.30s;
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(60px, -40px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 50px) scale(0.95);
+            }
+            100% {
+                transform: translate(40px, -20px) scale(1.05);
+            }
         }
 
-        @keyframes floatY {
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-18px);
-            }
+        /* ============================================================
+                   NAVBAR — Ultra Modern Glass
+                   ============================================================ */
+        .nav-header {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94%;
+            max-width: 1280px;
+            z-index: 1000;
+            transition: all 0.5s var(--transition-smooth);
         }
-        @keyframes pulseGlow {
-            0%,
-            100% {
-                box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 50px rgba(56, 189, 248, 0.7);
-            }
+        .nav-header.scrolled {
+            top: 0;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            padding: 0 16px;
+            box-shadow: var(--shadow-md);
+        }
+        .nav-header.scrolled .navbar {
+            border-radius: 0 0 24px 24px;
+            padding: 6px 20px 6px 12px;
+        }
+
+        .navbar {
+            background: var(--bg-glass);
+            backdrop-filter: blur(var(--nav-blur));
+            -webkit-backdrop-filter: blur(var(--nav-blur));
+            border: var(--card-border);
+            border-radius: var(--radius-xl);
+            padding: 6px 20px 6px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+        }
+        .navbar:hover {
+            border-color: var(--border-active);
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 4px 14px 4px 6px;
+            border-radius: var(--radius-full);
+            border: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+        .logo-container:hover {
+            border-color: var(--border-active);
+            background: var(--accent-light);
+        }
+        .logo-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            transition: transform 0.6s ease;
+        }
+        .logo-container:hover .logo-img {
+            transform: rotate(360deg) scale(1.05);
+        }
+        .logo-text h1 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1.1;
+            letter-spacing: -0.3px;
+        }
+        .logo-text span {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.82rem;
+            padding: 7px 16px;
+            border-radius: var(--radius-full);
+            transition: all 0.35s ease;
+            position: relative;
+            letter-spacing: -0.2px;
+        }
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-full);
+            background: var(--accent-light);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.35s ease;
+        }
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        .nav-links a.active {
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle,
+        .cart-toggle,
+        .mobile-menu-btn {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.35s ease;
+            position: relative;
+        }
+        .theme-toggle:hover,
+        .cart-toggle:hover,
+        .mobile-menu-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: scale(1.06);
+            box-shadow: 0 0 24px var(--accent-glow);
+        }
+        .cart-toggle .cart-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--gradient-rose);
+            color: #fff;
+            font-size: 0.55rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(190, 24, 93, 0.4);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.35s ease;
+        }
+        .cart-toggle .cart-badge.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        /* ============================================================
+                   HERO SECTION
+                   ============================================================ */
+        .shop-hero {
+            position: relative;
+            z-index: 1;
+            padding: 140px 20px 36px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .shop-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .shop-hero .hero-badge i {
+            font-size: 0.7rem;
+        }
+        .shop-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+        .shop-hero h1 .highlight {
+            background: var(--gradient-primary);
+            background-size: 300% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
         }
         @keyframes shimmer {
             0% {
@@ -242,512 +490,510 @@
                 background-position: 200% center;
             }
         }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== NAVBAR (mirror main site) ===== */
-        header.nav-header {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 92%;
-            max-width: 1250px;
-            z-index: 1000;
-            transition: all 0.4s ease;
-        }
-
-        .navbar {
-            background: var(--nav-bg);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid var(--border-color);
-            border-radius: 60px;
-            padding: 8px 20px 8px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            transition: all 0.4s ease;
-        }
-        .navbar:hover {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
-            border-color: var(--accent-blue);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 14px 4px 6px;
-            border-radius: 30px;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-        }
-        .logo-container:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
-            transform: scale(1.02);
-        }
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--accent-blue);
-            transition: transform 0.6s ease;
-        }
-        .logo-container:hover .logo-img {
-            transform: rotate(360deg);
-        }
-        .logo-text h1 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            line-height: 1.1;
-        }
-        .logo-text span {
-            font-size: 0.7rem;
+        .shop-hero .subtitle {
             color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 580px;
+            margin: 0 auto 6px;
+            font-weight: 400;
         }
-
-        .nav-links {
+        .shop-hero .subtitle-si {
+            font-family: var(--font-sinhala);
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+        .shop-hero .hero-stats {
             display: flex;
-            list-style: none;
-            gap: 4px;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.85rem;
-            padding: 8px 14px;
-            border-radius: 30px;
-            transition: all 0.35s ease;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 60%;
-            height: 2px;
-            background: var(--accent-blue);
-            border-radius: 2px;
-            transition: transform 0.35s ease;
-        }
-        .nav-links a:hover::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-        .nav-links a:hover {
-            color: var(--accent-blue);
-            background: var(--accent-light);
-            transform: translateY(-2px);
-        }
-        .nav-links a.active {
-            color: var(--accent-blue);
-            background: var(--accent-light);
-        }
-        .nav-links a.active::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-
-        .theme-toggle {
-            background: var(--accent-light);
-            border: 1px solid var(--border-color);
-            color: var(--accent-blue);
-            font-size: 1.1rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            transition: all 0.4s ease;
+            gap: 40px;
+            margin-top: 28px;
+            flex-wrap: wrap;
         }
-        .theme-toggle:hover {
-            transform: rotate(30deg) scale(1.08);
-            background: var(--accent-blue);
-            color: #fff;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: var(--accent-light);
-            border: 1px solid var(--border-color);
-            color: var(--accent-blue);
-            font-size: 1.2rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .mobile-menu-btn:hover {
-            background: var(--accent-blue);
-            color: #fff;
-            transform: scale(1.05);
-        }
-
-        /* ===== SECTION ===== */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 100px 20px 60px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-        .section-title h2 {
-            font-size: 2.4rem;
-            color: var(--accent-blue);
+        .shop-hero .hero-stats .stat {
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
-            padding-bottom: 14px;
+        }
+        .shop-hero .hero-stats .stat .num {
+            font-size: 1.6rem;
             font-weight: 800;
+            color: var(--accent);
         }
-        .section-title h2 .sub-title-si {
-            font-size: 0.95rem;
+        .shop-hero .hero-stats .stat .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
             font-weight: 500;
-            color: var(--text-secondary);
-            margin-top: 4px;
-            font-family: 'Abhaya Libre', serif;
-        }
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-blue);
-            border-radius: 4px;
-            animation: pulseGlow 2.5s ease-in-out infinite;
-        }
-        .section-title p {
-            color: var(--text-secondary);
-            margin-top: 12px;
-            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* ===== BUTTONS ===== */
-        .btn {
-            padding: 12px 26px;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: all 0.35s var(--transition-smooth);
-            border: none;
-            font-size: 0.92rem;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.3px;
-        }
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-        .btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-        .btn i {
-            transition: transform 0.35s ease;
-        }
-        .btn:hover i {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .btn-primary {
-            background: var(--gradient-blue);
-            color: #ffffff;
-            box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3);
-            background-size: 200% auto;
-        }
-        .btn-primary:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 10px 35px rgba(56, 189, 248, 0.5);
-            background-position: right center;
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: #ffffff;
-            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
-        }
-        .btn-whatsapp:hover {
-            background: #1eb954;
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.5);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--btn-outline-text);
-            border: 2px solid var(--btn-outline-border);
+        /* ============================================================
+                   FILTER BAR — Modern Pills with Icons
+                   ============================================================ */
+        .filter-section {
             position: relative;
             z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px 30px;
         }
-        .btn-outline::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 12px;
-            background: var(--gradient-blue);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .btn-outline:hover {
-            color: #fff;
-            border-color: transparent;
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
-        }
-        .btn-outline:hover::after {
-            opacity: 1;
-        }
-
-        /* ===== SHOP HERO ===== */
-        .shop-hero {
-            padding-top: 140px;
-            padding-bottom: 40px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .shop-hero h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-        .shop-hero h1 span {
-            background: var(--gradient-glow);
-            background-size: 300% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: shimmer 4s linear infinite;
-        }
-        .shop-hero p {
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            max-width: 620px;
-            margin: 0 auto 10px;
-            font-family: 'Abhaya Libre', serif;
-        }
-
-        /* ===== FILTER BAR ===== */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 20px;
-            background: var(--bg-card);
-            border-radius: 50px;
-            border: 1px solid var(--border-color);
-            max-width: 800px;
-            margin: 20px auto 40px;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: var(--card-border);
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow-sm);
-            position: relative;
-            z-index: 1;
+            transition: all 0.4s ease;
+        }
+        .filter-bar:hover {
+            border-color: var(--border-active);
+            box-shadow: var(--shadow-md);
+        }
+        .filter-bar .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            flex: 1;
         }
         .filter-btn {
-            padding: 8px 22px;
-            border-radius: 30px;
-            font-size: 0.82rem;
+            padding: 7px 18px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
             font-weight: 600;
-            text-decoration: none;
             color: var(--text-secondary);
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
+            background: transparent;
+            border: 1px solid transparent;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-primary);
+            letter-spacing: -0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+        .filter-btn i {
+            font-size: 0.7rem;
+            opacity: 0.7;
         }
         .filter-btn:hover {
+            color: var(--accent);
             background: var(--accent-light);
-            color: var(--accent-blue);
-            transform: translateY(-2px);
         }
         .filter-btn.active {
-            background: var(--gradient-blue);
+            background: var(--gradient-primary);
             color: #fff;
             border-color: transparent;
-            box-shadow: 0 4px 18px rgba(56, 189, 248, 0.35);
-            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+        .filter-btn.active i {
+            color: #fff;
+            opacity: 1;
+        }
+        .filter-bar .search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            min-width: 180px;
+        }
+        .filter-bar .search-wrap input {
+            width: 100%;
+            padding: 7px 14px 7px 36px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-size: 0.82rem;
+            font-family: var(--font-primary);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .filter-bar .search-wrap input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        .filter-bar .search-wrap i {
+            position: absolute;
+            left: 12px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .filter-bar .search-wrap .clear-search {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: none;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+        .filter-bar .search-wrap .clear-search.visible {
+            display: block;
+        }
+        .filter-bar .search-wrap .clear-search:hover {
+            color: var(--accent);
         }
 
-        /* ===== PRODUCT GRID ===== */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 28px;
+        .filter-bar .filter-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            padding: 0 12px;
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+                   PRODUCT GRID — LARGER IMAGES
+                   ============================================================ */
+        .products-section {
             position: relative;
             z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
         }
 
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 28px;
+            transition: all 0.4s ease;
+        }
+
+        /* ============================================================
+                   PRODUCT CARD — Glassmorphism + Large Images + Zoom
+                   ============================================================ */
         .product-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--card-radius);
-            padding: 22px 22px 20px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 18px 18px 20px;
             box-shadow: var(--shadow-sm);
-            transition: all 0.5s var(--transition-smooth);
+            transition: all 0.45s var(--transition-smooth);
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            transform: translateY(0);
         }
         .product-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 1px;
             background: var(--gradient-glow);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
             opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-10px) scale(1.01);
-            border-color: var(--accent-blue);
-            box-shadow: var(--shadow-xl);
+            transition: opacity 0.5s ease;
+            pointer-events: none;
         }
         .product-card:hover::before {
             opacity: 1;
+        }
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.005);
+            background: var(--bg-card-hover);
+            border-color: var(--border-active);
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
         }
         .product-card.hidden {
             display: none;
         }
 
+        /* ---- IMAGE WRAPPER — LARGER + ZOOM ---- */
         .product-img-wrapper {
             width: 100%;
-            height: 200px;
-            border-radius: 14px;
+            aspect-ratio: 1/1;
+            border-radius: var(--radius-md);
             overflow: hidden;
-            background: var(--bg-primary);
-            margin-bottom: 14px;
+            background: var(--bg-body);
+            margin-bottom: 16px;
             position: relative;
             border: 1px solid var(--border-color);
             transition: all 0.4s ease;
+            cursor: zoom-in;
         }
         .product-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+            will-change: transform;
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         .product-card:hover .product-img-wrapper img {
-            transform: scale(1.06);
+            transform: scale(1.22);
+            filter: brightness(1.05) contrast(1.02);
+        }
+        .product-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-md);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.18) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .product-card:hover .product-img-wrapper::after {
+            opacity: 1;
+        }
+        .product-img-wrapper .zoom-hint {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.6rem;
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            z-index: 2;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-weight: 500;
+        }
+        .product-card:hover .product-img-wrapper .zoom-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .product-img-wrapper .zoom-hint-mobile {
+            display: none;
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: 0.5rem;
+            padding: 3px 14px;
+            border-radius: var(--radius-full);
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+            pointer-events: none;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        @media (max-width: 768px) {
+            .product-img-wrapper .zoom-hint {
+                display: none;
+            }
+            .product-img-wrapper .zoom-hint-mobile {
+                display: block;
+            }
+            .product-card:hover .product-img-wrapper img {
+                transform: scale(1.15);
+            }
         }
 
-        .product-badge {
-            display: inline-block;
-            font-size: 0.62rem;
+        /* Gallery counter badge */
+        .img-counter {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 0.6rem;
             font-weight: 600;
+            padding: 3px 12px;
+            border-radius: var(--radius-full);
+            z-index: 3;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+        }
+        /* Gallery click hint */
+        .gallery-hint {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 0.5rem;
             padding: 3px 14px;
-            border-radius: 20px;
-            background: var(--accent-light);
-            color: var(--accent-blue);
-            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            font-weight: 500;
             letter-spacing: 0.3px;
+        }
+        .product-card:hover .gallery-hint {
+            opacity: 1;
+        }
+
+        .product-card .wishlist-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            font-size: 0.9rem;
+            z-index: 5;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        .product-card:hover .wishlist-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .product-card .wishlist-btn:hover {
+            background: var(--gradient-rose);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 16px rgba(190, 24, 93, 0.35);
+        }
+        .product-card .wishlist-btn.liked {
+            color: #be185d;
+            background: rgba(190, 24, 93, 0.15);
+            border-color: rgba(190, 24, 93, 0.3);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Badge */
+        .product-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 3px 14px;
+            border-radius: var(--radius-full);
             text-transform: uppercase;
+            letter-spacing: 0.3px;
             margin-bottom: 6px;
+            width: fit-content;
+            border: 1px solid transparent;
         }
         .product-badge.instrument {
             background: #dbeafe;
             color: #1d4ed8;
+            border-color: #bfdbfe;
+        }
+        .product-badge.violin {
+            background: #fce4ec;
+            color: #b91c1c;
+            border-color: #fecdd3;
+        }
+        .product-badge.keyboard {
+            background: #e0f2fe;
+            color: #0369a1;
+            border-color: #bae6fd;
         }
         .product-badge.book {
             background: #ede9fe;
             color: #6d28d9;
+            border-color: #ddd6fe;
         }
         .product-badge.accessory {
             background: #d1fae5;
             color: #065f46;
+            border-color: #a7f3d0;
         }
         .product-badge.promo {
             background: #fce4ec;
             color: #b91c1c;
+            border-color: #fecdd3;
         }
         [data-theme="dark"] .product-badge.instrument {
-            background: rgba(29, 78, 216, 0.25);
+            background: rgba(29, 78, 216, 0.2);
             color: #60a5fa;
+            border-color: rgba(29, 78, 216, 0.3);
+        }
+        [data-theme="dark"] .product-badge.violin {
+            background: rgba(185, 28, 28, 0.2);
+            color: #f87171;
+            border-color: rgba(185, 28, 28, 0.3);
+        }
+        [data-theme="dark"] .product-badge.keyboard {
+            background: rgba(3, 105, 161, 0.2);
+            color: #7dd3fc;
+            border-color: rgba(3, 105, 161, 0.3);
         }
         [data-theme="dark"] .product-badge.book {
-            background: rgba(109, 40, 217, 0.25);
+            background: rgba(109, 40, 217, 0.2);
             color: #a78bfa;
+            border-color: rgba(109, 40, 217, 0.3);
         }
         [data-theme="dark"] .product-badge.accessory {
-            background: rgba(6, 95, 70, 0.25);
+            background: rgba(6, 95, 70, 0.2);
             color: #34d399;
+            border-color: rgba(6, 95, 70, 0.3);
         }
         [data-theme="dark"] .product-badge.promo {
-            background: rgba(185, 28, 28, 0.25);
+            background: rgba(185, 28, 28, 0.2);
             color: #f87171;
+            border-color: rgba(185, 28, 28, 0.3);
         }
 
         .product-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 2px;
             line-height: 1.3;
+            margin-bottom: 1px;
+            letter-spacing: -0.3px;
         }
         .product-sub {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-size: 0.75rem;
+            color: var(--text-muted);
             font-weight: 400;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: block;
         }
         .product-desc {
             color: var(--text-secondary);
-            font-size: 0.88rem;
-            margin: 6px 0 14px;
+            font-size: 0.82rem;
+            margin: 4px 0 14px;
             flex: 1;
             line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .product-desc i {
-            color: var(--accent-blue);
+            color: var(--accent);
             margin-right: 4px;
         }
 
@@ -755,40 +1001,147 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             flex-wrap: wrap;
             gap: 6px;
         }
         .product-price {
             font-size: 1.4rem;
             font-weight: 800;
-            color: var(--accent-blue);
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+        .product-price .old-price {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-left: 8px;
         }
         .product-meta-tag {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-secondary);
-            background: var(--bg-primary);
+            background: var(--bg-body);
             padding: 3px 14px;
-            border-radius: 20px;
+            border-radius: var(--radius-full);
             border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 5px;
         }
         .product-meta-tag i {
-            color: var(--accent-blue);
-            font-size: 0.7rem;
+            color: var(--accent);
+            font-size: 0.6rem;
         }
 
-        .product-card .btn-whatsapp {
+        /* ===== ADD TO CART BUTTON — Enhanced & Prominent ===== */
+        .product-card .btn-add-cart {
             width: 100%;
-            padding: 10px 14px;
-            font-size: 0.88rem;
-            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.9rem;
+            border-radius: var(--radius-md);
             text-align: center;
+            background: var(--gradient-cart);
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.35s ease;
+            font-family: var(--font-primary);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(34, 197, 94, 0.25);
+        }
+        .product-card .btn-add-cart::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .product-card .btn-add-cart:hover::after {
+            opacity: 1;
+        }
+        .product-card .btn-add-cart:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 28px rgba(34, 197, 94, 0.45);
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+        }
+        .product-card .btn-add-cart:active {
+            transform: scale(0.95);
+        }
+        .product-card .btn-add-cart i {
+            font-size: 1rem;
+        }
+        .product-card .btn-add-cart .cart-icon {
+            transition: transform 0.3s ease;
+        }
+        .product-card .btn-add-cart:hover .cart-icon {
+            transform: translateX(-3px) scale(1.1);
         }
 
-        /* ===== EMPTY STATE ===== */
+        /* ============================================================
+                   FLYING CART ANIMATION
+                   ============================================================ */
+        .fly-to-cart {
+            position: fixed;
+            z-index: 9998;
+            pointer-events: none;
+            border-radius: 50%;
+            box-shadow: 0 8px 40px rgba(37, 99, 235, 0.5);
+            transition: none;
+            animation: flyToCart 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+            will-change: transform, opacity, width, height;
+        }
+        @keyframes flyToCart {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                border-radius: 12px;
+            }
+            40% {
+                transform: scale(1.3) rotate(12deg);
+                opacity: 1;
+            }
+            70% {
+                transform: scale(0.8) rotate(-6deg);
+                opacity: 0.9;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2) rotate(20deg);
+                border-radius: 50%;
+            }
+        }
+
+        .cart-toggle.bounce {
+            animation: cartBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes cartBounce {
+            0% {
+                transform: scale(1);
+            }
+            30% {
+                transform: scale(1.3);
+                box-shadow: 0 0 40px var(--accent-glow);
+            }
+            60% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* ============================================================
+                   EMPTY STATE
+                   ============================================================ */
         .empty-state {
             display: none;
             text-align: center;
@@ -800,35 +1153,319 @@
             display: block;
         }
         .empty-state i {
-            font-size: 3rem;
-            color: var(--accent-blue);
-            opacity: 0.4;
+            font-size: 3.5rem;
+            color: var(--accent);
+            opacity: 0.3;
             margin-bottom: 16px;
         }
         .empty-state h3 {
             font-size: 1.4rem;
             color: var(--text-primary);
+            font-weight: 700;
+        }
+        .empty-state p {
+            color: var(--text-muted);
         }
 
-        /* ===== BACK TO TOP ===== */
+        /* ============================================================
+                   CART SIDEBAR
+                   ============================================================ */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            max-width: 92vw;
+            height: 100%;
+            z-index: 2001;
+            background: var(--bg-surface);
+            border-left: var(--card-border);
+            box-shadow: var(--shadow-xl);
+            transition: right 0.5s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .cart-sidebar.open {
+            right: 0;
+        }
+        .cart-sidebar .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cart-sidebar .cart-header h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cart-sidebar .cart-header h2 span {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 0 10px;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+        }
+        .cart-sidebar .cart-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .cart-sidebar .cart-close:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .cart-sidebar .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+        }
+        .cart-sidebar .cart-items .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+        }
+        .cart-sidebar .cart-items .empty-cart i {
+            font-size: 3rem;
+            opacity: 0.3;
+            margin-bottom: 12px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            animation: fadeInUp 0.3s ease;
+        }
+        .cart-item img {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+        .cart-item .item-info {
+            flex: 1;
+        }
+        .cart-item .item-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .cart-item .item-info .item-price {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .cart-item .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .cart-item .item-actions button {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+        }
+        .cart-item .item-actions button:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .cart-item .item-actions .qty {
+            font-weight: 600;
+            font-size: 0.85rem;
+            min-width: 20px;
+            text-align: center;
+        }
+        .cart-item .item-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            padding: 4px;
+        }
+        .cart-item .item-remove:hover {
+            color: #be185d;
+        }
+
+        .cart-sidebar .cart-footer {
+            padding: 16px 24px 24px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-surface);
+        }
+        .cart-sidebar .cart-footer .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .cart-sidebar .cart-footer .cart-total .total-price {
+            color: var(--accent);
+        }
+        .cart-sidebar .cart-footer .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            background: var(--gradient-primary);
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-primary);
+        }
+        .cart-sidebar .cart-footer .checkout-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 24px var(--accent-glow);
+        }
+
+        /* ============================================================
+                   TOAST NOTIFICATION
+                   ============================================================ */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 360px;
+        }
+        .toast {
+            background: var(--bg-surface);
+            border: var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 14px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideUp 0.4s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-left: 4px solid var(--accent);
+        }
+        .toast.success {
+            border-left-color: #22c55e;
+        }
+        .toast.error {
+            border-left-color: #ef4444;
+        }
+        .toast .toast-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        .toast.success .toast-icon {
+            color: #22c55e;
+        }
+        .toast.error .toast-icon {
+            color: #ef4444;
+        }
+        .toast .toast-msg {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            flex: 1;
+        }
+        .toast .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 4px;
+            transition: all 0.3s ease;
+        }
+        .toast .toast-close:hover {
+            color: var(--text-primary);
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ============================================================
+                   BACK TO TOP — With Progress
+                   ============================================================ */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 28px;
+            right: 28px;
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: var(--gradient-blue);
-            color: #fff;
-            border: none;
-            font-size: 1.2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border: var(--card-border);
+            color: var(--accent);
+            font-size: 1.1rem;
             cursor: pointer;
-            box-shadow: 0 6px 24px rgba(56, 189, 248, 0.4);
             z-index: 999;
             opacity: 0;
             transform: translateY(20px) scale(0.9);
             transition: all 0.4s var(--transition-smooth);
             pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
         }
         .back-to-top.visible {
             opacity: 1;
@@ -836,27 +1473,44 @@
             pointer-events: auto;
         }
         .back-to-top:hover {
-            transform: translateY(-4px) scale(1.08);
-            box-shadow: 0 10px 35px rgba(56, 189, 248, 0.6);
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 4px 24px var(--accent-glow);
+            transform: translateY(-4px) scale(1.06);
+        }
+        .back-to-top .progress-ring {
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+        }
+        .back-to-top .progress-ring circle {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 2;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            transition: stroke-dashoffset 0.1s linear;
+            opacity: 0.5;
         }
 
-        /* ===== FOOTER ===== */
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
         footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            padding: 28px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
             position: relative;
             z-index: 1;
+            background: var(--bg-surface);
+            border-top: var(--card-border);
+            text-align: center;
+            padding: 32px 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
             margin-top: 20px;
         }
-        footer p:hover {
-            color: var(--accent-blue);
-        }
         footer a {
-            color: var(--accent-blue);
+            color: var(--accent);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -865,34 +1519,149 @@
             text-decoration: underline;
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            header.nav-header {
-                width: 95%;
+        /* ============================================================
+                   ANIMATIONS
+                   ============================================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .product-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        .product-card:nth-child(1) {
+            animation-delay: 0.02s;
+        }
+        .product-card:nth-child(2) {
+            animation-delay: 0.05s;
+        }
+        .product-card:nth-child(3) {
+            animation-delay: 0.08s;
+        }
+        .product-card:nth-child(4) {
+            animation-delay: 0.11s;
+        }
+        .product-card:nth-child(5) {
+            animation-delay: 0.14s;
+        }
+        .product-card:nth-child(6) {
+            animation-delay: 0.17s;
+        }
+        .product-card:nth-child(7) {
+            animation-delay: 0.20s;
+        }
+        .product-card:nth-child(8) {
+            animation-delay: 0.23s;
+        }
+        .product-card:nth-child(9) {
+            animation-delay: 0.26s;
+        }
+        .product-card:nth-child(10) {
+            animation-delay: 0.29s;
+        }
+        .product-card:nth-child(11) {
+            animation-delay: 0.32s;
+        }
+        .product-card:nth-child(12) {
+            animation-delay: 0.35s;
+        }
+        .product-card:nth-child(13) {
+            animation-delay: 0.38s;
+        }
+        .product-card:nth-child(14) {
+            animation-delay: 0.41s;
+        }
+        .product-card:nth-child(15) {
+            animation-delay: 0.44s;
+        }
+        .product-card:nth-child(16) {
+            animation-delay: 0.47s;
+        }
+        .product-card:nth-child(17) {
+            animation-delay: 0.50s;
+        }
+        .product-card:nth-child(18) {
+            animation-delay: 0.53s;
+        }
+        .product-card:nth-child(19) {
+            animation-delay: 0.56s;
+        }
+        .product-card:nth-child(20) {
+            animation-delay: 0.59s;
+        }
+        .product-card:nth-child(21) {
+            animation-delay: 0.62s;
+        }
+        .product-card:nth-child(22) {
+            animation-delay: 0.65s;
+        }
+        .product-card:nth-child(23) {
+            animation-delay: 0.68s;
+        }
+        .product-card:nth-child(24) {
+            animation-delay: 0.71s;
+        }
+        .product-card:nth-child(25) {
+            animation-delay: 0.74s;
+        }
+        .product-card:nth-child(26) {
+            animation-delay: 0.77s;
+        }
+        .product-card:nth-child(27) {
+            animation-delay: 0.80s;
+        }
+        .product-card:nth-child(28) {
+            animation-delay: 0.83s;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1024px) {
+            .shop-hero h1 {
+                font-size: 2.6rem;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 22px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-header {
+                width: 96%;
                 top: 10px;
             }
             .nav-links {
                 position: fixed;
-                top: 75px;
+                top: 72px;
                 right: -100%;
-                background: var(--bg-card);
+                background: var(--bg-surface);
+                backdrop-filter: blur(20px);
                 width: 280px;
-                height: calc(100vh - 90px);
+                height: calc(100vh - 80px);
                 flex-direction: column;
-                padding: 30px 20px;
-                border-radius: 24px;
-                border: 1px solid var(--border-color);
+                padding: 24px 16px;
+                border-radius: var(--radius-lg);
+                border: var(--card-border);
                 box-shadow: var(--shadow-xl);
-                transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-                align-items: flex-start;
-                gap: 4px;
+                transition: right 0.4s var(--transition-smooth);
+                align-items: stretch;
+                gap: 2px;
+                overflow-y: auto;
             }
             .nav-links a {
                 width: 100%;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 padding: 10px 16px;
             }
-            .nav-links a::after {
+            .nav-links a::before {
                 display: none;
             }
             .nav-links.active {
@@ -903,119 +1672,218 @@
                 align-items: center;
                 justify-content: center;
             }
-            .shop-hero h1 {
-                font-size: 2.2rem;
-            }
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-                gap: 20px;
-            }
-        }
 
-        @media (max-width: 576px) {
             .shop-hero {
-                padding-top: 120px;
+                padding-top: 110px;
                 padding-bottom: 20px;
             }
             .shop-hero h1 {
-                font-size: 1.7rem;
+                font-size: 2rem;
             }
-            .shop-hero p {
+            .shop-hero .subtitle {
                 font-size: 0.95rem;
             }
+            .shop-hero .hero-stats {
+                gap: 20px;
+            }
+            .shop-hero .hero-stats .stat .num {
+                font-size: 1.2rem;
+            }
+
             .filter-bar {
-                border-radius: 30px;
-                padding: 10px 14px;
-                gap: 6px;
-                margin: 10px auto 25px;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px 16px;
+                gap: 10px;
+                border-radius: var(--radius-md);
+            }
+            .filter-bar .filter-group {
+                justify-content: center;
+                gap: 4px;
             }
             .filter-btn {
-                font-size: 0.7rem;
-                padding: 6px 14px;
+                font-size: 0.65rem;
+                padding: 5px 12px;
+                gap: 3px;
             }
+            .filter-btn i {
+                font-size: 0.6rem;
+            }
+            .filter-bar .search-wrap {
+                margin-left: 0;
+                min-width: unset;
+            }
+            .filter-bar .filter-count {
+                text-align: center;
+                font-size: 0.7rem;
+            }
+
             .product-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 14px;
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+                gap: 16px;
             }
             .product-card {
-                padding: 14px 14px 16px;
+                padding: 12px 12px 16px;
+                border-radius: var(--radius-md);
             }
             .product-img-wrapper {
-                height: 140px;
+                aspect-ratio: 1/1;
+                border-radius: var(--radius-sm);
+                margin-bottom: 12px;
             }
             .product-title {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
             .product-price {
                 font-size: 1.1rem;
             }
             .product-desc {
-                font-size: 0.78rem;
-                margin: 4px 0 10px;
-            }
-            .product-meta {
+                font-size: 0.75rem;
+                -webkit-line-clamp: 2;
                 margin-bottom: 10px;
             }
-            .product-card .btn-whatsapp {
-                font-size: 0.75rem;
-                padding: 8px 10px;
+            .product-card .btn-add-cart {
+                font-size: 0.78rem;
+                padding: 10px 12px;
+                gap: 8px;
             }
             .product-badge {
                 font-size: 0.5rem;
                 padding: 2px 10px;
             }
             .product-meta-tag {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
                 padding: 2px 10px;
             }
-            .section-title h2 {
-                font-size: 1.6rem;
+            .product-card .wishlist-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.75rem;
+                top: 10px;
+                right: 10px;
+                opacity: 1;
+                transform: scale(1);
+            }
+            .product-img-wrapper .gallery-hint {
+                display: none;
+            }
+            .product-img-wrapper .zoom-hint-mobile {
+                font-size: 0.45rem;
+                padding: 2px 12px;
+                bottom: 8px;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                max-width: 100%;
+                right: -100%;
+                border-radius: 0;
+            }
+            .cart-sidebar.open {
+                right: 0;
+            }
+
+            .toast-container {
+                bottom: 16px;
+                right: 16px;
+                left: 16px;
+                max-width: unset;
+            }
+            .toast {
+                padding: 12px 16px;
+                font-size: 0.8rem;
+            }
+
+            .back-to-top {
+                bottom: 16px;
+                right: 16px;
+                width: 42px;
+                height: 42px;
+                font-size: 0.95rem;
             }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 420px) {
             .product-grid {
-                grid-template-columns: 1fr;
-                max-width: 300px;
-                margin: 0 auto;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .product-card {
+                padding: 10px 10px 14px;
+                border-radius: var(--radius-sm);
             }
             .product-img-wrapper {
-                height: 180px;
+                aspect-ratio: 1/1;
             }
-        }
-
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-blue);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-hover);
+            .product-title {
+                font-size: 0.78rem;
+            }
+            .product-price {
+                font-size: 0.95rem;
+            }
+            .product-price .old-price {
+                font-size: 0.65rem;
+            }
+            .product-desc {
+                font-size: 0.68rem;
+                -webkit-line-clamp: 1;
+                margin-bottom: 8px;
+            }
+            .product-card .btn-add-cart {
+                font-size: 0.68rem;
+                padding: 8px 10px;
+                gap: 6px;
+            }
+            .product-meta {
+                margin-bottom: 10px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .product-meta-tag {
+                font-size: 0.5rem;
+                padding: 1px 8px;
+            }
+            .product-badge {
+                font-size: 0.45rem;
+                padding: 1px 8px;
+                gap: 3px;
+            }
+            .shop-hero h1 {
+                font-size: 1.6rem;
+            }
+            .shop-hero .subtitle {
+                font-size: 0.85rem;
+            }
+            .filter-btn {
+                font-size: 0.6rem;
+                padding: 4px 10px;
+            }
+            .filter-bar .filter-group {
+                gap: 3px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== INTERACTIVE CANVAS BACKGROUND ===== -->
-    <canvas id="bg-canvas"></canvas>
-
     <!-- ===== PRELOADER ===== -->
     <div id="preloader">
-        <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Dahanake Music Academy Logo" class="loader-logo" />
-        <div class="loader-spinner"></div>
-        <div class="loader-text">🎵 Loading Shop...</div>
+        <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Logo" class="loader-logo" />
+        <div class="loader-ring"></div>
+    </div>
+
+    <!-- ===== ANIMATED BACKGROUND ORBS ===== -->
+    <div class="bg-orbs">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
     </div>
 
     <!-- ===== NAVBAR ===== -->
     <header class="nav-header" id="navHeader">
         <nav class="navbar">
-            <a href="../index.html" class="logo-container">
+            <a href="../../index.html" class="logo-container">
                 <img src="https://drive.google.com/thumbnail?id=1UNLdjr75I0vUXj8VktxMRWs3dWzTl7DJ&sz=w500" alt="Logo" class="logo-img" />
                 <div class="logo-text">
                     <h1>Dahanake</h1>
@@ -1026,7 +1894,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="../../index.html#home">Home</a></li>
                 <li><a href="../../index.html#gallery">Gallery</a></li>
-                <li><a href="../../index.html#about">About Us</a></li>
+                <li><a href="../../index.html#about">About</a></li>
                 <li><a href="../../index.html#instructors">Instructors</a></li>
                 <li><a href="../../index.html#courses">Courses</a></li>
                 <li><a href="shop.html" class="active">Shop</a></li>
@@ -1035,9 +1903,13 @@
                 <li><a href="../../index.html#contact">Contact</a></li>
             </ul>
 
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
-                    <i class="fa-solid fa-sun"></i>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fa-regular fa-sun"></i>
+                </button>
+                <button class="cart-toggle" id="cartToggle" title="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
                 </button>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fa-solid fa-bars"></i>
@@ -1046,558 +1918,100 @@
         </nav>
     </header>
 
-    <!-- ===== SHOP HERO ===== -->
-    <section class="shop-hero reveal">
-        <h1><span>Dahanake Music Shop</span></h1>
-        <p>උසස් තත්ත්වයේ සංගීත භාණ්ඩ, අමතර උපාංග සහ ශාස්ත්‍රීය සංගීත පොත්පත් එකම තැනකින් ලබාගන්න.</p>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); opacity: 0.7;">
-            <i class="fa-solid fa-whatsapp" style="color: #25d366;"></i> ඇණවුම් සඳහා WhatsApp මගින් අප හා සම්බන්ධ වන්න
-        </p>
+    <!-- ===== HERO ===== -->
+    <section class="shop-hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-music"></i> Premium Music Store
+        </div>
+        <h1>
+            <span class="highlight">Dahanake</span> Music Shop
+        </h1>
+        <p class="subtitle">High-quality instruments, accessories &amp; books — all in one place.</p>
+        <p class="subtitle-si">උසස් තත්ත්වයේ සංගීත භාණ්ඩ, අමතර උපාංග සහ ශාස්ත්‍රීය සංගීත පොත්පත්.</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="num" id="productCount">0</span>
+                <span class="label">Products</span>
+            </div>
+            <div class="stat">
+                <span class="num">24/7</span>
+                <span class="label">Support</span>
+            </div>
+            <div class="stat">
+                <span class="num"><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i></span>
+                <span class="label">Order via WhatsApp</span>
+            </div>
+        </div>
     </section>
 
     <!-- ===== FILTER BAR ===== -->
-    <div class="filter-bar reveal" id="filterBar">
-        <button class="filter-btn active" data-filter="all">All Items</button>
-        <button class="filter-btn" data-filter="instrument">Instruments</button>
-        <button class="filter-btn" data-filter="book">Books &amp; Guides</button>
-        <button class="filter-btn" data-filter="accessory">Accessories</button>
-        <button class="filter-btn" data-filter="promo">🔥 Special Offers</button>
+    <div class="filter-section">
+        <div class="filter-bar" id="filterBar">
+            <div class="filter-group" id="filterGroup">
+                <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-grid-2"></i> All</button>
+                <button class="filter-btn" data-filter="instrument"><i class="fa-solid fa-music"></i> Instruments</button>
+                <button class="filter-btn" data-filter="violin"><i class="fa-solid fa-violin"></i> Violin</button>
+                <button class="filter-btn" data-filter="keyboard"><i class="fa-solid fa-keyboard"></i> Keyboard</button>
+                <button class="filter-btn" data-filter="book"><i class="fa-solid fa-book"></i> Books</button>
+                <button class="filter-btn" data-filter="accessory"><i class="fa-solid fa-sliders"></i> Accessories</button>
+                <button class="filter-btn" data-filter="promo"><i class="fa-solid fa-fire"></i> Offers</button>
+            </div>
+            <div class="search-wrap">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off" />
+                <button class="clear-search" id="clearSearch"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <span class="filter-count" id="filterCount">0 items</span>
+        </div>
     </div>
 
     <!-- ===== PRODUCT GRID ===== -->
-    <section style="padding: 0 20px 60px; max-width: 1300px; margin: 0 auto; position: relative; z-index: 1;">
-        <div class="product-grid stagger" id="productGrid">
-
-            <!-- ========== INSTRUMENTS ========== -->
-
-            <!-- Product 1: Violin Set -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Student Violin Set" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">Student Violin Full Set (4/4)</h4>
-                <span class="product-sub">ආධුනිකයන් සහ ප්‍රවීණයන් සඳහා</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> Bow, Hard Case, Rosin ඇතුළත් උසස් තත්ත්වයේ වයලීන් කට්ටලය.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 38,500</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Student%20Violin%20Set%20(LKR%2038,500)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 2: Tabla Pair -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=500" alt="Professional Tabla Pair" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-drum"></i> Instrument</span>
-                <h4 class="product-title">Professional Tabla Pair</h4>
-                <span class="product-sub">භාත්ඛණ්ඩේ සහ ප්‍රයාග් විභාග සඳහා</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> නියමිත තාරතාවයට Adjust කළ හැකි තබ්ලා සහ බායා කට්ටලය.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 45,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Tabla%20Pair%20(LKR%2045,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 3: Acoustic Guitar -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=500" alt="Acoustic Guitar" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-guitar"></i> Instrument</span>
-                <h4 class="product-title">Acoustic Guitar Full Kit</h4>
-                <span class="product-sub">ස්වාභාවික ලීයෙන් නිමවූ ඇකෝස්ටික්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> Carrying Bag සහ Picks ඇතුළත්. සුපැහැදිලි ශබ්දයක් සහිතයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 32,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Acoustic%20Guitar%20Kit%20(LKR%2032,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 4: Sitar -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=500" alt="Sitar" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-circle"></i> Instrument</span>
-                <h4 class="product-title">Professional Sitar</h4>
-                <span class="product-sub">හින්දුස්ථානී සම්භාව්‍ය සඳහා</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> උසස් තත්ත්වයේ සිතාරය, සම්පූර්ණ උපාංග සහිතයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 62,500</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Professional%20Sitar%20(LKR%2062,500)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 5: Harmonium -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=500" alt="Harmonium" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-wind"></i> Instrument</span>
-                <h4 class="product-title">Harmonium (9-Stop)</h4>
-                <span class="product-sub">භජන්, කීර්තන සහ සම්භාව්‍ය සඳහා</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> පැහැදිලි ශබ්දයක් සහිත උසස් තත්ත්වයේ හාමෝනියමය.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 28,500</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Harmonium%20(LKR%2028,500)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- ============================================================ -->
-            <!-- 🆕 NEW PRODUCTS: Violins (Lak, Super Lak, Cadenza, Carolina, Niro, Rowella, German, Electric, German Use) + Organ + Mandolin -->
-            <!-- ============================================================ -->
-
-            <!-- Product 6: ලාක් වයලින් (Lak Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Lak Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">ලාක් වයලින්</h4>
-                <span class="product-sub">උසස් තත්ත්වයේ ශ්‍රේණියේ වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> පැහැදිලි ශබ්දයක් සහිත ලාක් සන්නාමයේ උසස් වයලීන්. ආධුනික හා වෘත්තීය සංගීතඥයන් සඳහා සුදුසුයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 35,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Lak%20Violin%20(LKR%2035,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 7: සුපර් ලාක් වයලින් (Super Lak Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Super Lak Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">සුපර් ලාක් වයලින්</h4>
-                <span class="product-sub">වෘත්තීය මට්ටමේ සුපිරි වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> උසස් ශබ්ද ගුණාත්මක භාවයක් සහිත සුපර් ලාක් වයලීන්. ප්‍රසංග හා වාදන විභාග සඳහා නිර්දේශිත.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 42,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Super%20Lak%20Violin%20(LKR%2042,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 8: කැඩෙන්සා වයලින් (Cadenza Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Cadenza Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">කැඩෙන්සා වයලින්</h4>
-                <span class="product-sub">ඉතාලි ශෛලියේ අතිරේක තාක්ෂණය</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> කැඩෙන්සා සන්නාමයේ උසස් තත්ත්වයේ වයලීන්. පොහොසත් හා ගැඹුරු ශබ්දයක් ලබා දෙයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 39,500</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Cadenza%20Violin%20(LKR%2039,500)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 9: කැරොලිනා වයලින් (Carolina Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Carolina Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">කැරොලිනා වයලින්</h4>
-                <span class="product-sub">මධ්යම ශ්‍රේණියේ වෘත්තීය වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> කැරොලිනා සන්නාමයේ සුවිශේෂී ශබ්ද ගුණයක් සහිත වයලීන්. පාසල් හා විභාග සඳහා සුදුසුයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 36,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Carolina%20Violin%20(LKR%2036,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 10: නිරො වයලින් (Niro Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Niro Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">නිරො වයලින්</h4>
-                <span class="product-sub">ජපන් තාක්ෂණයෙන් නිමැවුණු වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> නිරො සන්නාමයේ නිරවද්‍යතාවයෙන් යුත් වයලීන්. සියුම් හා සංවේදී ශබ්දයක් සහිතයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 41,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Niro%20Violin%20(LKR%2041,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 11: රොවෙල්ලා වයලින් (Rowella Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Rowella Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">රොවෙල්ලා වයලින්</h4>
-                <span class="product-sub">ඉතාලි ආභාෂයෙන් නිර්මිත වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> රොවෙල්ලා සන්නාමයේ කලාත්මක හා පොහොසත් ශබ්දයක් සහිත වයලීන්.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 44,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Rowella%20Violin%20(LKR%2044,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 12: ගෙර්මන් වයලින් (German Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="German Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">ගෙර්මන් වයලින්</h4>
-                <span class="product-sub">ජර්මානු සම්භාව්‍ය ශෛලියේ වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> ජර්මනියේ සම්ප්‍රදායික ශිල්පීය ක්‍රමයෙන් නිමැවුණු උසස් වයලීන්. පැහැදිලි හා උණුසුම් ශබ්දයක් සහිතයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 48,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20German%20Violin%20(LKR%2048,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 13: ඉලෙක්ට්‍රික් වයලින් (Electric Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Electric Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-bolt"></i> Instrument</span>
-                <h4 class="product-title">ඉලෙක්ට්‍රික් වයලින්</h4>
-                <span class="product-sub">නවීන විද්‍යුත් වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> සම්භාව්‍ය හා නවීන සංගීතය සඳහා සුදුසු ඉලෙක්ට්‍රික් වයලීන්. Amplifier හා විවිධ Effects සමග භාවිතා කළ හැක.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 55,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Electric%20Violin%20(LKR%2055,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 14: ගෙර්මන් USE වයලින් (German Use Violin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="German Use Violin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-violin"></i> Instrument</span>
-                <h4 class="product-title">ගෙර්මන් USE වයලින්</h4>
-                <span class="product-sub">බහුකාර්ය ජර්මානු වයලීන්</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> විවිධ සංගීත ප්‍රභේද සඳහා සුදුසු ගෙර්මන් USE වයලීන්. උසස් ශබ්ද ගුණාත්මක භාවයක් සහිතයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 38,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20German%20Use%20Violin%20(LKR%2038,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 15: ඔර්ගන් (Organ) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1601844755969-3ba1e4dc6c8f?q=80&w=500" alt="Organ" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-keyboard"></i> Instrument</span>
-                <h4 class="product-title">ඔර්ගන් (Organ)</h4>
-                <span class="product-sub">පල්ලි හා සම්භාව්‍ය සංගීතය සඳහා</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> බහු ස්ටෝප් සහිත උසස් තත්ත්වයේ ඔර්ගන්. පල්ලි, ප්‍රසංග හා සම්භාව්‍ය සංගීතය සඳහා සුදුසුයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 65,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Organ%20(LKR%2065,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 16: මැන්ඩලින් (Mandolin) -->
-            <div class="product-card" data-category="instrument">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=500" alt="Mandolin" loading="lazy" />
-                </div>
-                <span class="product-badge instrument"><i class="fa-solid fa-guitar"></i> Instrument</span>
-                <h4 class="product-title">මැන්ඩලින් (Mandolin)</h4>
-                <span class="product-sub">ඉතාලි සම්භවයක් සහිත තත් වාද්‍ය භාණ්ඩය</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> පැහැදිලි හා මිහිරි ශබ්දයක් සහිත මැන්ඩලින්. ජන හා සම්භාව්‍ය සංගීතය සඳහා සුදුසුයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 28,000</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Mandolin%20(LKR%2028,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- ========== BOOKS & GUIDES ========== -->
-
-            <!-- Product 17: Ragadhari Book -->
-            <div class="product-card" data-category="book">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=500" alt="Ragadhari Music Book" loading="lazy" />
-                </div>
-                <span class="product-badge book"><i class="fa-solid fa-book"></i> Book</span>
-                <h4 class="product-title">රාගධාරී සංගීත ප්‍රවේශය</h4>
-                <span class="product-sub">O/L, A/L සහ විශාරද විභාග සඳහා</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> රාග, තාල සහ ශාස්ත්‍රීය න්‍යාය ඇතුළත් පූර්ණ මාර්ගෝපදේශය.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 1,200</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-book-open"></i> Printed</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20order%20the%20Ragadhari%20Music%20Book%20(LKR%201,200)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 18: Theory Guide -->
-            <div class="product-card" data-category="book">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=500" alt="Music Theory Guide" loading="lazy" />
-                </div>
-                <span class="product-badge book"><i class="fa-solid fa-book-open"></i> Book</span>
-                <h4 class="product-title">සංගීත න්‍යාය මාර්ගෝපදේශය</h4>
-                <span class="product-sub">ABRSM, Trinity සහ ප්‍රාදේශීය විභාග</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> ස්වර ලේඛනය, තාල, අන්තරාල හා සංගීත පද ඇතුළත්.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 1,800</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-book-open"></i> Printed</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20order%20the%20Music%20Theory%20Guide%20(LKR%201,800)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 19: Vocal Exercise Book -->
-            <div class="product-card" data-category="book">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=500" alt="Vocal Exercise Book" loading="lazy" />
-                </div>
-                <span class="product-badge book"><i class="fa-solid fa-microphone"></i> Book</span>
-                <h4 class="product-title">වාචික අභ්‍යාස සංග්‍රහය</h4>
-                <span class="product-sub">ගායන පුහුණුව සඳහා</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> ස්වර අභ්‍යාස, රාග ධ්‍යානය සහ ගායන ශිල්පීය ක්‍රම.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 950</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-book-open"></i> Printed</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20order%20the%20Vocal%20Exercise%20Book%20(LKR%20950)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- ========== ACCESSORIES ========== -->
-
-            <!-- Product 20: Digital Tuner -->
-            <div class="product-card" data-category="accessory">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=500" alt="Digital Tuner" loading="lazy" />
-                </div>
-                <span class="product-badge accessory"><i class="fa-solid fa-sliders"></i> Accessory</span>
-                <h4 class="product-title">Clip-on Digital Tuner</h4>
-                <span class="product-sub">Fast &amp; Accurate Tuning</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> වයලීන්, ගිටාර් ඇතුළු ඕනෑම භාණ්ඩයක් නිවැරදි තාරතාවයට.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 2,800</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-check"></i> In Stock</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Digital%20Tuner%20(LKR%202,800)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 21: Violin Strings + Rosin -->
-            <div class="product-card" data-category="accessory">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=500" alt="Violin Strings and Rosin" loading="lazy" />
-                </div>
-                <span class="product-badge accessory"><i class="fa-solid fa-circle"></i> Accessory</span>
-                <h4 class="product-title">Violin Strings Set + Rosin</h4>
-                <span class="product-sub">Alice A703 + Premium Rosin</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> ශබ්දයේ පැහැදිලි බව වැඩි කරන Premium Quality උපාංග.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 2,200</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Violin%20Strings%20and%20Rosin%20(LKR%202,200)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 22: Guitar Picks Set -->
-            <div class="product-card" data-category="accessory">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=500" alt="Guitar Picks Set" loading="lazy" />
-                </div>
-                <span class="product-badge accessory"><i class="fa-solid fa-guitar"></i> Accessory</span>
-                <h4 class="product-title">Guitar Picks (Set of 6)</h4>
-                <span class="product-sub">විවිධ ඝනකම් සහිත</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> ඇකෝස්ටික් සහ ඉලෙක්ට්‍රික් ගිටාර් සඳහා සුදුසුයි.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 650</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-check"></i> In Stock</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Guitar%20Picks%20Set%20(LKR%20650)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- Product 23: Metronome -->
-            <div class="product-card" data-category="accessory">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=500" alt="Metronome" loading="lazy" />
-                </div>
-                <span class="product-badge accessory"><i class="fa-solid fa-stopwatch"></i> Accessory</span>
-                <h4 class="product-title">Digital Metronome</h4>
-                <span class="product-sub">තාලය නිවැරදිව පුහුණු වීමට</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> විවිධ බීට් රටා සහිත ඩිජිටල් මෙට්‍රොනෝමය.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price">LKR 3,200</span>
-                    <span class="product-meta-tag"><i class="fa-solid fa-truck"></i> Islandwide</span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Digital%20Metronome%20(LKR%203,200)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
-                </a>
-            </div>
-
-            <!-- ========== SPECIAL OFFERS (PROMO) ========== -->
-
-            <!-- Product 24: Combo Offer (Violin + Tuner) -->
-            <div class="product-card" data-category="promo">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?q=80&w=500" alt="Violin + Tuner Combo" loading="lazy" />
-                </div>
-                <span class="product-badge promo"><i class="fa-solid fa-fire"></i> Special Offer</span>
-                <h4 class="product-title">🎁 Violin + Tuner Combo</h4>
-                <span class="product-sub">සම්පූර්ණ වයලීන් කට්ටලය + ඩිජිටල් ටියුනරය</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> Student Violin Set + Clip-on Tuner එකට මිලදී ගන්න.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price" style="color: #b91c1c;">LKR 40,000</span>
-                    <span class="product-meta-tag" style="background: #fce4ec; color: #b91c1c; border-color: #fecdd3;">
-                        <i class="fa-solid fa-tag"></i> Save LKR 1,300
-                    </span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Violin%20%2B%20Tuner%20Combo%20(LKR%2040,000)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Grab This Offer
-                </a>
-            </div>
-
-            <!-- Product 25: Tabla + Book Combo -->
-            <div class="product-card" data-category="promo">
-                <div class="product-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=500" alt="Tabla + Book Combo" loading="lazy" />
-                </div>
-                <span class="product-badge promo"><i class="fa-solid fa-fire"></i> Special Offer</span>
-                <h4 class="product-title">🎁 Tabla + Theory Book Combo</h4>
-                <span class="product-sub">තබ්ලා කට්ටලය + රාගධාරී පොත</span>
-                <p class="product-desc">
-                    <i class="fa-solid fa-check-circle"></i> Professional Tabla Pair + Ragadhari Music Book එකට.
-                </p>
-                <div class="product-meta">
-                    <span class="product-price" style="color: #b91c1c;">LKR 45,800</span>
-                    <span class="product-meta-tag" style="background: #fce4ec; color: #b91c1c; border-color: #fecdd3;">
-                        <i class="fa-solid fa-tag"></i> Save LKR 1,400
-                    </span>
-                </div>
-                <a href="https://wa.me/94772660756?text=I%20would%20like%20to%20buy%20the%20Tabla%20%2B%20Book%20Combo%20(LKR%2045,800)" target="_blank" class="btn btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Grab This Offer
-                </a>
-            </div>
-
-            <!-- ===== EMPTY STATE (hidden by default) ===== -->
-            <div class="empty-state" id="emptyState">
-                <i class="fa-solid fa-box-open"></i>
-                <h3>No items found</h3>
-                <p style="color: var(--text-secondary);">Try selecting a different category.</p>
-            </div>
-
+    <section class="products-section">
+        <div class="product-grid" id="productGrid">
+            <!-- Products will be rendered by JavaScript -->
+        </div>
+        <div class="empty-state" id="emptyState">
+            <i class="fa-regular fa-face-frown"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your filters or search.</p>
         </div>
     </section>
 
     <!-- ===== BACK TO TOP ===== -->
     <button class="back-to-top" id="backToTop" title="Back to Top">
         <i class="fa-solid fa-arrow-up"></i>
+        <svg class="progress-ring" viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="20" />
+        </svg>
     </button>
+
+    <!-- ===== CART SIDEBAR ===== -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fa-solid fa-bag-shopping"></i> Your Cart <span id="cartItemCount">0</span></h2>
+            <button class="cart-close" id="cartClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fa-regular fa-cart-plus"></i>
+                <p>Your cart is empty</p>
+                <span style="font-size:0.8rem;color:var(--text-muted);">Add some music gear!</span>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="total-price" id="cartTotal">LKR 0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fa-brands fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <!-- ===== FOOTER ===== -->
     <footer>
@@ -1605,285 +2019,948 @@
     </footer>
 
     <!-- ============================================================
-    JAVASCRIPT
+    JAVASCRIPT — Full Modern Experience
     ============================================================ -->
     <script>
         // ============================================================
-        // 1. PRELOADER
+        // DATA — All products with new Keyboard & Tabla items
         // ============================================================
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 600);
-        });
+        const productsData = [{
+            id: 1,
+            name: 'Normal Lark Violin Full Set (4/4)',
+            sub: 'ආධුනිකයන් සඳහා',
+            desc: 'Bow, Hard Case, Rosin ඇතුළත් උසස් තත්ත්වයේ වයලීන් කට්ටලය.',
+            price: 13500,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindowun.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'lark%20Violin%20Set%20(LKR%2013,500)'
+        }, {
+            id: 2,
+            name: 'Professional Tabla Pair',
+            sub: 'භාත්ඛණ්ඩේ සහ ප්‍රයාග් විභාග සඳහා',
+            desc: 'නියමිත තාරතාවයට Adjust කළ හැකි තබ්ලා සහ බායා කට්ටලය.',
+            price: 35500,
+            category: 'instrument',
+            badge: 'Instrument',
+            badgeIcon: 'fa-solid fa-drum',
+            image: 'img/thabla1.jpeg',
+            images: ['img/thabla3.jpeg', 'img/thabla2.jpeg', 'img/thabla1.jpeg'],
+            tag: 'In Stock',
+            tagIcon: 'fa-solid fa-check',
+            whatsapp: 'Tabla%20Pair%20(LKR%2035,500)'
+        }, {
+            id: 3,
+            name: 'Acoustic Guitar Full Kit',
+            sub: 'ස්වාභාවික ලීයෙන් නිමවූ ඇකෝස්ටික්',
+            desc: 'Carrying Bag සහ Picks ඇතුළත්. සුපැහැදිලි ශබ්දයක් සහිතයි.',
+            price: 49000,
+            category: 'instrument',
+            badge: 'Instrument',
+            badgeIcon: 'fa-solid fa-guitar',
+            image: 'img/g2.jpeg',
+            images: ['img/g1.jpeg', 'img/g3.jpeg', 'img/g2.jpeg', 'img/g4.jpeg', 'img/g5.jpeg', 'img/g6.jpeg'],
+            tag: 'In Stock',
+            tagIcon: 'fa-solid fa-check',
+            whatsapp: 'Acoustic%20Guitar%20Kit%20(LKR%2032,000)'
+        }, {
+            id: 4,
+            name: 'Professional Sitar',
+            sub: 'හින්දුස්ථානී සම්භාව්‍ය සඳහා',
+            desc: 'උසස් තත්ත්වයේ සිතාරය, සම්පූර්ණ උපාංග සහිතයි.',
+            price: 100500,
+            category: 'instrument',
+            badge: 'Instrument',
+            badgeIcon: 'fa-solid fa-circle',
+            image: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Professional%20Sitar%20(LKR%2062,500)'
+        }, {
+            id: 5,
+            name: 'Harmonium (9-Stop)',
+            sub: 'භජන්, කීර්තන සහ සම්භාව්‍ය සඳහා',
+            desc: 'පැහැදිලි ශබ්දයක් සහිත උසස් තත්ත්වයේ හාමෝනියමය.',
+            price: 100500,
+            category: 'instrument',
+            badge: 'Instrument',
+            badgeIcon: 'fa-solid fa-wind',
+            image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Harmonium%20(LKR%2028,500)'
+        }, {
+            id: 6,
+            name: 'ලාක් වයලින් (Lak Violin)',
+            sub: 'උසස් තත්ත්වයේ ශ්‍රේණියේ වයලීන්',
+            desc: 'පැහැදිලි ශබ්දයක් සහිත ලාක් සන්නාමයේ උසස් වයලීන්.',
+            price: 35000,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindown.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Lak%20Violin%20(LKR%2035,000)'
+        }, {
+            id: 7,
+            name: 'සුපර් ලාක් වයලින් (Super Lak)',
+            sub: 'වෘත්තීය මට්ටමේ සුපිරි වයලීන්',
+            desc: 'උසස් ශබ්ද ගුණාත්මක භාවයක් සහිත සුපර් ලාක් වයලීන්.',
+            price: 42000,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindown.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Super%20Lak%20Violin%20(LKR%2042,000)'
+        }, {
+            id: 8,
+            name: 'කැඩෙන්සා වයලින් (Cadenza)',
+            sub: 'ඉතාලි ශෛලියේ අතිරේක තාක්ෂණය',
+            desc: 'කැඩෙන්සා සන්නාමයේ උසස් තත්ත්වයේ වයලීන්. පොහොසත් ශබ්දයක්.',
+            price: 39500,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindown.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Cadenza%20Violin%20(LKR%2039,500)'
+        }, {
+            id: 9,
+            name: 'Carolina CV 100 Violin',
+            sub: 'මධ්යම ශ්‍රේණියේ වෘත්තීය වයලීන්',
+            desc: 'කැරොලිනා සන්නාමයේ සුවිශේෂී ශබ්ද ගුණයක් සහිත වයලීන්.',
+            price: 31500,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/cv1.jpeg',
+            images: ['img/cv2.jpeg', 'img/cv3.jpeg', 'img/cv4.jpeg', 'img/cv1.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Carolina%20Violin%20(LKR%2031,500)'
+        }, {
+            id: 10,
+            name: 'නිරො වයලින් (Niro Violin)',
+            sub: 'ජපන් තාක්ෂණයෙන් නිමැවුණු වයලීන්',
+            desc: 'නිරො සන්නාමයේ නිරවද්‍යතාවයෙන් යුත් වයලීන්.',
+            price: 22500,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/niro1.webp',
+            images: ['img/niro2.jpeg', 'img/niro3.jpeg', 'img/niro4.jpeg', 'img/niro5.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Niro%20Violin%20(LKR%2041,000)'
+        }, {
+            id: 11,
+            name: 'රොවෙල්ලා වයලින් (Rowella)',
+            sub: 'ඉතාලි ආභාෂයෙන් නිර්මිත වයලීන්',
+            desc: 'රොවෙල්ලා සන්නාමයේ කලාත්මක හා පොහොසත් ශබ්දයක් සහිත වයලීන්.',
+            price: 44000,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/rowella.webp',
+            images: ['img/rowella.webp', 'img/rowella.webp'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Rowella%20Violin%20(LKR%2044,000)'
+        }, {
+            id: 12,
+            name: 'ගෙර්මන් වයලින් (German)',
+            sub: 'ජර්මානු සම්භාව්‍ය ශෛලියේ වයලීන්',
+            desc: 'ජර්මනියේ සම්ප්‍රදායික ශිල්පීය ක්‍රමයෙන් නිමැවුණු උසස් වයලීන්.',
+            price: 48000,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindown.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'German%20Violin%20(LKR%2048,000)'
+        }, {
+            id: 13,
+            name: 'ඉලෙක්ට්‍රික් වයලින් (Electric)',
+            sub: 'නවීන විද්‍යුත් වයලීන්',
+            desc: 'සම්භාව්‍ය හා නවීන සංගීතය සඳහා සුදුසු ඉලෙක්ට්‍රික් වයලීන්.',
+            price: 55000,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-bolt',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindown.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Electric%20Violin%20(LKR%2055,000)'
+        }, {
+            id: 14,
+            name: 'ගෙර්මන් USE වයලින්',
+            sub: 'බහුකාර්ය ජර්මානු වයලීන්',
+            desc: 'විවිධ සංගීත ප්‍රභේද සඳහා සුදුසු ගෙර්මන් USE වයලීන්.',
+            price: 38000,
+            category: 'violin',
+            badge: 'Violin',
+            badgeIcon: 'fa-solid fa-violin',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindown.jpeg'],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'German%20Use%20Violin%20(LKR%2038,000)'
+        }, {
+            id: 15,
+            name: 'ඔර්ගන් (Organ)',
+            sub: 'පල්ලි හා සම්භාව්‍ය සංගීතය සඳහා',
+            desc: 'බහු ස්ටෝප් සහිත උසස් තත්ත්වයේ ඔර්ගන්.',
+            price: 65000,
+            category: 'instrument',
+            badge: 'Instrument',
+            badgeIcon: 'fa-solid fa-keyboard',
+            image: 'https://images.unsplash.com/photo-1601844755969-3ba1e4dc6c8f?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Organ%20(LKR%2065,000)'
+        }, {
+            id: 16,
+            name: 'මැන්ඩලින් (Mandolin)',
+            sub: 'ඉතාලි සම්භවයක් සහිත තත් වාද්‍ය භාණ්ඩය',
+            desc: 'පැහැදිලි හා මිහිරි ශබ්දයක් සහිත මැන්ඩලින්.',
+            price: 28000,
+            category: 'instrument',
+            badge: 'Instrument',
+            badgeIcon: 'fa-solid fa-guitar',
+            image: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Mandolin%20(LKR%2028,000)'
+        }, {
+            id: 17,
+            name: 'රාගධාරී සංගීත ප්‍රවේශය',
+            sub: 'O/L, A/L සහ විශාරද විභාග සඳහා',
+            desc: 'රාග, තාල සහ ශාස්ත්‍රීය න්‍යාය ඇතුළත් පූර්ණ මාර්ගෝපදේශය.',
+            price: 1200,
+            category: 'book',
+            badge: 'Book',
+            badgeIcon: 'fa-solid fa-book',
+            image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Printed',
+            tagIcon: 'fa-solid fa-book-open',
+            whatsapp: 'Ragadhari%20Music%20Book%20(LKR%201,200)'
+        }, {
+            id: 18,
+            name: 'සංගීත න්‍යාය මාර්ගෝපදේශය',
+            sub: 'ABRSM, Trinity සහ ප්‍රාදේශීය විභාග',
+            desc: 'ස්වර ලේඛනය, තාල, අන්තරාල හා සංගීත පද ඇතුළත්.',
+            price: 1800,
+            category: 'book',
+            badge: 'Book',
+            badgeIcon: 'fa-solid fa-book-open',
+            image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Printed',
+            tagIcon: 'fa-solid fa-book-open',
+            whatsapp: 'Music%20Theory%20Guide%20(LKR%201,800)'
+        }, {
+            id: 19,
+            name: 'වාචික අභ්‍යාස සංග්‍රහය',
+            sub: 'ගායන පුහුණුව සඳහා',
+            desc: 'ස්වර අභ්‍යාස, රාග ධ්‍යානය සහ ගායන ශිල්පීය ක්‍රම.',
+            price: 950,
+            category: 'book',
+            badge: 'Book',
+            badgeIcon: 'fa-solid fa-microphone',
+            image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Printed',
+            tagIcon: 'fa-solid fa-book-open',
+            whatsapp: 'Vocal%20Exercise%20Book%20(LKR%20950)'
+        }, {
+            id: 20,
+            name: 'Clip-on Digital Tuner',
+            sub: 'Fast &amp; Accurate Tuning',
+            desc: 'වයලීන්, ගිටාර් ඇතුළු ඕනෑම භාණ්ඩයක් නිවැරදි තාරතාවයට.',
+            price: 2800,
+            category: 'accessory',
+            badge: 'Accessory',
+            badgeIcon: 'fa-solid fa-sliders',
+            image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1600&auto=format&fit=crop',
+            tag: 'In Stock',
+            tagIcon: 'fa-solid fa-check',
+            whatsapp: 'Digital%20Tuner%20(LKR%202,800)'
+        }, {
+            id: 21,
+            name: 'Violin Strings Set + Rosin',
+            sub: 'Alice A703 + Premium Rosin',
+            desc: 'ශබ්දයේ පැහැදිලි බව වැඩි කරන Premium Quality උපාංග.',
+            price: 2200,
+            category: 'accessory',
+            badge: 'Accessory',
+            badgeIcon: 'fa-solid fa-circle',
+            image: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Violin%20Strings%20and%20Rosin%20(LKR%202,200)'
+        }, {
+            id: 22,
+            name: 'Guitar Picks (Set of 6)',
+            sub: 'විවිධ ඝනකම් සහිත',
+            desc: 'ඇකෝස්ටික් සහ ඉලෙක්ට්‍රික් ගිටාර් සඳහා සුදුසුයි.',
+            price: 650,
+            category: 'accessory',
+            badge: 'Accessory',
+            badgeIcon: 'fa-solid fa-guitar',
+            image: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=1600&auto=format&fit=crop',
+            tag: 'In Stock',
+            tagIcon: 'fa-solid fa-check',
+            whatsapp: 'Guitar%20Picks%20Set%20(LKR%20650)'
+        }, {
+            id: 23,
+            name: 'Digital Metronome',
+            sub: 'තාලය නිවැරදිව පුහුණු වීමට',
+            desc: 'විවිධ බීට් රටා සහිත ඩිජිටල් මෙට්‍රොනෝමය.',
+            price: 3200,
+            category: 'accessory',
+            badge: 'Accessory',
+            badgeIcon: 'fa-solid fa-stopwatch',
+            image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Digital%20Metronome%20(LKR%203,200)'
+        }, {
+            id: 24,
+            name: '🎁 Violin + Tuner Combo',
+            sub: 'සම්පූර්ණ වයලීන් කට්ටලය + ඩිජිටල් ටියුනරය',
+            desc: 'Student Violin Set + Clip-on Tuner එකට මිලදී ගන්න.',
+            price: 40000,
+            oldPrice: 41300,
+            category: 'promo',
+            badge: 'Special Offer',
+            badgeIcon: 'fa-solid fa-fire',
+            image: 'img/larkviolinup.jpeg',
+            images: ['img/larkviolinup.jpeg', 'img/larkviolindown.jpeg'],
+            tag: 'Save LKR 1,300',
+            tagIcon: 'fa-solid fa-tag',
+            whatsapp: 'Violin%20%2B%20Tuner%20Combo%20(LKR%2040,000)',
+            promo: true
+        }, {
+            id: 25,
+            name: '🎁 Tabla + Book Combo',
+            sub: 'තබ්ලා කට්ටලය + රාගධාරී පොත',
+            desc: 'Professional Tabla Pair + Ragadhari Music Book එකට.',
+            price: 45800,
+            oldPrice: 47200,
+            category: 'promo',
+            badge: 'Special Offer',
+            badgeIcon: 'fa-solid fa-fire',
+            image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=1600&auto=format&fit=crop',
+            tag: 'Save LKR 1,400',
+            tagIcon: 'fa-solid fa-tag',
+            whatsapp: 'Tabla%20%2B%20Book%20Combo%20(LKR%2045,800)',
+            promo: true
+        },
+        // ===== NEW ITEMS =====
+        {
+            id: 26,
+            name: 'Normal Indian Tabla Set',
+            sub: 'සාමාන්ය තබ්ලා කට්ටලය',
+            desc: 'භාත්ඛණ්ඩේ සහ ප්‍රයාග් විභාග සඳහා සුදුසු මිල අඩු තබ්ලා කට්ටලයකි.',
+            price: 31000,
+            category: 'instrument',
+            badge: 'Instrument',
+            badgeIcon: 'fa-solid fa-drum',
+            image: 'img/thabla1.jpeg',
+            images: ['img/thabla3.jpeg', 'img/thabla2.jpeg', 'img/thabla1.jpeg'],
+            tag: 'In Stock',
+            tagIcon: 'fa-solid fa-check',
+            whatsapp: 'Normal%20Indian%20Tabla%20Set%20(LKR%2031,000)'
+        }, {
+            id: 27,
+            name: 'Yamaha Keyboard PSR-52',
+            sub: 'ආධුනිකයන් සඳහා විශිෂ්ට කීබෝඩ්',
+            desc: 'පැහැදිලි ශබ්දයක් සහ බහු ශබ්ද විකල්ප සහිත Yamaha PSR-52 කීබෝඩ්.',
+            price: 49500,
+            category: 'keyboard',
+            badge: 'Keyboard',
+            badgeIcon: 'fa-solid fa-keyboard',
+            image: 'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+            images: ['https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop'
+            ],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Yamaha%20PSR-52%20(LKR%2049,500)'
+        }, {
+            id: 28,
+            name: 'Yamaha Keyboard PSR-E483',
+            sub: 'වෘත්තීය මට්ටමේ උසස් කීබෝඩ්',
+            desc: 'උසස් ශබ්ද ගුණාත්මක භාවයක් සහ විවිධ ශබ්ද මාදිලි සහිත Yamaha PSR-E483.',
+            price: 129500,
+            category: 'keyboard',
+            badge: 'Keyboard',
+            badgeIcon: 'fa-solid fa-keyboard',
+            image: 'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+            images: ['https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop'
+            ],
+            tag: 'Premium',
+            tagIcon: 'fa-solid fa-star',
+            whatsapp: 'Yamaha%20PSR-E483%20(LKR%20129,500)'
+        }, {
+            id: 29,
+            name: 'Yamaha Keyboard PSR-E383',
+            sub: 'මධ්යම ශ්‍රේණියේ විශිෂ්ට කීබෝඩ්',
+            desc: 'බහු ශබ්ද විකල්ප සහ පැහැදිලි ශබ්දයක් සහිත Yamaha PSR-E383.',
+            price: 83000,
+            category: 'keyboard',
+            badge: 'Keyboard',
+            badgeIcon: 'fa-solid fa-keyboard',
+            image: 'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+            images: ['https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop'
+            ],
+            tag: 'In Stock',
+            tagIcon: 'fa-solid fa-check',
+            whatsapp: 'Yamaha%20PSR-E383%20(LKR%2083,000)'
+        }, {
+            id: 30,
+            name: 'Yamaha Keyboard PSR-E283',
+            sub: 'ආරම්භකයින් සඳහා ජනප්‍රිය කීබෝඩ්',
+            desc: 'අඩු මිලකට උසස් තත්ත්වයේ ශබ්දයක් සහිත Yamaha PSR-E283.',
+            price: 62000,
+            category: 'keyboard',
+            badge: 'Keyboard',
+            badgeIcon: 'fa-solid fa-keyboard',
+            image: 'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+            images: ['https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop',
+                'https://images.unsplash.com/photo-1552422535-458b1d7e1731?q=80&w=1600&auto=format&fit=crop'
+            ],
+            tag: 'Islandwide',
+            tagIcon: 'fa-solid fa-truck',
+            whatsapp: 'Yamaha%20PSR-E283%20(LKR%2062,000)'
+        }];
 
         // ============================================================
-        // 2. THEME TOGGLER
+        // STATE
         // ============================================================
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement;
-
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            htmlElement.setAttribute('data-theme', newTheme);
-            themeToggleBtn.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-moon"></i>' :
-                '<i class="fa-solid fa-sun"></i>';
-        });
+        let cart = JSON.parse(localStorage.getItem('dahanake_cart')) || [];
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let wishlist = JSON.parse(localStorage.getItem('dahanake_wishlist')) || [];
 
         // ============================================================
-        // 3. MOBILE MENU
+        // DOM REFS
         // ============================================================
+        const grid = document.getElementById('productGrid');
+        const emptyState = document.getElementById('emptyState');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const filterCount = document.getElementById('filterCount');
+        const productCountEl = document.getElementById('productCount');
+
+        const cartToggle = document.getElementById('cartToggle');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartClose = document.getElementById('cartClose');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartBadge = document.getElementById('cartBadge');
+        const cartItemCount = document.getElementById('cartItemCount');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        const backToTop = document.getElementById('backToTop');
+        const themeToggle = document.getElementById('themeToggle');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
+        const navHeader = document.getElementById('navHeader');
+        const toastContainer = document.getElementById('toastContainer');
 
-        mobileMenuBtn.addEventListener('click', () => {
+        // ============================================================
+        // RENDER PRODUCTS
+        // ============================================================
+        function renderProducts() {
+            const filtered = productsData.filter(p => {
+                // Category filter logic
+                let matchCategory = false;
+                if (currentFilter === 'all') matchCategory = true;
+                else if (currentFilter === 'instrument') {
+                    matchCategory = ['instrument', 'violin', 'keyboard'].includes(p.category);
+                } else {
+                    matchCategory = p.category === currentFilter;
+                }
+
+                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    p.sub.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    p.desc.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.add('visible');
+                filterCount.textContent = '0 items';
+                productCountEl.textContent = '0';
+                return;
+            }
+
+            emptyState.classList.remove('visible');
+            filterCount.textContent = `${filtered.length} item${filtered.length > 1 ? 's' : ''}`;
+            productCountEl.textContent = productsData.length;
+
+            grid.innerHTML = filtered.map(p => {
+                const isLiked = wishlist.includes(p.id);
+                const oldPriceHtml = p.oldPrice ?
+                    `<span class="old-price">LKR ${p.oldPrice.toLocaleString()}</span>` :
+                    '';
+                const badgeClass = p.category === 'instrument' ? 'instrument' :
+                    p.category === 'violin' ? 'violin' :
+                    p.category === 'keyboard' ? 'keyboard' :
+                    p.category === 'book' ? 'book' :
+                    p.category === 'accessory' ? 'accessory' : 'promo';
+
+                const galleryImages = p.images ? JSON.stringify(p.images) : JSON.stringify([p.image]);
+
+                return `
+                        <div class="product-card" data-id="${p.id}" data-category="${p.category}">
+                            <div class="product-img-wrapper" data-id="${p.id}" data-images='${galleryImages}'>
+                                <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" class="product-main-img" />
+                                ${p.images && p.images.length > 1 ? `<span class="img-counter">1/${p.images.length}</span>` : ''}
+                                <span class="zoom-hint"><i class="fa-regular fa-magnifying-glass-plus"></i> Zoom</span>
+                                <span class="zoom-hint-mobile"><i class="fa-regular fa-hand-pointer"></i> Tap to zoom</span>
+                                ${p.images && p.images.length > 1 ? `<span class="gallery-hint"><i class="fa-regular fa-hand-pointer"></i> Click to view</span>` : ''}
+                                <button class="wishlist-btn ${isLiked ? 'liked' : ''}" data-id="${p.id}" title="Wishlist">
+                                    <i class="fa-${isLiked ? 'solid' : 'regular'} fa-heart"></i>
+                                </button>
+                            </div>
+                            <span class="product-badge ${badgeClass}"><i class="${p.badgeIcon}"></i> ${p.badge}</span>
+                            <h4 class="product-title">${p.name}</h4>
+                            <span class="product-sub">${p.sub}</span>
+                            <p class="product-desc"><i class="fa-solid fa-check-circle"></i> ${p.desc}</p>
+                            <div class="product-meta">
+                                <span class="product-price">LKR ${p.price.toLocaleString()} ${oldPriceHtml}</span>
+                                <span class="product-meta-tag"><i class="${p.tagIcon}"></i> ${p.tag}</span>
+                            </div>
+                            <button class="btn-add-cart add-to-cart" data-id="${p.id}">
+                                <i class="fa-solid fa-cart-plus cart-icon"></i> Add to Cart
+                            </button>
+                        </div>
+                    `;
+            }).join('');
+
+            // --- Attach event listeners ---
+
+            // 1. Wishlist
+            document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = parseInt(this.dataset.id);
+                    toggleWishlist(id);
+                });
+            });
+
+            // 2. Add to Cart
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = parseInt(this.dataset.id);
+                    const card = this.closest('.product-card');
+                    const img = card.querySelector('.product-img-wrapper img');
+                    addToCartWithFly(id, img);
+                });
+            });
+
+            // 3. Gallery click-to-cycle
+            document.querySelectorAll('.product-img-wrapper').forEach(wrapper => {
+                const images = JSON.parse(wrapper.dataset.images);
+                if (images.length > 1) {
+                    const img = wrapper.querySelector('.product-main-img');
+                    const counter = wrapper.querySelector('.img-counter');
+                    let idx = 0;
+                    wrapper.style.cursor = 'pointer';
+                    wrapper.addEventListener('click', function(e) {
+                        if (e.target.closest('.wishlist-btn') || e.target.closest('.add-to-cart')) return;
+                        idx = (idx + 1) % images.length;
+                        img.src = images[idx];
+                        if (counter) {
+                            counter.textContent = `${idx+1}/${images.length}`;
+                        }
+                    });
+                }
+            });
+
+            // 4. Mouse move for lens glow
+            document.querySelectorAll('.product-img-wrapper').forEach(wrapper => {
+                wrapper.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    this.style.setProperty('--mouse-x', x + '%');
+                    this.style.setProperty('--mouse-y', y + '%');
+                });
+            });
+        }
+
+        // ============================================================
+        // FLY TO CART ANIMATION + ADD
+        // ============================================================
+        function addToCartWithFly(productId, imgElement) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const cartRect = cartToggle.getBoundingClientRect();
+            const cartX = cartRect.left + cartRect.width / 2;
+            const cartY = cartRect.top + cartRect.height / 2;
+
+            const imgRect = imgElement.getBoundingClientRect();
+            const imgX = imgRect.left + imgRect.width / 2;
+            const imgY = imgRect.top + imgRect.height / 2;
+
+            const flyer = document.createElement('div');
+            flyer.className = 'fly-to-cart';
+            const size = Math.min(imgRect.width, 80);
+            flyer.style.width = size + 'px';
+            flyer.style.height = size + 'px';
+            flyer.style.left = (imgX - size / 2) + 'px';
+            flyer.style.top = (imgY - size / 2) + 'px';
+            flyer.style.backgroundImage = `url(${product.image})`;
+            flyer.style.backgroundSize = 'cover';
+            flyer.style.backgroundPosition = 'center';
+            flyer.style.borderRadius = '12px';
+            flyer.style.border = '2px solid var(--accent)';
+            flyer.style.boxShadow = '0 8px 40px rgba(37,99,235,0.5)';
+            document.body.appendChild(flyer);
+
+            const startX = imgX - size / 2;
+            const startY = imgY - size / 2;
+            const endX = cartX - size / 2;
+            const endY = cartY - size / 2;
+
+            const anim = flyer.animate([
+                { transform: 'scale(1) rotate(0deg)', left: startX + 'px', top: startY + 'px', opacity: 1,
+                    borderRadius: '12px' },
+                { transform: 'scale(1.4) rotate(12deg)', left: ((startX + endX) / 2 - 20) + 'px', top: ((startY +
+                        endY) / 2 - 40) + 'px', opacity: 1, borderRadius: '12px' },
+                { transform: 'scale(0.6) rotate(-8deg)', left: (endX + 10) + 'px', top: (endY - 20) + 'px',
+                    opacity: 0.9, borderRadius: '50%' },
+                { transform: 'scale(0.15) rotate(20deg)', left: endX + 'px', top: endY + 'px', opacity: 0,
+                    borderRadius: '50%' }
+            ], {
+                duration: 900,
+                easing: 'cubic-bezier(0.34, 1.2, 0.64, 1)',
+                fill: 'forwards'
+            });
+
+            anim.onfinish = () => {
+                flyer.remove();
+                cartToggle.classList.remove('bounce');
+                void cartToggle.offsetWidth;
+                cartToggle.classList.add('bounce');
+                setTimeout(() => cartToggle.classList.remove('bounce'), 700);
+                addToCart(productId);
+            };
+
+            setTimeout(() => {
+                if (flyer.parentNode) {
+                    flyer.remove();
+                    addToCart(productId);
+                }
+            }, 1200);
+        }
+
+        // ============================================================
+        // CART
+        // ============================================================
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+                showToast(`${product.name} — quantity updated`, 'success');
+            } else {
+                cart.push({ ...product, qty: 1 });
+                showToast(`${product.name} added to cart 🎵`, 'success');
+            }
+
+            saveCart();
+            updateCartUI();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+            showToast('Item removed from cart', 'error');
+        }
+
+        function updateCartQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                removeFromCart(productId);
+                return;
+            }
+            saveCart();
+            updateCartUI();
+        }
+
+        function saveCart() {
+            localStorage.setItem('dahanake_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+            const totalPrice = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+            cartBadge.textContent = totalItems;
+            cartBadge.classList.toggle('visible', totalItems > 0);
+            cartItemCount.textContent = totalItems;
+            cartTotal.textContent = `LKR ${totalPrice.toLocaleString()}`;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                        <div class="empty-cart">
+                            <i class="fa-regular fa-cart-plus"></i>
+                            <p>Your cart is empty</p>
+                            <span style="font-size:0.8rem;color:var(--text-muted);">Add some music gear!</span>
+                        </div>
+                    `;
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" />
+                        <div class="item-info">
+                            <h4>${item.name}</h4>
+                            <div class="item-price">LKR ${item.price.toLocaleString()}</div>
+                            <div class="item-actions">
+                                <button class="qty-dec" data-id="${item.id}"><i class="fa-solid fa-minus"></i></button>
+                                <span class="qty">${item.qty}</span>
+                                <button class="qty-inc" data-id="${item.id}"><i class="fa-solid fa-plus"></i></button>
+                                <button class="item-remove" data-id="${item.id}"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            cartItems.querySelectorAll('.qty-dec').forEach(btn => {
+                btn.addEventListener('click', () => updateCartQty(parseInt(btn.dataset.id), -1));
+            });
+            cartItems.querySelectorAll('.qty-inc').forEach(btn => {
+                btn.addEventListener('click', () => updateCartQty(parseInt(btn.dataset.id), 1));
+            });
+            cartItems.querySelectorAll('.item-remove').forEach(btn => {
+                btn.addEventListener('click', () => removeFromCart(parseInt(btn.dataset.id)));
+            });
+        }
+
+        function openCart() {
+            cartSidebar.classList.add('open');
+            cartOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCart() {
+            cartSidebar.classList.remove('open');
+            cartOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ============================================================
+        // WISHLIST
+        // ============================================================
+        function toggleWishlist(productId) {
+            const idx = wishlist.indexOf(productId);
+            if (idx > -1) {
+                wishlist.splice(idx, 1);
+                showToast('Removed from wishlist', 'error');
+            } else {
+                wishlist.push(productId);
+                showToast('Added to wishlist ❤️', 'success');
+            }
+            localStorage.setItem('dahanake_wishlist', JSON.stringify(wishlist));
+            renderProducts();
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'success' ? 'fa-regular fa-circle-check' :
+                type === 'error' ? 'fa-regular fa-circle-xmark' : 'fa-regular fa-bell';
+            toast.innerHTML = `
+                    <span class="toast-icon"><i class="${icon}"></i></span>
+                    <span class="toast-msg">${message}</span>
+                    <button class="toast-close"><i class="fa-solid fa-xmark"></i></button>
+                `;
+            toastContainer.appendChild(toast);
+
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.remove();
+            });
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(40px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // ============================================================
+        // FILTER + SEARCH
+        // ============================================================
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderProducts();
+            });
+        });
+
+        searchInput.addEventListener('input', function() {
+            searchQuery = this.value;
+            clearSearch.classList.toggle('visible', searchQuery.length > 0);
+            renderProducts();
+        });
+
+        clearSearch.addEventListener('click', function() {
+            searchInput.value = '';
+            searchQuery = '';
+            this.classList.remove('visible');
+            renderProducts();
+            searchInput.focus();
+        });
+
+        // ============================================================
+        // THEME TOGGLE
+        // ============================================================
+        themeToggle.addEventListener('click', function() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            this.innerHTML = next === 'dark' ?
+                '<i class="fa-regular fa-moon"></i>' :
+                '<i class="fa-regular fa-sun"></i>';
+        });
+
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
+            this.innerHTML = navLinks.classList.contains('active') ?
+                '<i class="fa-solid fa-xmark"></i>' :
+                '<i class="fa-solid fa-bars"></i>';
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
             });
         });
 
         // ============================================================
-        // 4. SCROLL REVEAL OBSERVER
+        // CART TOGGLE
         // ============================================================
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, {
-            threshold: 0.12,
-            rootMargin: '0px 0px -40px 0px'
-        });
-
-        document.querySelectorAll('.reveal, .stagger').forEach(el => {
-            revealObserver.observe(el);
-        });
+        cartToggle.addEventListener('click', openCart);
+        cartClose.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
 
         // ============================================================
-        // 5. FILTER SYSTEM
+        // CHECKOUT
         // ============================================================
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const productCards = document.querySelectorAll('.product-card');
-        const emptyState = document.getElementById('emptyState');
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Update active button
-                filterButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                const filterValue = this.getAttribute('data-filter');
-                let visibleCount = 0;
-
-                productCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filterValue === 'all' || category === filterValue) {
-                        card.classList.remove('hidden');
-                        visibleCount++;
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-
-                // Show/hide empty state
-                if (visibleCount === 0) {
-                    emptyState.classList.add('visible');
-                } else {
-                    emptyState.classList.remove('visible');
-                }
-            });
-        });
-
-        // ============================================================
-        // 6. INTERACTIVE CANVAS BACKGROUND
-        // ============================================================
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = window.innerWidth * dpr;
-            canvas.height = window.innerHeight * dpr;
-            canvas.style.width = window.innerWidth + 'px';
-            canvas.style.height = window.innerHeight + 'px';
-            ctx.scale(dpr, dpr);
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const notesSymbols = ['♪', '♫', '♬', '♩'];
-        const particles = [];
-        const particleCount = Math.min(60, Math.floor(window.innerWidth / 22));
-
-        let mouseX = -1000;
-        let mouseY = -1000;
-        let mouseInfluence = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            mouseInfluence = 1;
-        });
-
-        document.addEventListener('mouseleave', () => {
-            mouseInfluence = 0;
-        });
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                size: Math.random() * 20 + 10,
-                symbol: notesSymbols[Math.floor(Math.random() * notesSymbols.length)],
-                speedY: Math.random() * 0.4 + 0.1,
-                speedX: (Math.random() - 0.5) * 0.15,
-                opacity: Math.random() * 0.3 + 0.1,
-                rotation: Math.random() * Math.PI * 2,
-                rotSpeed: (Math.random() - 0.5) * 0.015,
-                drift: Math.random() * 100,
-                waveAmplitude: Math.random() * 25 + 8,
-                waveSpeed: Math.random() * 0.015 + 0.005,
-            });
-        }
-
-        let time = 0;
-
-        function animateCanvas() {
-            time += 0.01;
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-
-            ctx.clearRect(0, 0, w, h);
-
-            particles.forEach(p => {
-                const waveX = Math.sin(time * p.waveSpeed + p.drift) * p.waveAmplitude * 0.3;
-                const waveY = Math.cos(time * p.waveSpeed * 0.7 + p.drift * 1.3) * p.waveAmplitude * 0.2;
-
-                let dx = mouseX - p.x;
-                let dy = mouseY - p.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                let forceX = 0;
-                let forceY = 0;
-
-                if (dist < 200 && dist > 0 && mouseInfluence > 0) {
-                    const strength = (1 - dist / 200) * 1.0 * mouseInfluence;
-                    const angle = Math.atan2(dy, dx);
-                    forceX = -Math.cos(angle) * strength * 0.6;
-                    forceY = -Math.sin(angle) * strength * 0.6;
-                    p.size = Math.min(28, p.size + 0.15);
-                } else {
-                    p.size += (p.size > 14 ? -0.04 : 0);
-                    p.size = Math.max(10, p.size);
-                }
-
-                p.x += p.speedX + waveX * 0.015 + forceX * 0.4;
-                p.y -= p.speedY + waveY * 0.015 + forceY * 0.4;
-
-                if (p.y < -30) { p.y = h + 30;
-                    p.x = Math.random() * w; }
-                if (p.x < -30) p.x = w + 30;
-                if (p.x > w + 30) p.x = -30;
-
-                p.rotation += p.rotSpeed + (forceX * 0.001);
-
-                let finalOpacity = p.opacity;
-                if (dist < 150 && mouseInfluence > 0) {
-                    finalOpacity = Math.min(0.6, p.opacity + 0.3 * (1 - dist / 150) * mouseInfluence);
-                }
-
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate(p.rotation);
-                ctx.font = `${p.size}px Poppins, sans-serif`;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-
-                if (dist < 150 && mouseInfluence > 0) {
-                    ctx.shadowColor = `rgba(56, 189, 248, ${0.4 * (1 - dist / 150) * mouseInfluence})`;
-                    ctx.shadowBlur = 25;
-                }
-
-                ctx.fillStyle = `rgba(56, 189, 248, ${finalOpacity})`;
-                ctx.fillText(p.symbol, 0, 0);
-                ctx.restore();
-            });
-
-            if (mouseInfluence > 0) {
-                ctx.save();
-                particles.forEach(p => {
-                    const dx = mouseX - p.x;
-                    const dy = mouseY - p.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 150) {
-                        const alpha = (1 - dist / 150) * 0.12 * mouseInfluence;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(mouseX, mouseY);
-                        ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                });
-                ctx.restore();
+        checkoutBtn.addEventListener('click', function() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty!', 'error');
+                return;
             }
-
-            requestAnimationFrame(animateCanvas);
-        }
-
-        animateCanvas();
+            const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            const items = cart.map(i => `${i.name} (${i.qty})`).join(', ');
+            const msg =
+                `I'd like to place an order:%0A%0A📦 Items: ${items}%0A💰 Total: LKR ${total.toLocaleString()}%0A%0AThank you!`;
+            window.open(`https://wa.me/94772660756?text=${msg}`, '_blank');
+            closeCart();
+        });
 
         // ============================================================
-        // 7. NAVBAR SCROLL EFFECT
+        // BACK TO TOP with progress
         // ============================================================
-        const navHeader = document.getElementById('navHeader');
+        const progressCircle = document.querySelector('.progress-ring circle');
+        const radius = 20;
+        const circumference = 2 * Math.PI * radius;
+        progressCircle.style.strokeDasharray = circumference;
+        progressCircle.style.strokeDashoffset = circumference;
 
-        window.addEventListener('scroll', () => {
-            const currentScrollY = window.pageYOffset;
-            if (currentScrollY > 80) {
-                navHeader.style.top = '0';
-                navHeader.style.width = '100%';
-                navHeader.style.maxWidth = '100%';
-                navHeader.style.borderRadius = '0';
-                navHeader.style.padding = '0 10px';
-                navHeader.style.boxShadow = '0 4px 30px rgba(0,0,0,0.15)';
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
+            const offset = circumference - progress * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+
+            if (scrollY > 400) {
+                backToTop.classList.add('visible');
             } else {
-                navHeader.style.top = '15px';
-                navHeader.style.width = '92%';
-                navHeader.style.maxWidth = '1250px';
-                navHeader.style.borderRadius = '60px';
-                navHeader.style.padding = '0';
-                navHeader.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)';
+                backToTop.classList.remove('visible');
             }
-        });
 
-        // ============================================================
-        // 8. BACK TO TOP
-        // ============================================================
-        const backToTopBtn = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 500) {
-                backToTopBtn.classList.add('visible');
+            if (scrollY > 60) {
+                navHeader.classList.add('scrolled');
             } else {
-                backToTopBtn.classList.remove('visible');
+                navHeader.classList.remove('scrolled');
             }
         });
 
-        backToTopBtn.addEventListener('click', () => {
+        backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        console.log('🎵 Dahanake Music Shop — Fully functional!');
-    </script>
+        // ============================================================
+        // PRELOADER
+        // ============================================================
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').classList.add('hidden');
+            renderProducts();
+            updateCartUI();
 
+            const theme = document.documentElement.getAttribute('data-theme');
+            themeToggle.innerHTML = theme === 'dark' ?
+                '<i class="fa-regular fa-moon"></i>' :
+                '<i class="fa-regular fa-sun"></i>';
+        });
+
+        // ============================================================
+        // KEYBOARD SHORTCUTS
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (cartSidebar.classList.contains('open')) closeCart();
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                }
+            }
+        });
+
+        console.log('🎵 Dahanake Music Shop — Updated with Violin & Keyboard filters, new products, larger images, and enhanced Add to Cart.');
+    </script>
 </body>
 </html>
